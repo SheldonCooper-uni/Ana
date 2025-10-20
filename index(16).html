@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanisch lernen online mit Ana | Kostenlose Probestunde</title>
+    <meta name="description" content="Konversationsunterricht A1–B2, maßgeschneidert. Gratis Probestunde, Pakete ab $18.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --beige: #F2E8DC;
+            --terracotta: #C96F53;
+            --light-blue: #A6D8E7;
+            --dark-brown: #3A3633;
+            --white: #FFFFFF;
+            --light-gray: #F8F6F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark-brown);
+            line-height: 1.6;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark-brown);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--terracotta);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            border-left: 2px solid var(--beige);
+            padding-left: 2rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--dark-brown);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.3rem 0.7rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: var(--beige);
+        }
+
+        .lang-btn.active {
+            background: var(--terracotta);
+            color: white;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-brown);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 5% 5%;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(135deg, var(--beige) 0%, var(--light-gray) 100%);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--dark-brown);
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            position: relative;
+            height: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: white;
+            box-shadow: 0 10px 30px rgba(201, 111, 83, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #B15E42;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(201, 111, 83, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--terracotta);
+            border: 2px solid var(--terracotta);
+        }
+
+        .btn-secondary:hover {
+            background: var(--terracotta);
+            color: white;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--dark-brown);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: var(--white);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .benefit-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--terracotta);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--beige);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-brown);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: var(--white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--terracotta);
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, var(--terracotta) 0%, #B15E42 100%);
+            color: white;
+            border-color: var(--terracotta);
+        }
+
+        .pricing-badge {
+            background: var(--light-blue);
+            color: var(--dark-brown);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .price-unit {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--light-blue);
+            background: linear-gradient(135deg, var(--light-blue) 0%, #d5edf5 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--terracotta);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--white);
+        }
+
+        .faq-item {
+            background: var(--light-gray);
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--beige);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--beige);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--terracotta);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--beige);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--terracotta);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-brown);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--terracotta);
+        }
+
+        /* Video Container */
+        .video-container {
+            margin-top: 3rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 5%;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                height: 400px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-switcher {
+                border: none;
+                padding: 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Ana's Spanish Map</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-de="Start" data-en="Home" data-es="Inicio">Start</a></li>
+                <li><a href="#about" data-de="Über mich" data-en="About" data-es="Sobre mí">Über mich</a></li>
+                <li><a href="#pricing" data-de="Preise" data-en="Pricing" data-es="Precios">Preise</a></li>
+                <li><a href="#testimonials" data-de="Bewertungen" data-en="Testimonials" data-es="Testimonios">Bewertungen</a></li>
+                <li><a href="#contact" data-de="Kontakt" data-en="Contact" data-es="Contacto">Kontakt</a></li>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="switchLanguage('de')">DE</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="switchLanguage('es')">ES</button>
+                </div>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in-up">
+            <h1 data-de="Spanisch, das du wirklich sprichst." 
+                data-en="Spanish you'll actually speak." 
+                data-es="Español que realmente vas a hablar.">
+                Spanisch, das du wirklich sprichst.
+            </h1>
+            <p data-de="Konversation im echten Kontext – maßgeschneidert für deine Ziele." 
+               data-en="Real-life conversation, tailored to your goals." 
+               data-es="Conversación en contextos reales, diseñada para tus metas.">
+                Konversation im echten Kontext – maßgeschneidert für deine Ziele.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#contact" class="btn btn-primary" 
+                   data-de="Kostenlose Probestunde buchen" 
+                   data-en="Book your free trial" 
+                   data-es="Reserva tu clase gratis">
+                    Kostenlose Probestunde buchen
+                </a>
+                <a href="#pricing" class="btn btn-secondary" 
+                   data-de="Preise ansehen" 
+                   data-en="View Pricing" 
+                   data-es="Ver Precios">
+                    Preise ansehen
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="Ana_1.jpg" alt="Ana - Spanish Teacher">
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <h2 class="section-title" 
+            data-de="Warum mit mir lernen?" 
+            data-en="Why Learn With Me?" 
+            data-es="¿Por qué aprender conmigo?">
+            Warum mit mir lernen?
+        </h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">💬</div>
+                <h3 data-de="Natürlich sprechen" data-en="Speak naturally" data-es="Habla de forma natural">Natürlich sprechen</h3>
+                <p data-de="Echte Situationen, echtes Vokabular" 
+                   data-en="Real contexts, real vocabulary" 
+                   data-es="Contextos reales y vocabulario útil">
+                    Echte Situationen, echtes Vokabular
+                </p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📚</div>
+                <h3 data-de="Klarer Aufbau" data-en="Clear structure" data-es="Estructura clara">Klarer Aufbau</h3>
+                <p data-de="Grammatik integriert, nicht trocken" 
+                   data-en="Grammar integrated, never dry" 
+                   data-es="Gramática integrada, sin aburrirse">
+                    Grammatik integriert, nicht trocken
+                </p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h3 data-de="Maßgeschneidert" data-en="Tailor-made" data-es="A tu medida">Maßgeschneidert</h3>
+                <p data-de="Ziel, Level & Lernstil bestimmen die Stunde" 
+                   data-en="Goals, level & learning style guide each lesson" 
+                   data-es="Metas, nivel y estilo marcan la clase">
+                    Ziel, Level & Lernstil bestimmen die Stunde
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="Ana_2.jpg" alt="Ana - Spanish Teacher">
+            </div>
+            <div class="about-text">
+                <h2 data-de="Über mich" data-en="About Me" data-es="Sobre mí">Über mich</h2>
+                <p data-de="Hallo, ich bin Ana, zertifizierte Spanischlehrerin mit über sechs Jahren Erfahrung mit Jugendlichen und Erwachsenen. Mein Unterricht ist dynamisch, persönlich und motivierend – mit Fokus auf Konversation im Alltag. Jede Stunde bringt dich klar und sicher einen Schritt näher zu flüssigem Sprechen."
+                   data-en="Hi, I'm Ana—a certified Spanish teacher with 6+ years of experience. My classes are dynamic, personal, and motivating, with conversation at the core. Each lesson is a confident step toward real-world fluency."
+                   data-es="Hola, soy Ana, profesora certificada de español con más de seis años de experiencia. Mis clases son dinámicas y personalizadas, con la conversación como eje. Cada clase es un paso seguro hacia una fluidez real.">
+                    Hallo, ich bin Ana, zertifizierte Spanischlehrerin mit über sechs Jahren Erfahrung mit Jugendlichen und Erwachsenen. Mein Unterricht ist dynamisch, persönlich und motivierend – mit Fokus auf Konversation im Alltag. Jede Stunde bringt dich klar und sicher einen Schritt näher zu flüssigem Sprechen.
+                </p>
+                <p>
+                    <strong data-de="🎓 Zertifiziert & Erfahren" data-en="🎓 Certified & Experienced" data-es="🎓 Certificada y con experiencia">🎓 Zertifiziert & Erfahren</strong><br>
+                    <span data-de="6+ Jahre Unterrichtserfahrung | A1–B2 Level | DELE-Vorbereitung möglich"
+                          data-en="6+ years teaching experience | A1–B2 levels | DELE preparation available"
+                          data-es="6+ años de experiencia | Niveles A1–B2 | Preparación DELE disponible">
+                        6+ Jahre Unterrichtserfahrung | A1–B2 Level | DELE-Vorbereitung möglich
+                    </span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <h2 class="section-title" 
+            data-de="Preise & Pakete" 
+            data-en="Pricing & Packages" 
+            data-es="Precios y Paquetes">
+            Preise & Pakete
+        </h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-badge" data-de="GRATIS" data-en="FREE" data-es="GRATIS">GRATIS</div>
+                <h3 data-de="Probestunde" data-en="Trial Lesson" data-es="Clase de Prueba">Probestunde</h3>
+                <div class="price">$0</div>
+                <div class="price-unit">30 min</div>
+                <ul class="pricing-features">
+                    <li data-de="✓ Kostenlose Probestunde" data-en="✓ Free trial lesson" data-es="✓ Clase de prueba gratis">✓ Kostenlose Probestunde</li>
+                    <li data-de="✓ Level-Einschätzung" data-en="✓ Level assessment" data-es="✓ Evaluación de nivel">✓ Level-Einschätzung</li>
+                    <li data-de="✓ Lernziele besprechen" data-en="✓ Discuss learning goals" data-es="✓ Discutir objetivos">✓ Lernziele besprechen</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary" 
+                   data-de="Jetzt buchen" data-en="Book Now" data-es="Reservar Ahora">Jetzt buchen</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3 data-de="Einzelstunde" data-en="Single Lesson" data-es="Clase Individual">Einzelstunde</h3>
+                <div class="price">$18</div>
+                <div class="price-unit">50 min</div>
+                <ul class="pricing-features">
+                    <li data-de="✓ 50 Minuten Unterricht" data-en="✓ 50 minutes lesson" data-es="✓ 50 minutos de clase">✓ 50 Minuten Unterricht</li>
+                    <li data-de="✓ Individuelle Materialien" data-en="✓ Individual materials" data-es="✓ Materiales individuales">✓ Individuelle Materialien</li>
+                    <li data-de="✓ Flexibel buchbar" data-en="✓ Flexible booking" data-es="✓ Reserva flexible">✓ Flexibel buchbar</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary" 
+                   data-de="Jetzt buchen" data-en="Book Now" data-es="Reservar Ahora">Jetzt buchen</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3 data-de="Paket: 5 Stunden" data-en="Package: 5 Lessons" data-es="Paquete: 5 Clases">Paket: 5 Stunden</h3>
+                <div class="price">$90</div>
+                <div class="price-unit" data-de="5 x 50 min" data-en="5 x 50 min" data-es="5 x 50 min">5 x 50 min</div>
+                <ul class="pricing-features">
+                    <li data-de="✓ 5 Stunden à 50 Minuten" data-en="✓ 5 x 50-minute lessons" data-es="✓ 5 clases de 50 minutos">✓ 5 Stunden à 50 Minuten</li>
+                    <li data-de="✓ Ersparnis: $18/Stunde" data-en="✓ Save: $18/lesson" data-es="✓ Ahorro: $18/clase">✓ Ersparnis: $18/Stunde</li>
+                    <li data-de="✓ 3 Monate gültig" data-en="✓ Valid for 3 months" data-es="✓ Válido por 3 meses">✓ 3 Monate gültig</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary" 
+                   data-de="Jetzt buchen" data-en="Book Now" data-es="Reservar Ahora">Jetzt buchen</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge" data-de="BELIEBT" data-en="POPULAR" data-es="POPULAR">BELIEBT</div>
+                <h3 data-de="Paket: 10 Stunden" data-en="Package: 10 Lessons" data-es="Paquete: 10 Clases">Paket: 10 Stunden</h3>
+                <div class="price">$180</div>
+                <div class="price-unit" data-de="10 x 50 min" data-en="10 x 50 min" data-es="10 x 50 min">10 x 50 min</div>
+                <ul class="pricing-features">
+                    <li data-de="✓ 10 Stunden à 50 Minuten" data-en="✓ 10 x 50-minute lessons" data-es="✓ 10 clases de 50 minutos">✓ 10 Stunden à 50 Minuten</li>
+                    <li data-de="✓ Ersparnis: $18/Stunde" data-en="✓ Save: $18/lesson" data-es="✓ Ahorro: $18/clase">✓ Ersparnis: $18/Stunde</li>
+                    <li data-de="✓ 6 Monate gültig" data-en="✓ Valid for 6 months" data-es="✓ Válido por 6 meses">✓ 6 Monate gültig</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary" style="background: white; color: var(--terracotta);" 
+                   data-de="Jetzt buchen" data-en="Book Now" data-es="Reservar Ahora">Jetzt buchen</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-badge" data-de="BONUS" data-en="BONUS" data-es="BONUS">BONUS</div>
+                <h3 data-de="Paket: 20 Stunden" data-en="Package: 20 Lessons" data-es="Paquete: 20 Clases">Paket: 20 Stunden</h3>
+                <div class="price">$360</div>
+                <div class="price-unit" data-de="20 x 50 min + 3 gratis" data-en="20 x 50 min + 3 free" data-es="20 x 50 min + 3 gratis">20 x 50 min + 3 gratis</div>
+                <ul class="pricing-features">
+                    <li data-de="✓ 20 Stunden à 50 Minuten" data-en="✓ 20 x 50-minute lessons" data-es="✓ 20 clases de 50 minutos">✓ 20 Stunden à 50 Minuten</li>
+                    <li data-de="✓ + 3 Gratisstunden!" data-en="✓ + 3 Free Lessons!" data-es="✓ + ¡3 Clases Gratis!">✓ + 3 Gratisstunden!</li>
+                    <li data-de="✓ 12 Monate gültig" data-en="✓ Valid for 12 months" data-es="✓ Válido por 12 meses">✓ 12 Monate gültig</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary" 
+                   data-de="Jetzt buchen" data-en="Book Now" data-es="Reservar Ahora">Jetzt buchen</a>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; opacity: 0.8;">
+            <span data-de="💳 Zahlung via PayPal | 📅 Stornierung bis 24h vorher kostenlos"
+                  data-en="💳 Payment via PayPal | 📅 Free cancellation up to 24h before"
+                  data-es="💳 Pago vía PayPal | 📅 Cancelación gratuita hasta 24h antes">
+                💳 Zahlung via PayPal | 📅 Stornierung bis 24h vorher kostenlos
+            </span>
+        </p>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title" 
+            data-de="Was meine Schüler sagen" 
+            data-en="What My Students Say" 
+            data-es="Lo que dicen mis estudiantes">
+            Was meine Schüler sagen
+        </h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text" 
+                   data-de="„Ana machte Spanisch simpel und spaßig."" 
+                   data-en=""Ana made Spanish simple and fun."" 
+                   data-es="«Ana hizo el español simple y divertido.»">
+                    „Ana machte Spanisch simpel und spaßig."
+                </p>
+                <p class="testimonial-author">— Mark, UK</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text" 
+                   data-de="„Motivierend und engagierend."" 
+                   data-en=""Motivating and engaging."" 
+                   data-es="«Motivadora y dinámica.»">
+                    „Motivierend und engagierend."
+                </p>
+                <p class="testimonial-author">— Julia, Germany</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2 class="section-title" 
+            data-de="Häufige Fragen" 
+            data-en="Frequently Asked Questions" 
+            data-es="Preguntas Frecuentes">
+            Häufige Fragen
+        </h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-de="Welche Zeiten bietest du an?" 
+                          data-en="What times do you offer?" 
+                          data-es="¿Qué horarios ofreces?">
+                        Welche Zeiten bietest du an?
+                    </span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p data-de="Ich unterrichte Montag bis Freitag, morgens, nachmittags und abends in GMT-5 (Peru Zeit). Wir finden gemeinsam einen passenden Termin!"
+                       data-en="I teach Monday to Friday, mornings, afternoons, and evenings in GMT-5 (Peru time). We'll find a suitable time together!"
+                       data-es="Enseño de lunes a viernes, por la mañana, tarde y noche en GMT-5 (hora de Perú). ¡Encontraremos un horario adecuado juntos!">
+                        Ich unterrichte Montag bis Freitag, morgens, nachmittags und abends in GMT-5 (Peru Zeit). Wir finden gemeinsam einen passenden Termin!
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-de="Für welches Level bietest du Unterricht an?" 
+                          data-en="What levels do you teach?" 
+                          data-es="¿Qué niveles enseñas?">
+                        Für welches Level bietest du Unterricht an?
+                    </span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p data-de="Ich unterrichte alle Levels von A1 (Anfänger) bis B2 (fortgeschrittene Mittelstufe). Auch DELE-Vorbereitung ist möglich!"
+                       data-en="I teach all levels from A1 (beginner) to B2 (upper intermediate). DELE preparation is also available!"
+                       data-es="Enseño todos los niveles desde A1 (principiante) hasta B2 (intermedio avanzado). ¡También preparación DELE disponible!">
+                        Ich unterrichte alle Levels von A1 (Anfänger) bis B2 (fortgeschrittene Mittelstufe). Auch DELE-Vorbereitung ist möglich!
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-de="Welche Technik brauche ich?" 
+                          data-en="What technology do I need?" 
+                          data-es="¿Qué tecnología necesito?">
+                        Welche Technik brauche ich?
+                    </span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p data-de="Du brauchst nur einen Computer/Tablet/Smartphone mit Internetverbindung und eine Video-Plattform (Zoom, Skype, etc.). Ich teile alle Materialien digital mit dir!"
+                       data-en="You only need a computer/tablet/smartphone with internet connection and a video platform (Zoom, Skype, etc.). I'll share all materials digitally with you!"
+                       data-es="Solo necesitas una computadora/tablet/smartphone con conexión a internet y una plataforma de video (Zoom, Skype, etc.). ¡Compartiré todos los materiales digitalmente contigo!">
+                        Du brauchst nur einen Computer/Tablet/Smartphone mit Internetverbindung und eine Video-Plattform (Zoom, Skype, etc.). Ich teile alle Materialien digital mit dir!
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-de="Wie läuft die Stornierung ab?" 
+                          data-en="How does cancellation work?" 
+                          data-es="¿Cómo funciona la cancelación?">
+                        Wie läuft die Stornierung ab?
+                    </span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p data-de="Du kannst bis 24 Stunden vor dem Termin kostenlos umbuchen oder absagen. Bei späterer Absage wird die volle Gebühr berechnet."
+                       data-en="You can reschedule or cancel free of charge up to 24 hours before the appointment. Later cancellations will be charged in full."
+                       data-es="Puedes reprogramar o cancelar sin cargo hasta 24 horas antes de la cita. Las cancelaciones posteriores se cobrarán en su totalidad.">
+                        Du kannst bis 24 Stunden vor dem Termin kostenlos umbuchen oder absagen. Bei späterer Absage wird die volle Gebühr berechnet.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section style="background: var(--light-gray); padding: 5rem 5%;">
+        <h2 class="section-title" 
+            data-de="Schau dir meine Lehrmethode an" 
+            data-en="Check Out My Teaching Method" 
+            data-es="Conoce mi método de enseñanza">
+            Schau dir meine Lehrmethode an
+        </h2>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dcZf2LLwPew" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title" 
+            data-de="Kontaktiere mich" 
+            data-en="Get In Touch" 
+            data-es="Contáctame">
+            Kontaktiere mich
+        </h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <h3>Email</h3>
+                        <a href="mailto:anaarellano548@gmail.com">anaarellano548@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div>
+                        <h3>WhatsApp</h3>
+                        <p data-de="Schreib mir direkt!" data-en="Message me directly!" data-es="¡Escríbeme directamente!">Schreib mir direkt!</p>
+                        <a href="https://wa.me/" target="_blank" class="btn btn-primary" style="margin-top: 0.5rem; display: inline-block;">
+                            <span data-de="WhatsApp öffnen" data-en="Open WhatsApp" data-es="Abrir WhatsApp">WhatsApp öffnen</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <h3>Instagram</h3>
+                        <a href="https://instagram.com/AnasSpanishMap" target="_blank">@AnasSpanishMap</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🎥</div>
+                    <div>
+                        <h3>YouTube</h3>
+                        <p data-de="Wöchentliche Tipps & Lektionen" data-en="Weekly tips & lessons" data-es="Tips y lecciones semanales">Wöchentliche Tipps & Lektionen</p>
+                        <a href="https://youtube.com/@AnasSpanishMap" target="_blank">
+                            <span data-de="Kanal besuchen" data-en="Visit Channel" data-es="Visitar Canal">Kanal besuchen</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3 data-de="Buche deine kostenlose Probestunde" 
+                    data-en="Book Your Free Trial Lesson" 
+                    data-es="Reserva tu Clase de Prueba Gratis">
+                    Buche deine kostenlose Probestunde
+                </h3>
+                <form action="https://formspree.io/f/manpjnnz" method="POST">
+                    <div class="form-group">
+                        <label for="name" data-de="Name" data-en="Name" data-es="Nombre">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-de="E-Mail" data-en="Email" data-es="Correo electrónico">E-Mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="level" data-de="Dein Spanisch-Level" data-en="Your Spanish Level" data-es="Tu nivel de español">Dein Spanisch-Level</label>
+                        <select id="level" name="level" required>
+                            <option value="" data-de="Wähle dein Level" data-en="Select your level" data-es="Selecciona tu nivel">Wähle dein Level</option>
+                            <option value="A1">A1 - Anfänger</option>
+                            <option value="A2">A2 - Grundkenntnisse</option>
+                            <option value="B1">B1 - Mittelstufe</option>
+                            <option value="B2">B2 - Fortgeschrittene Mittelstufe</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-de="Nachricht (optional)" data-en="Message (optional)" data-es="Mensaje (opcional)">Nachricht (optional)</label>
+                        <textarea id="message" name="message" 
+                                  data-de placeholder="Erzähl mir von deinen Lernzielen..." 
+                                  data-en placeholder="Tell me about your learning goals..." 
+                                  data-es placeholder="Cuéntame sobre tus objetivos de aprendizaje...">
+                        </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;" 
+                            data-de="Kostenlose Probestunde anfragen" 
+                            data-en="Request Free Trial" 
+                            data-es="Solicitar Clase de Prueba Gratis">
+                        Kostenlose Probestunde anfragen
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Ana's Spanish Map</h3>
+            <p data-de="#AnasSpanishMap — Deine Reise zu fließendem Spanisch" 
+               data-en="#AnasSpanishMap — Your journey to Spanish fluency" 
+               data-es="#AnasSpanishMap — Tu viaje hacia la fluidez en español">
+                #AnasSpanishMap — Deine Reise zu fließendem Spanisch
+            </p>
+            <div class="social-links">
+                <a href="https://instagram.com/AnasSpanishMap" target="_blank">📱</a>
+                <a href="https://youtube.com/@AnasSpanishMap" target="_blank">🎥</a>
+                <a href="mailto:anaarellano548@gmail.com">📧</a>
+                <a href="https://wa.me/" target="_blank">💬</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">
+                © 2025 Ana's Spanish Map. 
+                <span data-de="Alle Rechte vorbehalten." data-en="All rights reserved." data-es="Todos los derechos reservados.">
+                    Alle Rechte vorbehalten.
+                </span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Language Switcher
+        let currentLang = 'de';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-' + lang + ']').forEach(element => {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = element.getAttribute('data-' + lang);
+                } else {
+                    element.textContent = element.getAttribute('data-' + lang);
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+
+            // Update page title and meta
+            const titles = {
+                de: 'Spanisch lernen online mit Ana | Kostenlose Probestunde',
+                en: 'Learn Spanish Online with Ana | Free Trial Lesson',
+                es: 'Aprende español online con Ana | Clase de prueba gratis'
+            };
+            document.title = titles[lang];
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span:last-child');
+            
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Update year in footer
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearElements = document.querySelectorAll('footer p');
+            yearElements.forEach(el => {
+                if (el.textContent.includes('2025')) {
+                    el.textContent = el.textContent.replace('2025', new Date().getFullYear());
+                }
+            });
+        });
+    </script>
+</body>
+</html>
