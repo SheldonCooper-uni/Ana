@@ -621,6 +621,14 @@
         html {
             scroll-behavior: smooth;
         }
+        /* Bilder nicht beschneiden */
+.hero-image, .about-image { height: auto !important; }
+.hero-image img, .about-image img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
     </style>
 </head>
 <body>
