@@ -1877,17 +1877,13 @@
                 
                 <div class="hero-image-wrapper reveal-fade-up">
                     <div class="hero-image">
-                        <picture>
-                            <source srcset="https://placehold.co/600x600/D97706/FFFBEB?text=Ana's+Foto+(WebP)" type="image/webp">
-                            <source srcset="https://placehold.co/600x600/D97706/FFFBEB?text=Ana's+Foto+(AVIF)" type="image/avif">
-                            <img 
-                                src="https://placehold.co/600x600/D97706/FFFBEB?text=Ana's+Foto+(JPG)" 
-                                alt="Ana, eine freundliche Spanischlehrerin, lächelt in die Kamera" 
-                                width="600" 
-                                height="600"
-                                fetchpriority="high"
-                                decoding="async">
-                        </picture>
+                        <img 
+                            src="Ana 1.jpg" 
+                            alt="Ana, eine freundliche Spanischlehrerin, lächelt in die Kamera" 
+                            width="600" 
+                            height="600"
+                            fetchpriority="high"
+                            decoding="async">
                     </div>
                 </div>
             </div>
@@ -1942,16 +1938,13 @@
                         </ul>
                     </div>
                     <div class="about-image reveal-fade-up" style="--delay: 100ms">
-                         <picture>
-                            <source srcset="https://placehold.co/500x500/0E7490/ECFEFF?text=Ana+unterrichtet+(WebP)" type="image/webp">
-                            <img 
-                                src="https://placehold.co/500x500/0E7490/ECFEFF?text=Ana+unterrichtet+(JPG)" 
-                                alt="Ana in einer Unterrichtssituation, sie erklärt etwas mit einem Lächeln" 
-                                width="500" 
-                                height="500"
-                                loading="lazy"
-                                decoding="async">
-                        </picture>
+                         <img 
+                            src="Ana 2.jpg" 
+                            alt="Ana in einer Unterrichtssituation, sie erklärt etwas mit einem Lächeln" 
+                            width="500" 
+                            height="500"
+                            loading="lazy"
+                            decoding="async">
                     </div>
                 </div>
             </div>
@@ -3018,11 +3011,13 @@
                 const lang = getLangFromBrowser();
                 setLang(lang);
                 
-                document.querySelector('.lang-switcher').addEventListener('click', (e) => {
-                    const btn = e.target.closest('.lang-switcher-btn');
-                    if (btn && btn.dataset.lang !== currentLang) {
-                        setLang(btn.dataset.lang);
-                    }
+                document.querySelectorAll('.lang-switcher').forEach(switcher => {
+                    switcher.addEventListener('click', (e) => {
+                        const btn = e.target.closest('.lang-switcher-btn');
+                        if (btn && btn.dataset.lang !== currentLang) {
+                            setLang(btn.dataset.lang);
+                        }
+                    });
                 });
             };
 
@@ -3421,4 +3416,5 @@
     </script>
 </body>
 </html>
+
 
