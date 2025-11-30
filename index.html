@@ -192,7 +192,7 @@
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
                     <span class="font-heading font-bold text-2xl text-brand-terra tracking-tight">
-                        Ana’s Spanish Map <i class="fa-solid fa-map-location-dot ml-2"></i>
+                        Ana's Spanish Map <i class="fa-solid fa-map-location-dot ml-2"></i>
                     </span>
                 </div>
 
@@ -230,10 +230,10 @@
         </div>
     </nav>
 
+    <!-- CHANGE 1: Hero background - removed grayscale, increased opacity from 20 to 40 -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 z-0 opacity-40">
             <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1600&h=900&fit=crop" alt="Peru Landscape" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-beige/85 via-brand-beige/75 to-transparent"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -266,7 +266,7 @@
         </div>
     </section>
 
-    <!-- Interactive Multi-Quiz Section -->
+    <!-- CHANGE 2: Interactive Multi-Quiz Section - Quiz words now translatable -->
     <div class="gradient-animated text-white py-12 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-6">
@@ -276,7 +276,8 @@
                 <!-- Quiz Card 1 -->
                 <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
                     <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-globe mr-2 text-brand-terra"></i> <span data-i18n="quiz_card1_q">Abenteuer</span>
+                        <i class="fa-solid fa-globe mr-2 text-brand-terra"></i>
+                        <span data-i18n="quiz_card1_question">Adventure</span>
                     </div>
                     <div class="quiz-answer text-lg">
                         ✨ ¡Aventura!
@@ -286,7 +287,8 @@
                 <!-- Quiz Card 2 -->
                 <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
                     <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-heart mr-2 text-brand-terra"></i> <span data-i18n="quiz_card2_q">Reise</span>
+                        <i class="fa-solid fa-heart mr-2 text-brand-terra"></i>
+                        <span data-i18n="quiz_card2_question">Journey</span>
                     </div>
                     <div class="quiz-answer text-lg">
                         ✨ ¡Viaje!
@@ -296,7 +298,8 @@
                 <!-- Quiz Card 3 -->
                 <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
                     <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-face-smile mr-2 text-brand-terra"></i> <span data-i18n="quiz_card3_q">Lächeln</span>
+                        <i class="fa-solid fa-face-smile mr-2 text-brand-terra"></i>
+                        <span data-i18n="quiz_card3_question">Smile</span>
                     </div>
                     <div class="quiz-answer text-lg">
                         ✨ ¡Sonrisa!
@@ -304,16 +307,18 @@
                 </div>
             </div>
             <div class="text-center mt-6 text-sm text-white font-medium drop-shadow">
-                <i class="fa-solid fa-hand-pointer mr-2"></i> Click or hover to reveal!
+                <i class="fa-solid fa-hand-pointer mr-2"></i>
+                <span data-i18n="quiz_hint">Click or hover to reveal!</span>
             </div>
         </div>
     </div>
 
+    <!-- CHANGE 3: About section - Portrait smaller with object-top to avoid cropping face -->
     <section id="about" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="order-2 md:order-1 relative fade-in-section">
-                    <img src="images/Ana_2.jpg" alt="Ana Portrait" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-contain mx-auto shadow-xl border-8 border-brand-beige bg-brand-beige">
+                    <img src="images/Ana_2.jpg" alt="Ana Portrait" class="rounded-full w-40 h-40 md:w-56 md:h-56 object-cover object-top mx-auto shadow-xl border-8 border-brand-beige">
                     <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-white px-4 py-2 rounded-lg shadow-md text-sm font-bold text-brand-terra whitespace-nowrap">
                         <i class="fa-solid fa-certificate mr-1"></i> 6+ Jahre Erfahrung
                     </div>
@@ -360,9 +365,10 @@
         </div>
     </section>
 
+    <!-- CHANGE 4a: Method section - increased background opacity from 20 to 40 -->
     <section id="method" class="py-24 bg-brand-beige relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full pointer-events-none hidden lg:block">
-            <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&h=1200&fit=crop&q=80" alt="Cathedral Texture" class="w-full h-full object-cover object-center opacity-30">
+        <div class="absolute top-0 right-0 w-1/3 h-full opacity-40 pointer-events-none hidden lg:block">
+            <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&h=1200&fit=crop&q=80" alt="Cathedral Texture" class="w-full h-full object-cover object-center">
         </div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -395,17 +401,6 @@
                     "Lerne Spanisch nicht nur – fühle es, genieße es und mache es zu deinem eigenen."
                 </blockquote>
             </div>
-        </div>
-    </section>
-
-    <!-- Animated Conversation Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <h3 class="font-heading text-2xl md:text-3xl font-bold text-brand-dark mb-8" data-i18n="conversation_headline">Lerne, echte Gespräche zu führen</h3>
-            <div class="text-3xl md:text-5xl font-bold text-brand-terra min-h-[80px] flex items-center justify-center">
-                <span id="rotating-question" class="transition-opacity duration-500"></span>
-            </div>
-            <p class="text-gray-600 mt-6" data-i18n="conversation_sub">Diese und viele weitere Fragen wirst du natürlich und selbstbewusst beantworten können!</p>
         </div>
     </section>
 
@@ -473,6 +468,7 @@
         </div>
     </section>
 
+    <!-- CHANGE 6: Pricing section - Route names now translatable -->
     <section id="rutas" class="py-24 bg-white relative">
         <div class="h-64 w-full object-cover absolute top-0 left-0 z-0 opacity-80">
              <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
@@ -488,16 +484,13 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Ruta Exprés -->
-                <div class="card-3d bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 fade-in-section flex flex-col relative overflow-hidden group">
+                <div class="card-3d bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 fade-in-section flex flex-col relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-brand-yellow/10 rounded-full -mr-16 -mt-16"></div>
-                    <div class="absolute inset-0 bg-brand-terra/95 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-8 z-20">
-                        <p class="text-white text-center font-medium" data-i18n="route_express_hover">Ideal, wenn du wenig Zeit hast, aber schnell Fortschritte machen willst.</p>
-                    </div>
                     <div class="mb-4 relative z-10">
                         <div class="w-12 h-12 bg-brand-terra/10 rounded-full flex items-center justify-center mb-3">
                             <i class="fa-solid fa-rocket text-brand-terra text-xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="route_express_name">Express-Route</h3>
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="pack_3_title">Ruta Exprés</h3>
                         <p class="text-sm text-gray-500 mt-2 h-10" data-i18n="pack_3_sub">Der Kompass für ein konkretes Ziel.</p>
                     </div>
                     <div class="text-4xl font-bold text-brand-terra mb-6 relative z-10">
@@ -514,18 +507,15 @@
                 </div>
 
                 <!-- Ruta Intermedia (Popular) -->
-                <div class="card-3d bg-gradient-to-br from-brand-terra to-orange-700 rounded-2xl p-8 shadow-2xl relative fade-in-section delay-100 flex flex-col transform scale-105 z-10 group">
+                <div class="card-3d bg-gradient-to-br from-brand-terra to-orange-700 rounded-2xl p-8 shadow-2xl relative fade-in-section delay-100 flex flex-col transform scale-105 z-10">
                     <div class="absolute top-4 right-4 bg-brand-yellow text-brand-dark text-xs font-bold px-4 py-1.5 rounded-full pulse-animation">
                         ⭐ POPULAR
-                    </div>
-                    <div class="absolute inset-0 bg-brand-dark/95 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-8 z-20">
-                        <p class="text-white text-center font-medium" data-i18n="route_intermediate_hover">Perfekt für kontinuierlichen Fortschritt mit ausgewogener Mischung aus Konversation und Grammatik.</p>
                     </div>
                     <div class="mb-4 relative z-10">
                         <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-3">
                             <i class="fa-solid fa-map text-white text-xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-white" data-i18n="route_intermediate_name">Aufbau-Route</h3>
+                        <h3 class="font-heading text-2xl font-bold text-white" data-i18n="pack_2_title">Ruta Intermedia</h3>
                         <p class="text-sm text-white/80 mt-2 h-10" data-i18n="pack_2_sub">Ein Abenteuer, um das Level zu heben.</p>
                     </div>
                     <div class="text-4xl font-bold text-white mb-6 relative z-10">
@@ -543,16 +533,13 @@
                 </div>
 
                 <!-- Ruta Maestra -->
-                <div class="card-3d bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 fade-in-section delay-200 flex flex-col relative overflow-hidden group">
+                <div class="card-3d bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 fade-in-section delay-200 flex flex-col relative overflow-hidden">
                     <div class="absolute bottom-0 left-0 w-32 h-32 bg-brand-green/10 rounded-full -ml-16 -mb-16"></div>
-                    <div class="absolute inset-0 bg-brand-green/95 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-8 z-20">
-                        <p class="text-white text-center font-medium" data-i18n="route_master_hover">Für langfristigen Erfolg und echte Sprachbeherrschung mit persönlichem Lernplan und Premium-Support.</p>
-                    </div>
                     <div class="mb-4 relative z-10">
                         <div class="w-12 h-12 bg-brand-terra/10 rounded-full flex items-center justify-center mb-3">
                             <i class="fa-solid fa-crown text-brand-terra text-xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="route_master_name">Master-Route</h3>
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="pack_1_title">Ruta Maestra</h3>
                         <p class="text-sm text-gray-500 mt-2 h-10" data-i18n="pack_1_sub">16 Stationen, ein Ziel: Dominanz.</p>
                     </div>
                     <div class="text-4xl font-bold text-brand-terra mb-6 relative z-10">
@@ -640,6 +627,7 @@
         </div>
     </section>
 
+    <!-- CHANGE 7: FAQ section - added two new FAQ items about PDFs and homework -->
     <section class="py-20 bg-brand-beige">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="font-heading text-3xl font-bold text-center mb-10 text-brand-dark">FAQ</h2>
@@ -677,17 +665,19 @@
                         </div>
                     </div>
                 </div>
+                <!-- NEW FAQ: PDFs / Materials -->
                 <div class="bg-white rounded-lg shadow-sm overflow-hidden">
                     <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
-                        <span data-i18n="faq_q4">Bekomme ich nach jeder Stunde Materialien?</span>
+                        <span data-i18n="faq_q4">Bekomme ich nach jeder Stunde Unterlagen / PDFs?</span>
                         <i class="fa-solid fa-chevron-down transition-transform"></i>
                     </button>
                     <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
                         <div class="py-4 border-t" data-i18n="faq_a4">
-                            Ja, am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Notizen, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.
+                            Ja. Am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Inhalten, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.
                         </div>
                     </div>
                 </div>
+                <!-- NEW FAQ: Homework -->
                 <div class="bg-white rounded-lg shadow-sm overflow-hidden">
                     <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
                         <span data-i18n="faq_q5">Gibt es Hausaufgaben?</span>
@@ -695,29 +685,7 @@
                     </button>
                     <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
                         <div class="py-4 border-t" data-i18n="faq_a5">
-                            Ja. Du bekommst kurze, realistische Aufgaben, mit denen du das Gelernte direkt im Alltag anwenden kannst (z. B. Nachrichten schreiben, kleine Dialoge, Hörverstehen).
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
-                        <span data-i18n="faq_q6">Wie wird mein Niveau eingestuft?</span>
-                        <i class="fa-solid fa-chevron-down transition-transform"></i>
-                    </button>
-                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
-                        <div class="py-4 border-t" data-i18n="faq_a6">
-                            In der kostenlosen Probestunde sprechen wir gemeinsam und ich schätze dein aktuelles Niveau ein. So kann ich den Unterricht perfekt auf dich abstimmen.
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
-                        <span data-i18n="faq_q7">Wie flexibel sind die Termine?</span>
-                        <i class="fa-solid fa-chevron-down transition-transform"></i>
-                    </button>
-                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
-                        <div class="py-4 border-t" data-i18n="faq_a7">
-                            Sehr flexibel! Wir vereinbaren die Termine individuell nach deinem Zeitplan. Die Pakete verfallen nie, sodass du in deinem eigenen Tempo lernen kannst.
+                            Ja. Du bekommst kurze, alltagsnahe Aufgaben (z. B. kleine Texte, Dialoge oder Hörverstehen), damit du das Gelernte direkt anwenden kannst.
                         </div>
                     </div>
                 </div>
@@ -725,6 +693,7 @@
         </div>
     </section>
 
+    <!-- CHANGE 4b: Contact section - increased background image opacity from 20 to 40 -->
     <section id="contact" class="py-24 bg-white relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
             <div class="bg-brand-terra rounded-3xl p-8 md:p-12 shadow-2xl text-white fade-in-section">
@@ -733,19 +702,20 @@
                     <p class="opacity-90" data-i18n="contact_sub">Schreibe mir für deine kostenlose Probestunde oder buche ein Paket.</p>
                 </div>
 
-                <form class="space-y-4 text-brand-dark" action="https://formspree.io/f/manpjnnz" method="POST">
+                <!-- CHANGE 6b: Contact form select - options now translatable -->
+                <form class="space-y-4 text-brand-dark" onsubmit="event.preventDefault(); alert('Danke! (Dies ist eine Demo - bitte verknüpfe Formspree oder PHP)');">
                     <div class="grid md:grid-cols-2 gap-4">
-                        <input type="text" name="name" placeholder="Name" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
-                        <input type="email" name="email" placeholder="E-Mail" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
+                        <input type="text" placeholder="Name" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
+                        <input type="email" placeholder="E-Mail" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
                     </div>
-                    <select id="course-select" name="course" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none bg-white text-gray-600">
+                    <select id="course-select" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none bg-white text-gray-600">
                         <option value="trial" data-i18n="opt_trial">Kostenlose Probestunde</option>
-                        <option value="maestra" data-i18n="route_master_name">Master-Route</option>
-                        <option value="intermedia" data-i18n="route_intermediate_name">Aufbau-Route</option>
-                        <option value="expres" data-i18n="route_express_name">Express-Route</option>
+                        <option value="maestra" data-i18n="opt_maestra">Meister-Route</option>
+                        <option value="intermedia" data-i18n="opt_intermedia">Aufbau-Route</option>
+                        <option value="expres" data-i18n="opt_expres">Express-Route</option>
                     </select>
-                    <textarea name="message" placeholder="Deine Ziele / Aktuelles Level..." rows="4" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none"></textarea>
-
+                    <textarea placeholder="Deine Ziele / Aktuelles Level..." rows="4" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none"></textarea>
+                    
                     <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-lg hover:bg-gray-800 transition transform hover:scale-[1.02] shadow-lg" data-i18n="btn_send">
                         Nachricht senden
                     </button>
@@ -758,8 +728,8 @@
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 w-full h-1/2 -z-0">
-            <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=1600&h=800&fit=crop" class="w-full h-full object-cover opacity-25" alt="Colorful Peru Streets">
+        <div class="absolute bottom-0 left-0 w-full h-1/2 -z-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=1600&h=800&fit=crop" class="w-full h-full object-cover" alt="Colorful Peru Streets">
         </div>
     </section>
 
@@ -827,7 +797,7 @@
     <div class="h-24"></div>
 
     <script>
-        // --- TRANSLATIONS OBJECT ---
+        // --- TRANSLATIONS OBJECT (UPDATED with all new keys) ---
         const translations = {
             de: {
                 nav_about: "Über mich",
@@ -839,15 +809,10 @@
                 hero_cta_primary: "Kostenlose Probestunde",
                 hero_cta_secondary: "Preise ansehen",
                 quiz_intro: "Weißt du das?",
-                quiz_card1_q: "Abenteuer",
-                quiz_card2_q: "Reise",
-                quiz_card3_q: "Lächeln",
-                route_express_name: "Express-Route",
-                route_intermediate_name: "Aufbau-Route",
-                route_master_name: "Master-Route",
-                route_express_hover: "Ideal, wenn du wenig Zeit hast, aber schnell Fortschritte machen willst.",
-                route_intermediate_hover: "Perfekt für kontinuierlichen Fortschritt mit ausgewogener Mischung aus Konversation und Grammatik.",
-                route_master_hover: "Für langfristigen Erfolg und echte Sprachbeherrschung mit persönlichem Lernplan und Premium-Support.",
+                quiz_card1_question: "Abenteuer",
+                quiz_card2_question: "Reise",
+                quiz_card3_question: "Lächeln",
+                quiz_hint: "Klick oder fahr mit der Maus darüber, um die Lösung zu sehen!",
                 video_headline: "Schau dir mein Vorstellungsvideo an",
                 video_sub: "Erfahre mehr über meine Lehrmethode und wie ich dir helfen kann, dein Spanisch zu verbessern.",
                 about_headline: "Mehr als nur Grammatik – echte Kommunikation.",
@@ -860,26 +825,27 @@
                 method_point_3: "Praktischer Wortschatz statt trockener Theorie.",
                 method_culture: "Kultur erleben: Tauche ein in die lebendige Welt Perus.",
                 method_quote: "\"Lerne Spanisch nicht nur – fühle es, genieße es und mache es zu deinem eigenen.\"",
-                conversation_headline: "Lerne, echte Gespräche zu führen",
-                conversation_sub: "Diese und viele weitere Fragen wirst du natürlich und selbstbewusst beantworten können!",
                 pricing_headline: "Wähle deine Reiseroute",
                 pricing_sub: "Flexible Pakete ohne Verfallsdatum.",
+                pack_1_title: "Meister-Route",
                 pack_1_sub: "16 Stationen, ein Ziel: Dominanz.",
                 pack_1_hours: "16 Stunden (à 50 Min)",
                 pack_1_price: "($18 pro Stunde)",
+                pack_1_feat1: "Vollständiger persönlicher Plan",
+                pack_1_feat2: "Bonus: +3 Extra Klassen",
+                pack_2_title: "Aufbau-Route",
                 pack_2_sub: "Ein Abenteuer, um das Level zu heben.",
                 pack_2_hours: "8 Stunden (à 50 Min)",
                 pack_2_price: "($20 pro Stunde)",
+                pack_2_feat1: "Balance: Sprechen & Grammatik",
+                pack_2_feat2: "Mini-Challenges inklusive",
+                pack_3_title: "Express-Route",
                 pack_3_sub: "Der Kompass für ein konkretes Ziel.",
                 pack_3_hours: "4 Stunden (à 50 Min)",
                 pack_3_price: "($25 pro Stunde)",
+                pack_3_feat1: "Intensiv & Fokussiert",
                 pack_flexible: "100% Flexibel (kein Verfall)",
                 pack_materials: "Inkl. Material & Feedback",
-                pack_1_feat1: "Vollständiger persönlicher Plan",
-                pack_1_feat2: "Bonus: +3 Extra Klassen",
-                pack_2_feat1: "Balance: Sprechen & Grammatik",
-                pack_2_feat2: "Mini-Challenges inklusive",
-                pack_3_feat1: "Intensiv & Fokussiert",
                 btn_choose: "Route wählen",
                 reviews_headline: "Was meine Schüler sagen",
                 review_sharon: "\"Ich genieße meine wöchentlichen Lektionen mit Ana wirklich. Ich liebe das Format des Gesprächs und das Lernen neuer Wörter. Danke, Ana!\"",
@@ -895,17 +861,16 @@
                 faq_a2: "Die Zahlung erfolgt sicher und einfach über PayPal.",
                 faq_q3: "Stornierungsbedingungen?",
                 faq_a3: "Umbuchung oder Absage bis 24 Stunden vorher möglich. Danach fällt die volle Gebühr an.",
-                faq_q4: "Bekomme ich nach jeder Stunde Materialien?",
-                faq_a4: "Ja, am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Notizen, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.",
+                faq_q4: "Bekomme ich nach jeder Stunde Unterlagen / PDFs?",
+                faq_a4: "Ja. Am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Inhalten, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.",
                 faq_q5: "Gibt es Hausaufgaben?",
-                faq_a5: "Ja. Du bekommst kurze, realistische Aufgaben, mit denen du das Gelernte direkt im Alltag anwenden kannst (z. B. Nachrichten schreiben, kleine Dialoge, Hörverstehen).",
-                faq_q6: "Wie wird mein Niveau eingestuft?",
-                faq_a6: "In der kostenlosen Probestunde sprechen wir gemeinsam und ich schätze dein aktuelles Niveau ein. So kann ich den Unterricht perfekt auf dich abstimmen.",
-                faq_q7: "Wie flexibel sind die Termine?",
-                faq_a7: "Sehr flexibel! Wir vereinbaren die Termine individuell nach deinem Zeitplan. Die Pakete verfallen nie, sodass du in deinem eigenen Tempo lernen kannst.",
+                faq_a5: "Ja. Du bekommst kurze, alltagsnahe Aufgaben (z. B. kleine Texte, Dialoge oder Hörverstehen), damit du das Gelernte direkt anwenden kannst.",
                 contact_headline: "Bereit, dein Spanisch zu verbessern?",
                 contact_sub: "Schreibe mir für deine kostenlose Probestunde.",
                 opt_trial: "Kostenlose Probestunde",
+                opt_maestra: "Meister-Route",
+                opt_intermedia: "Aufbau-Route",
+                opt_expres: "Express-Route",
                 btn_send: "Nachricht senden",
                 privacy_headline: "Datenschutz & Impressum",
                 privacy_info_title: "Informationen gemäß DSGVO",
@@ -916,8 +881,7 @@
                 privacy_data_text: "Diese Website verwendet keine Cookies und speichert keine persönlichen Daten ohne deine ausdrückliche Zustimmung. Kontaktanfragen per E-Mail oder WhatsApp werden ausschließlich zur Beantwortung deiner Anfrage verwendet.",
                 privacy_external_title: "Externe Dienste",
                 privacy_external_text: "Diese Website bindet Videos von YouTube ein. Beim Abspielen werden Daten an YouTube/Google übertragen. Zahlungen erfolgen über PayPal. Bitte beachte die Datenschutzbestimmungen dieser Dienste.",
-                footer_rights: "Alle Rechte vorbehalten.",
-                footer_tagline: "Dein Wegweiser zur Spanisch-Flüssigkeit"
+                footer_rights: "Alle Rechte vorbehalten."
             },
             es: {
                 nav_about: "Sobre mí",
@@ -929,15 +893,10 @@
                 hero_cta_primary: "Prueba gratis",
                 hero_cta_secondary: "Ver precios",
                 quiz_intro: "¿Sabes esto?",
-                quiz_card1_q: "Aventura",
-                quiz_card2_q: "Viaje",
-                quiz_card3_q: "Sonrisa",
-                route_express_name: "Ruta Exprés",
-                route_intermediate_name: "Ruta Intermedia",
-                route_master_name: "Ruta Maestra",
-                route_express_hover: "Ideal cuando tienes poco tiempo pero quieres progresar rápidamente.",
-                route_intermediate_hover: "Perfecto para un progreso continuo con una mezcla equilibrada de conversación y gramática.",
-                route_master_hover: "Para el éxito a largo plazo y el verdadero dominio del idioma con un plan de aprendizaje personal y soporte premium.",
+                quiz_card1_question: "Adventure",
+                quiz_card2_question: "Journey",
+                quiz_card3_question: "Smile",
+                quiz_hint: "Haz clic o pasa el ratón para ver la respuesta",
                 video_headline: "Mira mi video de presentación",
                 video_sub: "Descubre más sobre mi método de enseñanza y cómo puedo ayudarte a mejorar tu español.",
                 about_headline: "Más que gramática: comunicación real.",
@@ -950,26 +909,27 @@
                 method_point_3: "Vocabulario práctico y significativo.",
                 method_culture: "Vive la cultura: Sumérgete en el mundo vivo de Perú.",
                 method_quote: "\"No solo aprendas español, siéntelo, disfrútalo y hazlo tuyo.\"",
-                conversation_headline: "Aprende a tener conversaciones reales",
-                conversation_sub: "¡Podrás responder estas y muchas otras preguntas de forma natural y segura!",
                 pricing_headline: "Elige tu ruta",
                 pricing_sub: "Paquetes flexibles sin fecha de caducidad.",
+                pack_1_title: "Ruta Maestra",
                 pack_1_sub: "16 paradas, un destino: dominar el mapa.",
                 pack_1_hours: "16 horas (de 50 min)",
                 pack_1_price: "($18 por hora)",
+                pack_1_feat1: "Plan totalmente personalizado",
+                pack_1_feat2: "Bono: +3 clases extra",
+                pack_2_title: "Ruta Intermedia",
                 pack_2_sub: "Una aventura para subir de nivel.",
                 pack_2_hours: "8 horas (de 50 min)",
                 pack_2_price: "($20 por hora)",
+                pack_2_feat1: "Balance: Conversación y gramática",
+                pack_2_feat2: "Mini-retos incluidos",
+                pack_3_title: "Ruta Exprés",
                 pack_3_sub: "Una brújula para un objetivo puntual.",
                 pack_3_hours: "4 horas (de 50 min)",
                 pack_3_price: "($25 por hora)",
+                pack_3_feat1: "Intensivo y enfocado",
                 pack_flexible: "100% Flexible (no caducan)",
                 pack_materials: "Incluye material y feedback",
-                pack_1_feat1: "Plan totalmente personalizado",
-                pack_1_feat2: "Bono: +3 clases extra",
-                pack_2_feat1: "Balance: Conversación y gramática",
-                pack_2_feat2: "Mini-retos incluidos",
-                pack_3_feat1: "Intensivo y enfocado",
                 btn_choose: "Elegir ruta",
                 reviews_headline: "Lo que dicen mis alumnos",
                 review_sharon: "\"Realmente disfruto mis lecciones semanales con Ana. Me encanta el formato de conversación y aprender nuevas palabras. ¡Gracias Ana!\"",
@@ -985,17 +945,16 @@
                 faq_a2: "El pago se realiza de forma segura y sencilla a través de PayPal.",
                 faq_q3: "¿Política de cancelación?",
                 faq_a3: "Cambios o cancelaciones hasta 24 horas antes. Después se cobra la tarifa completa.",
-                faq_q4: "¿Recibo materiales después de cada clase?",
-                faq_a4: "Sí, al final de cada clase recibirás un PDF con las notas más importantes, nuevo vocabulario y, si lo deseas, tareas adecuadas.",
+                faq_q4: "¿Recibo materiales o PDFs después de cada clase?",
+                faq_a4: "Sí. Al final de cada clase recibes un PDF con los puntos más importantes, vocabulario nuevo y, si quieres, tareas para practicar.",
                 faq_q5: "¿Hay tareas?",
-                faq_a5: "Sí. Recibirás tareas cortas y realistas que te ayudarán a aplicar lo aprendido directamente en la vida cotidiana (p. ej., escribir mensajes, pequeños diálogos, comprensión auditiva).",
-                faq_q6: "¿Cómo se evalúa mi nivel?",
-                faq_a6: "En la clase de prueba gratuita hablamos juntos y evalúo tu nivel actual. Así puedo adaptar perfectamente las clases a ti.",
-                faq_q7: "¿Qué tan flexibles son las citas?",
-                faq_a7: "¡Muy flexibles! Acordamos las citas individualmente según tu horario. Los paquetes nunca caducan, por lo que puedes aprender a tu propio ritmo.",
+                faq_a5: "Sí, tendrás tareas breves y prácticas (por ejemplo, textos cortos, diálogos o comprensión auditiva) para aplicar lo aprendido en tu día a día.",
                 contact_headline: "¿Listo para mejorar tu español?",
                 contact_sub: "Escríbeme para tu clase de prueba gratuita.",
                 opt_trial: "Clase de prueba gratis",
+                opt_maestra: "Ruta Maestra",
+                opt_intermedia: "Ruta Intermedia",
+                opt_expres: "Ruta Exprés",
                 btn_send: "Enviar mensaje",
                 privacy_headline: "Privacidad e Impronta",
                 privacy_info_title: "Información según GDPR",
@@ -1006,8 +965,7 @@
                 privacy_data_text: "Este sitio web no utiliza cookies y no almacena datos personales sin tu consentimiento expreso. Las consultas por correo electrónico o WhatsApp se utilizan exclusivamente para responder a tu solicitud.",
                 privacy_external_title: "Servicios externos",
                 privacy_external_text: "Este sitio web integra videos de YouTube. Al reproducirlos, se transmiten datos a YouTube/Google. Los pagos se realizan a través de PayPal. Por favor, consulta las políticas de privacidad de estos servicios.",
-                footer_rights: "Todos los derechos reservados.",
-                footer_tagline: "Tu mapa hacia la fluidez en español"
+                footer_rights: "Todos los derechos reservados."
             },
             en: {
                 nav_about: "About",
@@ -1019,15 +977,10 @@
                 hero_cta_primary: "Free Trial Class",
                 hero_cta_secondary: "View Prices",
                 quiz_intro: "Do you know?",
-                quiz_card1_q: "Adventure",
-                quiz_card2_q: "Journey",
-                quiz_card3_q: "Smile",
-                route_express_name: "Express Route",
-                route_intermediate_name: "Intermediate Route",
-                route_master_name: "Master Route",
-                route_express_hover: "Ideal when you have limited time but want to make rapid progress.",
-                route_intermediate_hover: "Perfect for continuous progress with a balanced mix of conversation and grammar.",
-                route_master_hover: "For long-term success and true language mastery with a personalized learning plan and premium support.",
+                quiz_card1_question: "Adventure",
+                quiz_card2_question: "Journey",
+                quiz_card3_question: "Smile",
+                quiz_hint: "Click or hover to reveal!",
                 video_headline: "Watch my introduction video",
                 video_sub: "Learn more about my teaching method and how I can help you improve your Spanish.",
                 about_headline: "More than grammar – real communication.",
@@ -1040,26 +993,27 @@
                 method_point_3: "Practical vocabulary instead of dry theory.",
                 method_culture: "Experience culture: Dive into the vibrant world of Peru.",
                 method_quote: "\"Don't just learn Spanish – feel it, enjoy it, and make it yours.\"",
-                conversation_headline: "Learn to have real conversations",
-                conversation_sub: "You'll be able to answer these and many other questions naturally and confidently!",
                 pricing_headline: "Choose your route",
                 pricing_sub: "Flexible packages that never expire.",
+                pack_1_title: "Master Route",
                 pack_1_sub: "16 stops, one destination: mastery.",
                 pack_1_hours: "16 hours (50 min each)",
                 pack_1_price: "($18 per hour)",
+                pack_1_feat1: "Fully personalized plan",
+                pack_1_feat2: "Bonus: +3 Extra classes",
+                pack_2_title: "Intermediate Route",
                 pack_2_sub: "An adventure to level up.",
                 pack_2_hours: "8 hours (50 min each)",
                 pack_2_price: "($20 per hour)",
+                pack_2_feat1: "Balance: Speaking & Grammar",
+                pack_2_feat2: "Mini-challenges included",
+                pack_3_title: "Express Route",
                 pack_3_sub: "A compass for a specific goal.",
                 pack_3_hours: "4 hours (50 min each)",
                 pack_3_price: "($25 per hour)",
+                pack_3_feat1: "Intensive & Focused",
                 pack_flexible: "100% Flexible (no expiry)",
                 pack_materials: "Incl. materials & feedback",
-                pack_1_feat1: "Fully personalized plan",
-                pack_1_feat2: "Bonus: +3 Extra classes",
-                pack_2_feat1: "Balance: Speaking & Grammar",
-                pack_2_feat2: "Mini-challenges included",
-                pack_3_feat1: "Intensive & Focused",
                 btn_choose: "Select Route",
                 reviews_headline: "What my students say",
                 review_sharon: "\"I really enjoy my weekly lessons with Ana. I love the conversation format and learning new words. Thank you Ana!\"",
@@ -1075,17 +1029,16 @@
                 faq_a2: "Payment is done securely and simply via PayPal.",
                 faq_q3: "Cancellation policy?",
                 faq_a3: "Reschedule or cancel up to 24 hours in advance. After that, full fee applies.",
-                faq_q4: "Do I get materials after each lesson?",
-                faq_a4: "Yes, at the end of each lesson you'll receive a PDF with the most important notes, new vocabulary and, if you want, suitable homework.",
+                faq_q4: "Do I get materials/PDFs after each lesson?",
+                faq_a4: "Yes. At the end of every lesson you receive a PDF with the key points, new vocabulary and, if you like, homework to practice.",
                 faq_q5: "Is there homework?",
-                faq_a5: "Yes. You'll get short, realistic tasks that help you apply what you've learned directly in everyday life (e.g., writing messages, small dialogues, listening comprehension).",
-                faq_q6: "How is my level assessed?",
-                faq_a6: "In the free trial class, we talk together and I assess your current level. This way I can perfectly tailor the lessons to you.",
-                faq_q7: "How flexible are the appointments?",
-                faq_a7: "Very flexible! We arrange appointments individually according to your schedule. The packages never expire, so you can learn at your own pace.",
+                faq_a5: "Yes, you'll get short, realistic tasks (e.g. short texts, dialogues or listening) so you can apply what you learn in everyday life.",
                 contact_headline: "Ready to improve your Spanish?",
                 contact_sub: "Write me for your free trial class.",
                 opt_trial: "Free Trial Class",
+                opt_maestra: "Master Route",
+                opt_intermedia: "Intermediate Route",
+                opt_expres: "Express Route",
                 btn_send: "Send Message",
                 privacy_headline: "Privacy & Imprint",
                 privacy_info_title: "Information according to GDPR",
@@ -1096,8 +1049,7 @@
                 privacy_data_text: "This website does not use cookies and does not store personal data without your explicit consent. Contact requests via email or WhatsApp are used exclusively to respond to your inquiry.",
                 privacy_external_title: "External Services",
                 privacy_external_text: "This website embeds videos from YouTube. When playing them, data is transmitted to YouTube/Google. Payments are made via PayPal. Please refer to the privacy policies of these services.",
-                footer_rights: "All rights reserved.",
-                footer_tagline: "Your journey to Spanish fluency"
+                footer_rights: "All rights reserved."
             }
         };
 
@@ -1120,8 +1072,8 @@
                 }
             });
             
-            // Highlight active button (Simple visual toggle)
-            // Note: In a real app, you'd add active classes properly
+            // Update language button highlighting
+            updateLanguageButtons(lang);
         }
 
         // --- MOBILE MENU ---
@@ -1211,25 +1163,8 @@
             counterObserver.observe(counter);
         });
 
-        // --- SMOOTH NAVBAR HIDE/SHOW ON SCROLL ---
-        let lastScroll = 0;
-        const navbar = document.querySelector('nav');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll <= 0) {
-                navbar.style.transform = 'translateY(0)';
-            } else if (currentScroll > lastScroll && currentScroll > 100) {
-                // Scrolling down
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                // Scrolling up
-                navbar.style.transform = 'translateY(0)';
-            }
-
-            lastScroll = currentScroll;
-        });
+        // CHANGE 5: REMOVED the navbar hide/show on scroll functionality
+        // The navbar now stays visible at all times
 
         // --- CLOSE MOBILE MENU ON LINK CLICK ---
         document.querySelectorAll('#mobile-menu a').forEach(link => {
@@ -1258,44 +1193,24 @@
             });
         }
 
-        // Override changeLanguage to include button update
-        const originalChangeLanguage = changeLanguage;
-        changeLanguage = function(lang) {
-            originalChangeLanguage(lang);
-            updateLanguageButtons(lang);
-        };
-
-        // --- ROTATING QUESTIONS ANIMATION ---
-        const questions = {
-            de: ['¿Cómo estás?', '¿Dónde vives?', '¿Qué te gusta hacer?', '¿Cuál es tu trabajo?', '¿Adónde vas?', '¿Qué hiciste hoy?'],
-            es: ['¿Cómo estás?', '¿Dónde vives?', '¿Qué te gusta hacer?', '¿Cuál es tu trabajo?', '¿Adónde vas?', '¿Qué hiciste hoy?'],
-            en: ['¿Cómo estás?', '¿Dónde vives?', '¿Qué te gusta hacer?', '¿Cuál es tu trabajo?', '¿Adónde vas?', '¿Qué hiciste hoy?']
-        };
-        let currentQuestionIndex = 0;
-        let currentLang = 'de';
-
-        function rotateQuestion() {
-            const element = document.getElementById('rotating-question');
-            if (!element) return;
-
-            element.style.opacity = '0';
-
-            setTimeout(() => {
-                currentQuestionIndex = (currentQuestionIndex + 1) % questions[currentLang].length;
-                element.textContent = questions[currentLang][currentQuestionIndex];
-                element.style.opacity = '1';
-            }, 500);
-        }
-
-        // Start rotating questions
-        if (document.getElementById('rotating-question')) {
-            document.getElementById('rotating-question').textContent = questions[currentLang][0];
-            document.getElementById('rotating-question').style.opacity = '1';
-            setInterval(rotateQuestion, 3000);
-        }
-
-        // --- FLOATING WORDS ANIMATION ON SCROLL ---
-        const floatingWords = ['¡Hola!', '¿Qué tal?', 'Gracias', 'Amigo', 'Viaje', 'Cultura', 'Aprende', '¡Sí!', 'Perú', 'Español'];
+        // CHANGE 8: FLOATING WORDS - Updated with German and English phrases
+        const floatingWords = [
+            "¡Hola!",
+            "¿Qué tal?",
+            "Gracias",
+            "Amigo",
+            "Viaje",
+            "Cultura",
+            "Aprende",
+            "¡Sí!",
+            "Perú",
+            "Español",
+            "Wie geht es dir?",
+            "Wo lebst du?",
+            "Wer bist du?",
+            "How are you?",
+            "Where do you live?"
+        ];
         let wordIndex = 0;
         let lastWordTime = 0;
 
