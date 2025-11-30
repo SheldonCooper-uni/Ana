@@ -183,6 +183,12 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Dynamic Word Transition */
+        #dynamic-word {
+            display: inline-block;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-brand-beige text-brand-dark font-sans overflow-x-hidden">
@@ -230,19 +236,30 @@
         </div>
     </nav>
 
-    <!-- CHANGE 1: Hero background - removed grayscale, increased opacity from 20 to 40 -->
+    <!-- Hero Section: Colorful background with warm gradient overlay -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-40">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1600&h=900&fit=crop" alt="Peru Landscape" class="w-full h-full object-cover">
         </div>
+        <!-- Warm Gradient Overlay -->
+        <div class="absolute inset-0 z-0 bg-gradient-to-r from-brand-beige/85 via-brand-beige/60 to-brand-beige/70"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="fade-in-section">
+                    <!-- Small Line Above -->
+                    <div class="mb-4">
+                        <span class="inline-block bg-brand-terra/10 text-brand-terra px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider" data-i18n="hero_tag">
+                            Online Sprachreise
+                        </span>
+                    </div>
+                    <!-- Main Headline with Dynamic Words -->
                     <h1 class="font-heading text-4xl lg:text-6xl font-bold text-brand-dark leading-tight mb-6">
-                        <span data-i18n="hero_headline">Dein Wegweiser zur <br><span class="text-brand-terra">Spanisch-Flüssigkeit.</span></span>
+                        <span data-i18n="hero_prefix">Dein Wegweiser zu</span><br>
+                        <span class="text-brand-terra" id="dynamic-word">Flüssigkeit</span>
                     </h1>
-                    <p class="text-lg lg:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed" data-i18n="hero_subheadline">
+                    <p class="text-lg lg:text-xl text-brand-dark mb-8 max-w-lg leading-relaxed" data-i18n="hero_subheadline">
                         Lerne Spanisch und entdecke die Kultur Perus – mit individuellen Stunden, echten Gesprächen und einer immersiven Lernmethode.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -253,14 +270,17 @@
                             Routen & Preise ansehen
                         </a>
                     </div>
-                    <div class="mt-8 flex items-center gap-2 text-sm text-gray-500 font-medium">
+                    <div class="mt-8 flex items-center gap-2 text-sm text-brand-dark font-medium">
                         <i class="fa-solid fa-circle text-green-500 text-xs"></i>
                         <span>Online • GMT-5 (Peru) • A1–B2</span>
                     </div>
                 </div>
+                <!-- Modern Portrait with Card Look -->
                 <div class="relative fade-in-section lg:ml-auto">
-                    <div class="absolute -top-4 -right-4 w-full h-full bg-brand-yellow rounded-2xl transform rotate-3"></div>
-                    <img src="images/Ana_1.jpg" alt="Ana Arellano Teacher" class="relative rounded-2xl shadow-2xl w-full max-w-md mx-auto transform -rotate-2 hover:rotate-0 transition duration-500 object-cover aspect-[3/4]">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-gradient-to-br from-brand-terra/20 to-brand-yellow/20 rounded-3xl transform rotate-2 group-hover:rotate-3 transition-transform duration-300"></div>
+                        <img src="images/Ana_1.jpg" alt="Ana Arellano Teacher" class="relative rounded-3xl shadow-2xl w-full max-w-md mx-auto transform -rotate-1 group-hover:rotate-0 transition duration-500 object-cover aspect-[3/4] border-4 border-white">
+                    </div>
                 </div>
             </div>
         </div>
@@ -313,29 +333,29 @@
         </div>
     </div>
 
-    <!-- CHANGE 3: About section - Portrait smaller with object-top to avoid cropping face -->
+    <!-- About Section: Improved Readability -->
     <section id="about" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="order-2 md:order-1 relative fade-in-section">
-                    <img src="images/Ana_2.jpg" alt="Ana Portrait" class="rounded-full w-40 h-40 md:w-56 md:h-56 object-cover object-top mx-auto shadow-xl border-8 border-brand-beige">
-                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-white px-4 py-2 rounded-lg shadow-md text-sm font-bold text-brand-terra whitespace-nowrap">
-                        <i class="fa-solid fa-certificate mr-1"></i> 6+ Jahre Erfahrung
+                    <img src="images/Ana_2.jpg" alt="Ana Portrait" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover object-top mx-auto shadow-2xl border-8 border-brand-beige">
+                    <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white px-5 py-3 rounded-xl shadow-lg text-sm md:text-base font-bold text-brand-terra whitespace-nowrap border-2 border-brand-terra/20">
+                        <i class="fa-solid fa-certificate mr-2"></i> 6+ Jahre Erfahrung
                     </div>
                 </div>
                 <div class="order-1 md:order-2 fade-in-section">
-                    <span class="uppercase tracking-widest text-brand-terra font-bold text-sm mb-2 block">Hola, soy Ana</span>
-                    <h2 class="font-heading text-3xl font-bold mb-6 text-brand-dark" data-i18n="about_headline">Mehr als nur Grammatik – echte Kommunikation.</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed" data-i18n="about_text_1">
+                    <span class="uppercase tracking-widest text-brand-terra font-bold text-sm mb-3 block">Hola, soy Ana</span>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-brand-dark leading-tight" data-i18n="about_headline">Mehr als nur Grammatik – echte Kommunikation.</h2>
+                    <p class="text-brand-dark text-base md:text-lg mb-5 leading-relaxed" data-i18n="about_text_1">
                         Hallo, ich bin Ana, zertifizierte Spanischlehrerin. Meine Kurse sind dynamisch und persönlich: Du lernst Grammatik im Kontext, erweiterst deinen Wortschatz und gewinnst vor allem das Selbstvertrauen, in realen Situationen zu kommunizieren.
                     </p>
-                    <p class="text-gray-600 mb-6 leading-relaxed" data-i18n="about_text_2">
+                    <p class="text-brand-dark text-base md:text-lg mb-8 leading-relaxed" data-i18n="about_text_2">
                         Als Peruanerin bringe ich dir nicht nur die Sprache bei, sondern öffne dir auch die Tür zur faszinierenden Kultur Lateinamerikas. Ich glaube an freundliches, klares und motivierendes Lernen.
                     </p>
                     <div class="flex flex-wrap gap-3">
-                        <span class="bg-brand-beige text-brand-dark px-3 py-1 rounded-full text-sm font-medium">Native Speaker (Peru)</span>
-                        <span class="bg-brand-beige text-brand-dark px-3 py-1 rounded-full text-sm font-medium">Erwachsenenbildung</span>
-                        <span class="bg-brand-beige text-brand-dark px-3 py-1 rounded-full text-sm font-medium">Individuell</span>
+                        <span class="bg-brand-terra/10 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold border border-brand-terra/20">Native Speaker (Peru)</span>
+                        <span class="bg-brand-terra/10 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold border border-brand-terra/20">Erwachsenenbildung</span>
+                        <span class="bg-brand-terra/10 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold border border-brand-terra/20">Individuell</span>
                     </div>
                 </div>
             </div>
@@ -365,41 +385,41 @@
         </div>
     </section>
 
-    <!-- CHANGE 4a: Method section - increased background opacity from 20 to 40 -->
+    <!-- Method Section: Improved Contrast and Readability -->
     <section id="method" class="py-24 bg-brand-beige relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full opacity-40 pointer-events-none hidden lg:block">
+        <div class="absolute top-0 right-0 w-1/3 h-full opacity-30 pointer-events-none hidden lg:block">
             <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&h=1200&fit=crop&q=80" alt="Cathedral Texture" class="w-full h-full object-cover object-center">
         </div>
-        
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-3xl fade-in-section">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-8 text-brand-dark" data-i18n="method_headline">Meine Methode: <br>Sprachliche Immersion</h2>
-                <div class="prose prose-lg text-gray-600 mb-8">
-                    <p data-i18n="method_intro">
+                <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-brand-dark leading-tight" data-i18n="method_headline">Meine Methode: <br>Sprachliche Immersion</h2>
+                    <p class="text-brand-dark text-base md:text-lg mb-8 leading-relaxed" data-i18n="method_intro">
                         Sprache ist kein Fach zum Auswendiglernen, sondern ein lebendiges Umfeld. Bei mir tauchst du ein.
                     </p>
-                    <ul class="space-y-4 mt-6 list-none pl-0">
+                    <ul class="space-y-4 mb-8 list-none pl-0">
                         <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3"></i>
-                            <span data-i18n="method_point_1">Verbesserung der Flüssigkeit und Sicherheit beim Sprechen.</span>
+                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3 text-lg"></i>
+                            <span class="text-brand-dark text-base md:text-lg" data-i18n="method_point_1">Verbesserung der Flüssigkeit und Sicherheit beim Sprechen.</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3"></i>
-                            <span data-i18n="method_point_2">Besseres Hörverständnis für Alltagssituationen.</span>
+                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3 text-lg"></i>
+                            <span class="text-brand-dark text-base md:text-lg" data-i18n="method_point_2">Besseres Hörverständnis für Alltagssituationen.</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3"></i>
-                            <span data-i18n="method_point_3">Praktischer Wortschatz statt trockener Theorie.</span>
+                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3 text-lg"></i>
+                            <span class="text-brand-dark text-base md:text-lg" data-i18n="method_point_3">Praktischer Wortschatz statt trockener Theorie.</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fa-solid fa-heart text-brand-terra mt-1 mr-3"></i>
-                            <span class="font-semibold text-brand-dark" data-i18n="method_culture">Kultur erleben: Tauche ein in die lebendige Welt Perus.</span>
+                            <i class="fa-solid fa-heart text-brand-terra mt-1 mr-3 text-lg"></i>
+                            <span class="font-semibold text-brand-dark text-base md:text-lg" data-i18n="method_culture">Kultur erleben: Tauche ein in die lebendige Welt Perus.</span>
                         </li>
                     </ul>
+                    <blockquote class="border-l-4 border-brand-terra pl-6 italic text-lg md:text-xl text-brand-dark" data-i18n="method_quote">
+                        "Lerne Spanisch nicht nur – fühle es, genieße es und mache es zu deinem eigenen."
+                    </blockquote>
                 </div>
-                <blockquote class="border-l-4 border-brand-terra pl-6 italic text-xl text-gray-700 font-serif" data-i18n="method_quote">
-                    "Lerne Spanisch nicht nur – fühle es, genieße es und mache es zu deinem eigenen."
-                </blockquote>
             </div>
         </div>
     </section>
@@ -408,30 +428,30 @@
     <section class="py-24 bg-gradient-to-br from-brand-beige to-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in-section">
-                <span class="uppercase tracking-widest text-brand-terra font-bold text-sm mb-2 block">Más que idioma</span>
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4">Descubre Perú</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
+                <span class="uppercase tracking-widest text-brand-terra font-bold text-sm mb-2 block" data-i18n="culture_tag">Mehr als nur Sprache</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-i18n="culture_headline">Entdecke Peru</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="culture_sub">
                     Sprache und Kultur sind untrennbar. Erlebe die lebendige Welt Perus – von majestätischen Bergen bis zu bunten Straßen.
                 </p>
             </div>
 
             <!-- Interactive Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-                <div class="text-center fade-in-section bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-xl transition">
-                    <div class="text-4xl font-bold text-brand-terra mb-2 counter" data-target="6">0</div>
-                    <div class="text-sm text-gray-600">Jahre Erfahrung</div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
+                <div class="text-center fade-in-section bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border border-brand-terra/10">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-terra mb-2 counter" data-target="6">0</div>
+                    <div class="text-sm md:text-base text-brand-dark font-semibold">Jahre Erfahrung</div>
                 </div>
-                <div class="text-center fade-in-section delay-100 bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-xl transition">
-                    <div class="text-4xl font-bold text-brand-terra mb-2 counter" data-target="500">0</div>
-                    <div class="text-sm text-gray-600">Zufriedene Schüler</div>
+                <div class="text-center fade-in-section delay-100 bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border border-brand-terra/10">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-terra mb-2 counter" data-target="500">0</div>
+                    <div class="text-sm md:text-base text-brand-dark font-semibold">Zufriedene Schüler</div>
                 </div>
-                <div class="text-center fade-in-section delay-200 bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-xl transition">
-                    <div class="text-4xl font-bold text-brand-terra mb-2 counter" data-target="3000">0</div>
-                    <div class="text-sm text-gray-600">Unterrichtsstunden</div>
+                <div class="text-center fade-in-section delay-200 bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border border-brand-terra/10">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-terra mb-2 counter" data-target="3000">0</div>
+                    <div class="text-sm md:text-base text-brand-dark font-semibold">Unterrichtsstunden</div>
                 </div>
-                <div class="text-center fade-in-section delay-300 bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-xl transition">
-                    <div class="text-4xl font-bold text-brand-terra mb-2">A1-B2</div>
-                    <div class="text-sm text-gray-600">Alle Niveaus</div>
+                <div class="text-center fade-in-section delay-300 bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border border-brand-terra/10">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-terra mb-2">A1-B2</div>
+                    <div class="text-sm md:text-base text-brand-dark font-semibold">Alle Niveaus</div>
                 </div>
             </div>
 
@@ -702,23 +722,26 @@
                     <p class="opacity-90" data-i18n="contact_sub">Schreibe mir für deine kostenlose Probestunde oder buche ein Paket.</p>
                 </div>
 
-                <!-- CHANGE 6b: Contact form select - options now translatable -->
-                <form class="space-y-4 text-brand-dark" onsubmit="event.preventDefault(); alert('Danke! (Dies ist eine Demo - bitte verknüpfe Formspree oder PHP)');">
+                <!-- Contact Form with Formspree Integration -->
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4 text-brand-dark" id="contact-form">
                     <div class="grid md:grid-cols-2 gap-4">
-                        <input type="text" placeholder="Name" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
-                        <input type="email" placeholder="E-Mail" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
+                        <input type="text" name="name" placeholder="Name" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
+                        <input type="email" name="email" placeholder="E-Mail" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
                     </div>
-                    <select id="course-select" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none bg-white text-gray-600">
+                    <select id="course-select" name="course" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none bg-white text-gray-600">
                         <option value="trial" data-i18n="opt_trial">Kostenlose Probestunde</option>
                         <option value="maestra" data-i18n="opt_maestra">Meister-Route</option>
                         <option value="intermedia" data-i18n="opt_intermedia">Aufbau-Route</option>
                         <option value="expres" data-i18n="opt_expres">Express-Route</option>
                     </select>
-                    <textarea placeholder="Deine Ziele / Aktuelles Level..." rows="4" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none"></textarea>
-                    
+                    <textarea name="message" placeholder="Deine Ziele / Aktuelles Level..." rows="4" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none"></textarea>
+
                     <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-lg hover:bg-gray-800 transition transform hover:scale-[1.02] shadow-lg" data-i18n="btn_send">
                         Nachricht senden
                     </button>
+
+                    <!-- Form Status Messages -->
+                    <div id="form-status" class="hidden text-center py-3 rounded-lg font-bold"></div>
                 </form>
 
                 <div class="mt-8 flex justify-center space-x-6">
@@ -804,10 +827,15 @@
                 nav_method: "Methode",
                 nav_pricing: "Preise",
                 nav_book: "Probestunde buchen",
+                hero_tag: "Online Sprachreise",
+                hero_prefix: "Dein Wegweiser zu",
                 hero_headline: "Dein Wegweiser zur <br><span class='text-brand-terra'>Spanisch-Flüssigkeit.</span>",
                 hero_subheadline: "Lerne Spanisch und entdecke die Kultur Perus – mit individuellen Stunden, echten Gesprächen und einer immersiven Lernmethode.",
                 hero_cta_primary: "Kostenlose Probestunde",
                 hero_cta_secondary: "Preise ansehen",
+                culture_tag: "Mehr als nur Sprache",
+                culture_headline: "Entdecke Peru",
+                culture_sub: "Sprache und Kultur sind untrennbar. Erlebe die lebendige Welt Perus – von majestätischen Bergen bis zu bunten Straßen.",
                 quiz_intro: "Weißt du das?",
                 quiz_card1_question: "Abenteuer",
                 quiz_card2_question: "Reise",
@@ -888,10 +916,15 @@
                 nav_method: "Método",
                 nav_pricing: "Precios",
                 nav_book: "Reserva clase",
+                hero_tag: "Viaje de Idiomas Online",
+                hero_prefix: "Tu mapa hacia la",
                 hero_headline: "Tu mapa hacia la <br><span class='text-brand-terra'>fluidez en español.</span>",
                 hero_subheadline: "Aprende español y descubre la cultura de Perú con clases personalizadas y un método de inmersión total.",
                 hero_cta_primary: "Prueba gratis",
                 hero_cta_secondary: "Ver precios",
+                culture_tag: "Más que idioma",
+                culture_headline: "Descubre Perú",
+                culture_sub: "Idioma y cultura son inseparables. Experimenta el vibrante mundo de Perú: desde montañas majestuosas hasta calles llenas de color.",
                 quiz_intro: "¿Sabes esto?",
                 quiz_card1_question: "Adventure",
                 quiz_card2_question: "Journey",
@@ -972,10 +1005,15 @@
                 nav_method: "Method",
                 nav_pricing: "Prices",
                 nav_book: "Book trial",
+                hero_tag: "Online Language Journey",
+                hero_prefix: "Your pathway to",
                 hero_headline: "Your map to <br><span class='text-brand-terra'>Spanish fluency.</span>",
                 hero_subheadline: "Learn Spanish and discover Peruvian culture with personalized lessons and a total immersion method.",
                 hero_cta_primary: "Free Trial Class",
                 hero_cta_secondary: "View Prices",
+                culture_tag: "More than language",
+                culture_headline: "Discover Peru",
+                culture_sub: "Language and culture are inseparable. Experience the vibrant world of Peru – from majestic mountains to colorful streets.",
                 quiz_intro: "Do you know?",
                 quiz_card1_question: "Adventure",
                 quiz_card2_question: "Journey",
@@ -1056,8 +1094,9 @@
         // --- LANGUAGE SWITCHER FUNCTION ---
         function changeLanguage(lang) {
             document.documentElement.lang = lang;
+            currentLang = lang; // Update current language for dynamic words
             const elements = document.querySelectorAll('[data-i18n]');
-            
+
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
@@ -1071,7 +1110,13 @@
                     }
                 }
             });
-            
+
+            // Update dynamic word immediately
+            const wordElement = document.getElementById('dynamic-word');
+            if (wordElement) {
+                wordElement.textContent = dynamicWords[lang][currentWordIndex];
+            }
+
             // Update language button highlighting
             updateLanguageButtons(lang);
         }
@@ -1193,7 +1238,97 @@
             });
         }
 
-        // CHANGE 8: FLOATING WORDS - Updated with German and English phrases
+        // --- DYNAMIC HERO WORD ROTATION ---
+        const dynamicWords = {
+            de: ['Flüssigkeit', 'Selbstvertrauen', 'Kultur'],
+            en: ['Fluency', 'Confidence', 'Culture'],
+            es: ['Fluidez', 'Confianza', 'Cultura']
+        };
+        let currentWordIndex = 0;
+        let currentLang = 'de';
+
+        function rotateWord() {
+            const wordElement = document.getElementById('dynamic-word');
+            if (wordElement) {
+                wordElement.style.opacity = '0';
+                wordElement.style.transform = 'translateY(-10px)';
+
+                setTimeout(() => {
+                    currentWordIndex = (currentWordIndex + 1) % dynamicWords[currentLang].length;
+                    wordElement.textContent = dynamicWords[currentLang][currentWordIndex];
+                    wordElement.style.opacity = '1';
+                    wordElement.style.transform = 'translateY(0)';
+                }, 300);
+            }
+        }
+
+        // Start word rotation
+        setInterval(rotateWord, 3000);
+
+        // --- FORMSPREE FORM HANDLING ---
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(contactForm);
+                const statusMessages = {
+                    de: {
+                        sending: 'Nachricht wird gesendet...',
+                        success: '✓ Nachricht erfolgreich gesendet! Ich melde mich bald bei dir.',
+                        error: '✗ Fehler beim Senden. Bitte versuche es erneut oder schreibe direkt an anaarellano548@gmail.com'
+                    },
+                    en: {
+                        sending: 'Sending message...',
+                        success: '✓ Message sent successfully! I\'ll get back to you soon.',
+                        error: '✗ Error sending message. Please try again or email anaarellano548@gmail.com'
+                    },
+                    es: {
+                        sending: 'Enviando mensaje...',
+                        success: '✓ ¡Mensaje enviado con éxito! Me pondré en contacto pronto.',
+                        error: '✗ Error al enviar. Intenta de nuevo o escribe a anaarellano548@gmail.com'
+                    }
+                };
+
+                const currentMessages = statusMessages[currentLang] || statusMessages['de'];
+
+                // Show sending status
+                formStatus.textContent = currentMessages.sending;
+                formStatus.className = 'text-center py-3 rounded-lg font-bold bg-blue-100 text-blue-800';
+                formStatus.classList.remove('hidden');
+
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        formStatus.textContent = currentMessages.success;
+                        formStatus.className = 'text-center py-3 rounded-lg font-bold bg-green-100 text-green-800';
+                        contactForm.reset();
+                    } else {
+                        formStatus.textContent = currentMessages.error;
+                        formStatus.className = 'text-center py-3 rounded-lg font-bold bg-red-100 text-red-800';
+                    }
+                } catch (error) {
+                    formStatus.textContent = currentMessages.error;
+                    formStatus.className = 'text-center py-3 rounded-lg font-bold bg-red-100 text-red-800';
+                }
+
+                // Hide status after 5 seconds
+                setTimeout(() => {
+                    formStatus.classList.add('hidden');
+                }, 5000);
+            });
+        }
+
+        // FLOATING WORDS - Updated with German and English phrases
         const floatingWords = [
             "¡Hola!",
             "¿Qué tal?",
