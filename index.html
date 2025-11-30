@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana's Spanish Map | Spanisch lernen & Peru erleben</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -13,89 +13,104 @@
             theme: {
                 extend: {
                     colors: {
+                        // Authentische peruanische Farbpalette
                         brand: {
-                            terra: '#E07A5F', // Terracotta
-                            beige: '#F4F1DE', // Warm Beige
-                            dark: '#3D405B',  // Dunkelblau/Grau für Text
-                            green: '#81B29A', // Sanftes Grün (Akzent)
-                            yellow: '#F2CC8F', // Warmes Gelb
+                            primary: '#C94C4C',    // Tiefes Rot-Orange (Inka-inspiriert)
+                            secondary: '#2A9D8F',  // Türkis/Teal (peruanische Textilien)
+                            gold: '#E9C46A',       // Warmes Gold
+                            cream: '#FDF8F3',      // Cremeweiß
+                            dark: '#1D3557',       // Tiefes Blau für Text
+                            earth: '#8B5A2B',      // Erdton
                         }
                     },
                     fontFamily: {
-                        sans: ['Open Sans', 'sans-serif'],
-                        heading: ['Montserrat', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom Animations */
+        /* Peruanisches Muster-Overlay */
+        .peru-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='%23C94C4C' fill-opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        /* Animations */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, visibility;
         }
         .fade-in-section.is-visible {
             opacity: 1;
             transform: none;
         }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
 
-        /* Staggered Animations */
-        .fade-in-section.delay-100 { transition-delay: 0.1s; }
-        .fade-in-section.delay-200 { transition-delay: 0.2s; }
-        .fade-in-section.delay-300 { transition-delay: 0.3s; }
-
-        /* Quiz Card Flip Effect */
+        /* Quiz Card - Verbessertes Design */
         .quiz-card {
             perspective: 1000px;
             cursor: pointer;
-            transition: all 0.4s ease;
-            background: rgba(255, 255, 255, 0.25) !important;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.4) !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(201, 76, 76, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(233, 196, 106, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        .quiz-card:hover::before {
+            left: 100%;
         }
         .quiz-card:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.35) !important;
-        }
-        .quiz-card .quiz-question {
-            color: #1a1a1a !important;
-            font-weight: 600;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(201, 76, 76, 0.2);
+            border-color: #C94C4C;
         }
         .quiz-card .quiz-answer {
             opacity: 0;
+            max-height: 0;
             transform: translateY(10px);
-            transition: all 0.3s ease;
-            color: #2d3748 !important;
-            font-weight: 700;
+            transition: all 0.4s ease;
+            overflow: hidden;
         }
         .quiz-card:hover .quiz-answer,
         .quiz-card.revealed .quiz-answer {
             opacity: 1;
+            max-height: 100px;
             transform: translateY(0);
         }
 
-        /* Animated Words on Scroll */
-        .floating-word {
-            position: fixed;
-            font-size: 4rem;
-            font-weight: bold;
-            opacity: 0.08;
-            pointer-events: none;
-            z-index: 1;
-            color: #E07A5F;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.5s ease;
+        /* Testimonial Card */
+        .testimonial-card {
+            position: relative;
+            transition: all 0.4s ease;
         }
-
-        /* Parallax Effect */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 6rem;
+            font-family: 'Playfair Display', serif;
+            color: rgba(233, 196, 106, 0.3);
+            line-height: 1;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
         }
 
         /* Gradient Animation */
@@ -104,56 +119,47 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         .gradient-animated {
-            background: linear-gradient(-45deg, #E07A5F, #F2CC8F, #81B29A, #3D405B);
+            background: linear-gradient(-45deg, #C94C4C, #E9C46A, #2A9D8F, #1D3557);
             background-size: 400% 400%;
-            animation: gradient-shift 15s ease infinite;
+            animation: gradient-shift 12s ease infinite;
         }
 
-        /* 3D Card Effect */
+        /* Card 3D Effect */
         .card-3d {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
         .card-3d:hover {
-            transform: translateY(-12px) rotateX(2deg);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
         }
 
-        /* Float Animation for WhatsApp */
+        /* Float Animation */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
-
         .float-animation {
             animation: float 3s ease-in-out infinite;
         }
 
         /* Pulse Animation */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 76, 76, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(201, 76, 76, 0); }
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
         }
 
-        .pulse-animation {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        /* Testimonial Carousel */
-        .testimonial-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        /* Gallery Image Hover */
+        /* Gallery Item */
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 1rem;
         }
         .gallery-item img {
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
         .gallery-item:hover img {
             transform: scale(1.1);
@@ -161,9 +167,9 @@
         .gallery-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to top, rgba(29, 53, 87, 0.9), transparent);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
             display: flex;
             align-items: flex-end;
             padding: 1.5rem;
@@ -173,10 +179,24 @@
             opacity: 1;
         }
 
-        /* Counter Animation */
-        @keyframes count-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Dynamic Word Transition */
+        #dynamic-word {
+            display: inline-block;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        /* USP Badge */
+        .usp-badge {
+            background: linear-gradient(135deg, #E9C46A 0%, #C94C4C 100%);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+
+        /* Decorative Elements */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(201, 76, 76, 0.1), rgba(233, 196, 106, 0.1));
+            pointer-events: none;
         }
 
         /* Smooth Scroll */
@@ -184,194 +204,368 @@
             scroll-behavior: smooth;
         }
 
-        /* Dynamic Word Transition */
-        #dynamic-word {
-            display: inline-block;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+        /* Form Success Animation */
+        @keyframes checkmark {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .form-success-icon {
+            animation: checkmark 0.5s ease-out;
         }
     </style>
 </head>
-<body class="bg-brand-beige text-brand-dark font-sans overflow-x-hidden">
+<body class="bg-brand-cream text-brand-dark font-sans overflow-x-hidden peru-pattern">
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <span class="font-heading font-bold text-2xl text-brand-terra tracking-tight">
-                        Ana's Spanish Map <i class="fa-solid fa-map-location-dot ml-2"></i>
+                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <span class="font-heading font-bold text-2xl text-brand-primary tracking-tight group-hover:text-brand-secondary transition-colors">
+                        Ana's Spanish Map
                     </span>
+                    <i class="fa-solid fa-map-location-dot ml-2 text-brand-gold group-hover:rotate-12 transition-transform"></i>
                 </div>
 
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="hover:text-brand-terra transition font-medium" data-i18n="nav_about">Über mich</a>
-                    <a href="#method" class="hover:text-brand-terra transition font-medium" data-i18n="nav_method">Methode</a>
-                    <a href="#rutas" class="hover:text-brand-terra transition font-medium" data-i18n="nav_pricing">Preise & Routen</a>
-                    <a href="#contact" class="bg-brand-terra text-white px-5 py-2 rounded-full hover:bg-orange-700 transition shadow-md hover:scale-105 transform duration-200" data-i18n="nav_book">Probestunde buchen</a>
+                    <a href="#about" class="hover:text-brand-primary transition font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-primary after:transition-all hover:after:w-full" data-i18n="nav_about">Über mich</a>
+                    <a href="#method" class="hover:text-brand-primary transition font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-primary after:transition-all hover:after:w-full" data-i18n="nav_method">Methode</a>
+                    <a href="#rutas" class="hover:text-brand-primary transition font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-primary after:transition-all hover:after:w-full" data-i18n="nav_pricing">Preise</a>
+                    <a href="#contact" class="bg-brand-primary text-white px-6 py-2.5 rounded-full hover:bg-brand-secondary transition-all shadow-md hover:shadow-lg hover:scale-105 transform duration-200 font-semibold" data-i18n="nav_book">Probestunde buchen</a>
                     
-                    <div class="flex space-x-2 border-l pl-4 border-gray-300">
-                        <button onclick="changeLanguage('es')" class="hover:font-bold transition">ES</button>
-                        <button onclick="changeLanguage('en')" class="hover:font-bold transition">EN</button>
-                        <button onclick="changeLanguage('de')" class="font-bold text-brand-terra">DE</button>
+                    <div class="flex space-x-2 border-l pl-4 border-gray-200">
+                        <button onclick="changeLanguage('es')" class="px-2 py-1 rounded hover:bg-brand-cream transition">ES</button>
+                        <button onclick="changeLanguage('en')" class="px-2 py-1 rounded hover:bg-brand-cream transition">EN</button>
+                        <button onclick="changeLanguage('de')" class="px-2 py-1 rounded bg-brand-primary text-white font-bold">DE</button>
                     </div>
                 </div>
 
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-terra focus:outline-none">
+                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-primary focus:outline-none p-2">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="#about" class="block px-3 py-2 rounded-md hover:bg-brand-beige" data-i18n="nav_about">Über mich</a>
-                <a href="#method" class="block px-3 py-2 rounded-md hover:bg-brand-beige" data-i18n="nav_method">Methode</a>
-                <a href="#rutas" class="block px-3 py-2 rounded-md hover:bg-brand-beige" data-i18n="nav_pricing">Preise</a>
-                <div class="flex justify-center space-x-4 py-2">
-                    <button onclick="changeLanguage('es')">ES</button>
-                    <button onclick="changeLanguage('en')">EN</button>
-                    <button onclick="changeLanguage('de')" class="text-brand-terra font-bold">DE</button>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t shadow-lg">
+            <div class="px-4 pt-4 pb-6 space-y-3 text-center">
+                <a href="#about" class="block px-4 py-3 rounded-lg hover:bg-brand-cream font-medium" data-i18n="nav_about">Über mich</a>
+                <a href="#method" class="block px-4 py-3 rounded-lg hover:bg-brand-cream font-medium" data-i18n="nav_method">Methode</a>
+                <a href="#rutas" class="block px-4 py-3 rounded-lg hover:bg-brand-cream font-medium" data-i18n="nav_pricing">Preise</a>
+                <a href="#contact" class="block px-4 py-3 rounded-lg bg-brand-primary text-white font-semibold" data-i18n="nav_book">Probestunde buchen</a>
+                <div class="flex justify-center space-x-4 pt-4 border-t">
+                    <button onclick="changeLanguage('es')" class="px-3 py-1 rounded hover:bg-brand-cream">ES</button>
+                    <button onclick="changeLanguage('en')" class="px-3 py-1 rounded hover:bg-brand-cream">EN</button>
+                    <button onclick="changeLanguage('de')" class="px-3 py-1 rounded bg-brand-primary text-white font-bold">DE</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section: Colorful background with warm gradient overlay -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <!-- Background Image -->
+    <!-- Hero Section -->
+    <section class="relative pt-28 pb-20 lg:pt-40 lg:pb-32 overflow-hidden min-h-screen flex items-center">
+        <!-- Background -->
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1600&h=900&fit=crop" alt="Peru Landscape" class="w-full h-full object-cover">
         </div>
-        <!-- Warm Gradient Overlay -->
-        <div class="absolute inset-0 z-0 bg-gradient-to-r from-brand-beige/85 via-brand-beige/60 to-brand-beige/70"></div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-r from-brand-cream/95 via-brand-cream/80 to-brand-cream/60"></div>
+        
+        <!-- Decorative Circles -->
+        <div class="deco-circle w-96 h-96 -top-48 -right-48 absolute"></div>
+        <div class="deco-circle w-64 h-64 bottom-20 -left-32 absolute"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="fade-in-section">
-                    <!-- Small Line Above -->
-                    <div class="mb-4">
-                        <span class="inline-block bg-brand-terra/10 text-brand-terra px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider" data-i18n="hero_tag">
-                            Online Sprachreise
+                    <!-- USP Badge -->
+                    <div class="mb-6">
+                        <span class="inline-flex items-center gap-2 bg-brand-dark text-white px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg">
+                            <i class="fa-solid fa-certificate text-brand-gold"></i>
+                            <span data-i18n="hero_tag">Zertifizierte Muttersprachlerin aus Peru</span>
                         </span>
                     </div>
-                    <!-- Main Headline with Dynamic Words -->
+                    
+                    <!-- Main Headline -->
                     <h1 class="font-heading text-4xl lg:text-6xl font-bold text-brand-dark leading-tight mb-6">
-                        <span data-i18n="hero_prefix">Dein Wegweiser zu</span><br>
-                        <span class="text-brand-terra" id="dynamic-word">Flüssigkeit</span>
+                        <span data-i18n="hero_prefix">Dein Weg zu</span><br>
+                        <span class="text-brand-primary" id="dynamic-word">Selbstvertrauen</span>
+                        <span class="text-brand-secondary">.</span>
                     </h1>
-                    <p class="text-lg lg:text-xl text-brand-dark mb-8 max-w-lg leading-relaxed" data-i18n="hero_subheadline">
-                        Lerne Spanisch und entdecke die Kultur Perus – mit individuellen Stunden, echten Gesprächen und einer immersiven Lernmethode.
+                    
+                    <p class="text-lg lg:text-xl text-brand-dark/80 mb-8 max-w-lg leading-relaxed" data-i18n="hero_subheadline">
+                        Mehr als Grammatik: Lerne Spanisch zu fühlen, nicht nur zu sprechen. Mit echten Gesprächen, kulturellen Einblicken und einer Lehrerin, die deine Reise persönlich begleitet.
                     </p>
+                    
+                    <!-- Stats Bar -->
+                    <div class="flex flex-wrap gap-6 mb-8 text-sm">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-brand-primary/10 flex items-center justify-center">
+                                <i class="fa-solid fa-users text-brand-primary"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark">500+</div>
+                                <div class="text-brand-dark/60" data-i18n="stat_students">Schüler weltweit</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-brand-secondary/10 flex items-center justify-center">
+                                <i class="fa-solid fa-star text-brand-secondary"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark">5.0</div>
+                                <div class="text-brand-dark/60" data-i18n="stat_rating">Bewertung</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center">
+                                <i class="fa-solid fa-clock text-brand-earth"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark">3000+</div>
+                                <div class="text-brand-dark/60" data-i18n="stat_hours">Unterrichtsstunden</div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contact" class="text-center bg-brand-terra text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition transform duration-300" data-i18n="hero_cta_primary">
-                            Kostenlose Probestunde buchen
+                        <a href="#contact" class="group text-center bg-brand-primary text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:bg-brand-secondary transition-all duration-300 flex items-center justify-center gap-2">
+                            <span data-i18n="hero_cta_primary">Kostenlose Probestunde</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <a href="#rutas" class="text-center border-2 border-brand-dark text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-brand-dark hover:text-white transition duration-300" data-i18n="hero_cta_secondary">
-                            Routen & Preise ansehen
+                        <a href="#rutas" class="text-center border-2 border-brand-dark text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-brand-dark hover:text-white transition-all duration-300" data-i18n="hero_cta_secondary">
+                            Preise ansehen
                         </a>
                     </div>
-                    <div class="mt-8 flex items-center gap-2 text-sm text-brand-dark font-medium">
-                        <i class="fa-solid fa-circle text-green-500 text-xs"></i>
-                        <span>Online • GMT-5 (Peru) • A1–B2</span>
+                    
+                    <div class="mt-8 flex items-center gap-3 text-sm text-brand-dark/70 font-medium">
+                        <span class="flex items-center gap-1">
+                            <i class="fa-solid fa-circle text-green-500 text-xs animate-pulse"></i>
+                            Online
+                        </span>
+                        <span class="text-brand-dark/30">•</span>
+                        <span>GMT-5 (Peru)</span>
+                        <span class="text-brand-dark/30">•</span>
+                        <span>A1–B2</span>
                     </div>
                 </div>
-                <!-- Modern Portrait with Card Look -->
-                <div class="relative fade-in-section lg:ml-auto">
-                    <div class="relative group">
-                        <div class="absolute -inset-4 bg-gradient-to-br from-brand-terra/20 to-brand-yellow/20 rounded-3xl transform rotate-2 group-hover:rotate-3 transition-transform duration-300"></div>
-                        <img src="images/Ana_1.jpg" alt="Ana Arellano Teacher" class="relative rounded-3xl shadow-2xl w-full max-w-md mx-auto transform -rotate-1 group-hover:rotate-0 transition duration-500 object-cover aspect-[3/4] border-4 border-white">
+                
+                <!-- Portrait -->
+                <div class="relative fade-in-section delay-200 lg:ml-auto">
+                    <div class="relative">
+                        <!-- Decorative Frame -->
+                        <div class="absolute -inset-4 bg-gradient-to-br from-brand-primary/20 via-brand-gold/20 to-brand-secondary/20 rounded-3xl blur-xl"></div>
+                        
+                        <!-- Main Image Container -->
+                        <div class="relative bg-white p-3 rounded-3xl shadow-2xl">
+                            <img src="images/Ana_1.jpg" alt="Ana Arellano - Spanischlehrerin aus Peru" 
+                                 class="rounded-2xl w-full max-w-md mx-auto object-cover aspect-[3/4]"
+                                 onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop&crop=face'">
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute -bottom-4 -right-4 bg-white px-5 py-3 rounded-xl shadow-lg border-2 border-brand-gold/30">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center">
+                                        <i class="fa-solid fa-graduation-cap text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-brand-dark text-sm">6+ Jahre</div>
+                                        <div class="text-xs text-brand-dark/60">Erfahrung</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Location Badge -->
+                            <div class="absolute -top-3 -left-3 bg-brand-secondary text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot"></i>
+                                Lima, Perú
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CHANGE 2: Interactive Multi-Quiz Section - Quiz words now translatable -->
-    <div class="gradient-animated text-white py-12 overflow-hidden">
+    <!-- Kulturelles Quiz - Verbessert -->
+    <section class="gradient-animated text-white py-16 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-6">
-                <span class="font-heading text-2xl text-white font-bold drop-shadow-lg" data-i18n="quiz_intro">¿Sabes esto? / Weißt du das? / Do you know?</span>
+            <div class="text-center mb-10">
+                <span class="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+                    <i class="fa-solid fa-lightbulb mr-2"></i>
+                    <span data-i18n="quiz_tag">Teste dein Wissen</span>
+                </span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold drop-shadow-lg" data-i18n="quiz_headline">Kennst du Peru?</h2>
             </div>
+            
             <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <!-- Quiz Card 1 -->
-                <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
-                    <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-globe mr-2 text-brand-terra"></i>
-                        <span data-i18n="quiz_card1_question">Adventure</span>
+                <!-- Quiz Card 1 - Kulturell -->
+                <div class="quiz-card px-6 py-6 rounded-2xl shadow-xl" onclick="this.classList.toggle('revealed')">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center">
+                            <i class="fa-solid fa-utensils text-brand-primary text-xl"></i>
+                        </div>
+                        <span class="text-xs uppercase tracking-wider text-brand-dark/60 font-bold" data-i18n="quiz_cat_culture">Kultur</span>
                     </div>
-                    <div class="quiz-answer text-lg">
-                        ✨ ¡Aventura!
+                    <div class="text-brand-dark font-bold text-lg mb-2" data-i18n="quiz_q1">
+                        Was ist Perus Nationalgericht?
                     </div>
-                </div>
-
-                <!-- Quiz Card 2 -->
-                <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
-                    <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-heart mr-2 text-brand-terra"></i>
-                        <span data-i18n="quiz_card2_question">Journey</span>
-                    </div>
-                    <div class="quiz-answer text-lg">
-                        ✨ ¡Viaje!
+                    <div class="quiz-answer text-brand-secondary font-bold text-lg pt-3 border-t border-brand-primary/20">
+                        🍽️ ¡Ceviche!
+                        <p class="text-sm font-normal text-brand-dark/70 mt-1" data-i18n="quiz_a1_detail">Frischer Fisch mit Limettensaft mariniert</p>
                     </div>
                 </div>
 
-                <!-- Quiz Card 3 -->
-                <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
-                    <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-face-smile mr-2 text-brand-terra"></i>
-                        <span data-i18n="quiz_card3_question">Smile</span>
+                <!-- Quiz Card 2 - Idiomatisch -->
+                <div class="quiz-card px-6 py-6 rounded-2xl shadow-xl" onclick="this.classList.toggle('revealed')">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-12 h-12 rounded-full bg-brand-secondary/10 flex items-center justify-center">
+                            <i class="fa-solid fa-comment-dots text-brand-secondary text-xl"></i>
+                        </div>
+                        <span class="text-xs uppercase tracking-wider text-brand-dark/60 font-bold" data-i18n="quiz_cat_idiom">Redewendung</span>
                     </div>
-                    <div class="quiz-answer text-lg">
-                        ✨ ¡Sonrisa!
+                    <div class="text-brand-dark font-bold text-lg mb-2" data-i18n="quiz_q2">
+                        Was bedeutet "estar en la luna"?
+                    </div>
+                    <div class="quiz-answer text-brand-secondary font-bold text-lg pt-3 border-t border-brand-secondary/20">
+                        🌙 Träumen / Abwesend sein
+                        <p class="text-sm font-normal text-brand-dark/70 mt-1" data-i18n="quiz_a2_detail">Wörtlich: "auf dem Mond sein"</p>
+                    </div>
+                </div>
+
+                <!-- Quiz Card 3 - Tradition -->
+                <div class="quiz-card px-6 py-6 rounded-2xl shadow-xl" onclick="this.classList.toggle('revealed')">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-12 h-12 rounded-full bg-brand-gold/20 flex items-center justify-center">
+                            <i class="fa-solid fa-handshake text-brand-earth text-xl"></i>
+                        </div>
+                        <span class="text-xs uppercase tracking-wider text-brand-dark/60 font-bold" data-i18n="quiz_cat_tradition">Tradition</span>
+                    </div>
+                    <div class="text-brand-dark font-bold text-lg mb-2" data-i18n="quiz_q3">
+                        Wie begrüßt man sich in Peru?
+                    </div>
+                    <div class="quiz-answer text-brand-secondary font-bold text-lg pt-3 border-t border-brand-gold/30">
+                        💋 Mit einem Kuss auf die Wange
+                        <p class="text-sm font-normal text-brand-dark/70 mt-1" data-i18n="quiz_a3_detail">Auch bei der ersten Begegnung!</p>
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-6 text-sm text-white font-medium drop-shadow">
+            
+            <div class="text-center mt-8 text-white/80 text-sm font-medium">
                 <i class="fa-solid fa-hand-pointer mr-2"></i>
-                <span data-i18n="quiz_hint">Click or hover to reveal!</span>
+                <span data-i18n="quiz_hint">Klicke auf eine Karte, um die Antwort zu sehen!</span>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- About Section: Improved Readability -->
-    <section id="about" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Über mich Section -->
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <!-- Decorative Element -->
+        <div class="absolute top-0 right-0 w-1/3 h-full opacity-5 pointer-events-none">
+            <svg viewBox="0 0 200 200" class="w-full h-full">
+                <path fill="#C94C4C" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.5,90,-16.3,88.5,-0.9C87,14.5,81.4,29,72.9,41.7C64.4,54.4,53,65.3,39.8,73.5C26.6,81.7,11.5,87.2,-3.2,91.5C-17.9,95.8,-35.8,99,-50.1,92.3C-64.4,85.6,-75.2,69,-82.3,51.7C-89.5,34.4,-93.1,16.2,-91.5,-1.2C-89.8,-18.6,-83,-37.3,-71.7,-51.6C-60.4,-65.9,-44.7,-75.8,-28.6,-81.7C-12.4,-87.6,4.1,-89.5,19.6,-85.2C35.1,-80.9,49.6,-70.4,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="order-2 md:order-1 relative fade-in-section">
-                    <img src="images/Ana_2.jpg" alt="Ana Portrait" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover object-top mx-auto shadow-2xl border-8 border-brand-beige">
-                    <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white px-5 py-3 rounded-xl shadow-lg text-sm md:text-base font-bold text-brand-terra whitespace-nowrap border-2 border-brand-terra/20">
-                        <i class="fa-solid fa-certificate mr-2"></i> 6+ Jahre Erfahrung
+                    <!-- Image with Frame -->
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-br from-brand-gold/30 to-brand-secondary/30 rounded-full blur-2xl"></div>
+                        <div class="relative">
+                            <img src="images/Ana_2.jpg" alt="Ana Portrait" 
+                                 class="rounded-full w-56 h-56 md:w-72 md:h-72 object-cover object-top mx-auto shadow-2xl border-8 border-white"
+                                 onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face'">
+                        </div>
+                    </div>
+                    
+                    <!-- Credentials -->
+                    <div class="flex flex-wrap justify-center gap-3 mt-8">
+                        <span class="bg-brand-cream text-brand-dark px-4 py-2 rounded-full text-sm font-semibold border border-brand-primary/20 flex items-center gap-2">
+                            <i class="fa-solid fa-certificate text-brand-primary"></i>
+                            ELE Zertifiziert
+                        </span>
+                        <span class="bg-brand-cream text-brand-dark px-4 py-2 rounded-full text-sm font-semibold border border-brand-secondary/20 flex items-center gap-2">
+                            <i class="fa-solid fa-language text-brand-secondary"></i>
+                            Native Speaker
+                        </span>
                     </div>
                 </div>
+                
                 <div class="order-1 md:order-2 fade-in-section">
-                    <span class="uppercase tracking-widest text-brand-terra font-bold text-sm mb-3 block">Hola, soy Ana</span>
-                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-brand-dark leading-tight" data-i18n="about_headline">Mehr als nur Grammatik – echte Kommunikation.</h2>
-                    <p class="text-brand-dark text-base md:text-lg mb-5 leading-relaxed" data-i18n="about_text_1">
-                        Hallo, ich bin Ana, zertifizierte Spanischlehrerin. Meine Kurse sind dynamisch und persönlich: Du lernst Grammatik im Kontext, erweiterst deinen Wortschatz und gewinnst vor allem das Selbstvertrauen, in realen Situationen zu kommunizieren.
+                    <span class="inline-block text-brand-primary font-bold text-sm mb-4 uppercase tracking-widest">
+                        <i class="fa-solid fa-heart mr-2"></i>Hola, soy Ana
+                    </span>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-brand-dark leading-tight" data-i18n="about_headline">
+                        Mehr als nur Grammatik – <br><span class="text-brand-primary">echte Verbindung.</span>
+                    </h2>
+                    <p class="text-brand-dark/80 text-lg mb-5 leading-relaxed" data-i18n="about_text_1">
+                        Ich bin Ana, zertifizierte Spanischlehrerin aus Lima, Peru. Meine Kurse sind dynamisch und persönlich: Du lernst Grammatik im Kontext, erweiterst deinen Wortschatz und gewinnst vor allem das <strong>Selbstvertrauen</strong>, in realen Situationen zu kommunizieren.
                     </p>
-                    <p class="text-brand-dark text-base md:text-lg mb-8 leading-relaxed" data-i18n="about_text_2">
-                        Als Peruanerin bringe ich dir nicht nur die Sprache bei, sondern öffne dir auch die Tür zur faszinierenden Kultur Lateinamerikas. Ich glaube an freundliches, klares und motivierendes Lernen.
+                    <p class="text-brand-dark/80 text-lg mb-8 leading-relaxed" data-i18n="about_text_2">
+                        Als Peruanerin bringe ich dir nicht nur die Sprache bei, sondern öffne dir die Tür zur <strong>faszinierenden Kultur Lateinamerikas</strong>. Bei mir lernst du, wie Spanisch wirklich klingt – mit allen Emotionen, Nuancen und dem Rhythmus des Alltags.
                     </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-brand-terra/10 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold border border-brand-terra/20">Native Speaker (Peru)</span>
-                        <span class="bg-brand-terra/10 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold border border-brand-terra/20">Erwachsenenbildung</span>
-                        <span class="bg-brand-terra/10 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold border border-brand-terra/20">Individuell</span>
+                    
+                    <!-- Quick Benefits -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-comments text-brand-primary"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark" data-i18n="benefit_1_title">Echte Gespräche</div>
+                                <div class="text-sm text-brand-dark/60" data-i18n="benefit_1_text">Vom ersten Tag an</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-secondary/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-user text-brand-secondary"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark" data-i18n="benefit_2_title">100% Individuell</div>
+                                <div class="text-sm text-brand-dark/60" data-i18n="benefit_2_text">Auf dich zugeschnitten</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-globe text-brand-earth"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark" data-i18n="benefit_3_title">Kultur inklusive</div>
+                                <div class="text-sm text-brand-dark/60" data-i18n="benefit_3_text">Peru hautnah erleben</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-file-pdf text-brand-primary"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark" data-i18n="benefit_4_title">Material & PDFs</div>
+                                <div class="text-sm text-brand-dark/60" data-i18n="benefit_4_text">Nach jeder Stunde</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Welcome Video Section -->
-    <section class="py-24 bg-gradient-to-b from-white to-brand-beige">
+    <!-- Video Section -->
+    <section class="py-24 bg-gradient-to-b from-white to-brand-cream">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 fade-in-section">
-                <span class="uppercase tracking-widest text-brand-terra font-bold text-sm mb-2 block">Conoce a Ana</span>
+                <span class="inline-block text-brand-secondary font-bold text-sm mb-4 uppercase tracking-widest">
+                    <i class="fa-solid fa-play-circle mr-2"></i>Conoce a Ana
+                </span>
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-i18n="video_headline">Schau dir mein Vorstellungsvideo an</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="video_sub">Erfahre mehr über meine Lehrmethode und wie ich dir helfen kann, dein Spanisch zu verbessern.</p>
+                <p class="text-brand-dark/60 max-w-2xl mx-auto" data-i18n="video_sub">Erfahre mehr über meine Lehrmethode und wie ich dir helfen kann, dein Spanisch zu verbessern.</p>
             </div>
+            
             <div class="fade-in-section max-w-4xl mx-auto">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="padding-bottom: 56.25%; height: 0;">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-brand-dark" style="padding-bottom: 56.25%; height: 0;">
                     <iframe
                         class="absolute top-0 left-0 w-full h-full"
                         src="https://www.youtube.com/embed/dcZf2LLwPew"
@@ -385,38 +579,66 @@
         </div>
     </section>
 
-    <!-- Method Section: Improved Contrast and Readability -->
-    <section id="method" class="py-24 bg-brand-beige relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full opacity-30 pointer-events-none hidden lg:block">
-            <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&h=1200&fit=crop&q=80" alt="Cathedral Texture" class="w-full h-full object-cover object-center">
+    <!-- Method Section -->
+    <section id="method" class="py-24 bg-brand-cream relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none hidden lg:block">
+            <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&h=1200&fit=crop&q=80" alt="Peru Architecture" class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-cream via-brand-cream/80 to-transparent"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl fade-in-section">
-                <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl">
-                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-brand-dark leading-tight" data-i18n="method_headline">Meine Methode: <br>Sprachliche Immersion</h2>
-                    <p class="text-brand-dark text-base md:text-lg mb-8 leading-relaxed" data-i18n="method_intro">
-                        Sprache ist kein Fach zum Auswendiglernen, sondern ein lebendiges Umfeld. Bei mir tauchst du ein.
+            <div class="max-w-2xl fade-in-section">
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-brand-primary/10">
+                    <span class="inline-block text-brand-primary font-bold text-sm mb-4 uppercase tracking-widest">
+                        <i class="fa-solid fa-rocket mr-2"></i>Meine Methode
+                    </span>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-brand-dark leading-tight" data-i18n="method_headline">
+                        Sprachliche Immersion: <br><span class="text-brand-secondary">Eintauchen statt Pauken</span>
+                    </h2>
+                    <p class="text-brand-dark/80 text-lg mb-8 leading-relaxed" data-i18n="method_intro">
+                        Sprache ist kein Fach zum Auswendiglernen, sondern ein lebendiges Umfeld. Bei mir tauchst du ein – vom ersten Moment an.
                     </p>
-                    <ul class="space-y-4 mb-8 list-none pl-0">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3 text-lg"></i>
-                            <span class="text-brand-dark text-base md:text-lg" data-i18n="method_point_1">Verbesserung der Flüssigkeit und Sicherheit beim Sprechen.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3 text-lg"></i>
-                            <span class="text-brand-dark text-base md:text-lg" data-i18n="method_point_2">Besseres Hörverständnis für Alltagssituationen.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-terra mt-1 mr-3 text-lg"></i>
-                            <span class="text-brand-dark text-base md:text-lg" data-i18n="method_point_3">Praktischer Wortschatz statt trockener Theorie.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-heart text-brand-terra mt-1 mr-3 text-lg"></i>
-                            <span class="font-semibold text-brand-dark text-base md:text-lg" data-i18n="method_culture">Kultur erleben: Tauche ein in die lebendige Welt Perus.</span>
-                        </li>
-                    </ul>
-                    <blockquote class="border-l-4 border-brand-terra pl-6 italic text-lg md:text-xl text-brand-dark" data-i18n="method_quote">
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-cream hover:bg-brand-primary/5 transition">
+                            <div class="w-10 h-10 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-microphone text-brand-primary"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark" data-i18n="method_point_1_title">Flüssigkeit & Sicherheit</div>
+                                <div class="text-brand-dark/60 text-sm" data-i18n="method_point_1">Du sprichst von Anfang an – ohne Angst vor Fehlern.</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-cream hover:bg-brand-secondary/5 transition">
+                            <div class="w-10 h-10 rounded-full bg-brand-secondary/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-headphones text-brand-secondary"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark" data-i18n="method_point_2_title">Echtes Hörverständnis</div>
+                                <div class="text-brand-dark/60 text-sm" data-i18n="method_point_2">Lerne zu verstehen, wie Spanisch wirklich klingt.</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-cream hover:bg-brand-gold/10 transition">
+                            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-book text-brand-earth"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark" data-i18n="method_point_3_title">Praktischer Wortschatz</div>
+                                <div class="text-brand-dark/60 text-sm" data-i18n="method_point_3">Vokabeln, die du wirklich brauchst – keine trockene Theorie.</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-brand-primary/5 to-brand-secondary/5">
+                            <div class="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-heart text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-brand-dark" data-i18n="method_culture_title">Kultur erleben</div>
+                                <div class="text-brand-dark/60 text-sm" data-i18n="method_culture">Tauche ein in die lebendige Welt Perus und Lateinamerikas.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <blockquote class="border-l-4 border-brand-gold pl-6 italic text-xl text-brand-dark font-heading" data-i18n="method_quote">
                         "Lerne Spanisch nicht nur – fühle es, genieße es und mache es zu deinem eigenen."
                     </blockquote>
                 </div>
@@ -424,44 +646,27 @@
         </div>
     </section>
 
-    <!-- Cultural Peru Gallery Section -->
-    <section class="py-24 bg-gradient-to-br from-brand-beige to-white relative overflow-hidden">
+    <!-- Cultural Gallery Section -->
+    <section class="py-24 bg-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in-section">
-                <span class="uppercase tracking-widest text-brand-terra font-bold text-sm mb-2 block" data-i18n="culture_tag">Mehr als nur Sprache</span>
+                <span class="inline-block text-brand-secondary font-bold text-sm mb-4 uppercase tracking-widest">
+                    <i class="fa-solid fa-mountain-sun mr-2"></i>
+                    <span data-i18n="culture_tag">Mehr als nur Sprache</span>
+                </span>
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-i18n="culture_headline">Entdecke Peru</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="culture_sub">
+                <p class="text-brand-dark/60 max-w-2xl mx-auto" data-i18n="culture_sub">
                     Sprache und Kultur sind untrennbar. Erlebe die lebendige Welt Perus – von majestätischen Bergen bis zu bunten Straßen.
                 </p>
             </div>
 
-            <!-- Interactive Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
-                <div class="text-center fade-in-section bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border border-brand-terra/10">
-                    <div class="text-4xl md:text-5xl font-bold text-brand-terra mb-2 counter" data-target="6">0</div>
-                    <div class="text-sm md:text-base text-brand-dark font-semibold">Jahre Erfahrung</div>
-                </div>
-                <div class="text-center fade-in-section delay-100 bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border border-brand-terra/10">
-                    <div class="text-4xl md:text-5xl font-bold text-brand-terra mb-2 counter" data-target="500">0</div>
-                    <div class="text-sm md:text-base text-brand-dark font-semibold">Zufriedene Schüler</div>
-                </div>
-                <div class="text-center fade-in-section delay-200 bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border border-brand-terra/10">
-                    <div class="text-4xl md:text-5xl font-bold text-brand-terra mb-2 counter" data-target="3000">0</div>
-                    <div class="text-sm md:text-base text-brand-dark font-semibold">Unterrichtsstunden</div>
-                </div>
-                <div class="text-center fade-in-section delay-300 bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border border-brand-terra/10">
-                    <div class="text-4xl md:text-5xl font-bold text-brand-terra mb-2">A1-B2</div>
-                    <div class="text-sm md:text-base text-brand-dark font-semibold">Alle Niveaus</div>
-                </div>
-            </div>
-
-            <!-- Cultural Gallery -->
-            <div class="grid md:grid-cols-3 gap-6">
+            <!-- Gallery Grid -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
                 <div class="gallery-item fade-in-section">
                     <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=600&h=600&fit=crop" alt="Arquitectura Colonial Peru" class="w-full h-72 object-cover">
                     <div class="gallery-overlay">
                         <div>
-                            <h3 class="font-bold text-lg mb-1">Arquitectura Colonial</h3>
+                            <h3 class="font-heading font-bold text-lg mb-1">Arquitectura Colonial</h3>
                             <p class="text-sm opacity-90">Descubre la historia a través del arte</p>
                         </div>
                     </div>
@@ -470,7 +675,7 @@
                     <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=600&h=600&fit=crop" alt="Colorful Streets Peru" class="w-full h-72 object-cover">
                     <div class="gallery-overlay">
                         <div>
-                            <h3 class="font-bold text-lg mb-1">Calles Vibrantes</h3>
+                            <h3 class="font-heading font-bold text-lg mb-1">Calles Vibrantes</h3>
                             <p class="text-sm opacity-90">Color y vida en cada rincón</p>
                         </div>
                     </div>
@@ -479,233 +684,358 @@
                     <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&h=600&fit=crop" alt="Machu Picchu" class="w-full h-72 object-cover">
                     <div class="gallery-overlay">
                         <div>
-                            <h3 class="font-bold text-lg mb-1">Machu Picchu</h3>
+                            <h3 class="font-heading font-bold text-lg mb-1">Machu Picchu</h3>
                             <p class="text-sm opacity-90">Una de las 7 maravillas del mundo</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="text-center fade-in-section bg-gradient-to-br from-brand-cream to-white p-6 md:p-8 rounded-2xl shadow-lg border border-brand-primary/10">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-primary mb-2 counter" data-target="6">0</div>
+                    <div class="text-sm md:text-base text-brand-dark font-semibold">Jahre Erfahrung</div>
+                </div>
+                <div class="text-center fade-in-section delay-100 bg-gradient-to-br from-brand-cream to-white p-6 md:p-8 rounded-2xl shadow-lg border border-brand-secondary/10">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-secondary mb-2 counter" data-target="500">0</div>
+                    <div class="text-sm md:text-base text-brand-dark font-semibold">Zufriedene Schüler</div>
+                </div>
+                <div class="text-center fade-in-section delay-200 bg-gradient-to-br from-brand-cream to-white p-6 md:p-8 rounded-2xl shadow-lg border border-brand-gold/30">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-earth mb-2 counter" data-target="3000">0</div>
+                    <div class="text-sm md:text-base text-brand-dark font-semibold">Unterrichtsstunden</div>
+                </div>
+                <div class="text-center fade-in-section delay-300 bg-gradient-to-br from-brand-cream to-white p-6 md:p-8 rounded-2xl shadow-lg border border-brand-primary/10">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-primary mb-2">A1-B2</div>
+                    <div class="text-sm md:text-base text-brand-dark font-semibold">Alle Niveaus</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- CHANGE 6: Pricing section - Route names now translatable -->
-    <section id="rutas" class="py-24 bg-white relative">
-        <div class="h-64 w-full object-cover absolute top-0 left-0 z-0 opacity-80">
-             <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
-        </div>
-        
+    <!-- Pricing Section -->
+    <section id="rutas" class="py-24 bg-brand-cream relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 fade-in-section">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-i18n="pricing_headline">Wähle deine Reiseroute</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="pricing_sub">
-                    Flexible Pakete ohne Verfallsdatum. Jede Stunde ist ein Schritt auf deiner Karte.
+                <span class="inline-block text-brand-primary font-bold text-sm mb-4 uppercase tracking-widest">
+                    <i class="fa-solid fa-tags mr-2"></i>Preise & Pakete
+                </span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-i18n="pricing_headline">Wähle dein Paket</h2>
+                <p class="text-brand-dark/60 max-w-2xl mx-auto" data-i18n="pricing_sub">
+                    Flexible Pakete ohne Verfallsdatum. Jede Stunde bringt dich deinem Ziel näher.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Ruta Exprés -->
+                <!-- Starter Paket -->
                 <div class="card-3d bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 fade-in-section flex flex-col relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-yellow/10 rounded-full -mr-16 -mt-16"></div>
-                    <div class="mb-4 relative z-10">
-                        <div class="w-12 h-12 bg-brand-terra/10 rounded-full flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-rocket text-brand-terra text-xl"></i>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-gold/10 rounded-full -mr-16 -mt-16"></div>
+                    <div class="mb-6 relative z-10">
+                        <div class="w-14 h-14 bg-brand-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-rocket text-brand-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="pack_3_title">Ruta Exprés</h3>
-                        <p class="text-sm text-gray-500 mt-2 h-10" data-i18n="pack_3_sub">Der Kompass für ein konkretes Ziel.</p>
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="pack_3_title">Starter</h3>
+                        <p class="text-brand-dark/60 mt-2" data-i18n="pack_3_sub">Perfekt für ein konkretes Ziel</p>
                     </div>
-                    <div class="text-4xl font-bold text-brand-terra mb-6 relative z-10">
-                        $100 <span class="text-lg font-normal text-gray-400 line-through">$112</span>
-                        <div class="text-sm font-normal text-gray-500 mt-1" data-i18n="pack_3_price">($25 pro Stunde)</div>
+                    <div class="mb-6 relative z-10">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-brand-dark">$100</span>
+                            <span class="text-lg text-brand-dark/40 line-through">$112</span>
+                        </div>
+                        <div class="text-sm text-brand-dark/60 mt-1" data-i18n="pack_3_price">$25 pro Stunde • 4 Stunden</div>
                     </div>
-                    <ul class="space-y-3 mb-8 flex-1 text-gray-600 text-sm relative z-10">
-                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> <span data-i18n="pack_3_hours">4 Stunden (à 50 Min)</span></li>
-                        <li class="flex items-center" data-i18n="pack_3_feat1"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Intensiv & Fokussiert</li>
-                        <li class="flex items-center" data-i18n="pack_flexible"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> 100% Flexibel</li>
-                        <li class="flex items-center" data-i18n="pack_materials"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Inkl. Material & Feedback</li>
+                    <ul class="space-y-3 mb-8 flex-1 relative z-10">
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-primary"></i>
+                            <span data-i18n="pack_3_hours">4 Stunden à 50 Minuten</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-primary"></i>
+                            <span data-i18n="pack_3_feat1">Intensiv & fokussiert</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-primary"></i>
+                            <span data-i18n="pack_flexible">Kein Verfallsdatum</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-primary"></i>
+                            <span data-i18n="pack_materials">PDFs & Hausaufgaben inklusive</span>
+                        </li>
                     </ul>
-                    <a href="#contact" onclick="selectPack('Ruta Exprés')" class="block w-full text-center border-2 border-brand-terra text-brand-terra py-3 rounded-xl font-bold hover:bg-brand-terra hover:text-white transition relative z-10" data-i18n="btn_choose">Route wählen</a>
+                    <a href="#contact" onclick="selectPack('starter')" class="block w-full text-center border-2 border-brand-primary text-brand-primary py-3 rounded-xl font-bold hover:bg-brand-primary hover:text-white transition relative z-10" data-i18n="btn_choose">Paket wählen</a>
                 </div>
 
-                <!-- Ruta Intermedia (Popular) -->
-                <div class="card-3d bg-gradient-to-br from-brand-terra to-orange-700 rounded-2xl p-8 shadow-2xl relative fade-in-section delay-100 flex flex-col transform scale-105 z-10">
-                    <div class="absolute top-4 right-4 bg-brand-yellow text-brand-dark text-xs font-bold px-4 py-1.5 rounded-full pulse-animation">
-                        ⭐ POPULAR
+                <!-- Beliebt Paket -->
+                <div class="card-3d bg-gradient-to-br from-brand-primary to-brand-primary/90 rounded-2xl p-8 shadow-2xl relative fade-in-section delay-100 flex flex-col transform lg:scale-105 z-10">
+                    <div class="absolute top-4 right-4 bg-brand-gold text-brand-dark text-xs font-bold px-4 py-1.5 rounded-full">
+                        ⭐ BELIEBT
                     </div>
-                    <div class="mb-4 relative z-10">
-                        <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-map text-white text-xl"></i>
+                    <div class="mb-6 relative z-10">
+                        <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-fire text-white text-2xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-white" data-i18n="pack_2_title">Ruta Intermedia</h3>
-                        <p class="text-sm text-white/80 mt-2 h-10" data-i18n="pack_2_sub">Ein Abenteuer, um das Level zu heben.</p>
+                        <h3 class="font-heading text-2xl font-bold text-white" data-i18n="pack_2_title">Aufbau</h3>
+                        <p class="text-white/80 mt-2" data-i18n="pack_2_sub">Das beliebteste Paket – Level up!</p>
                     </div>
-                    <div class="text-4xl font-bold text-white mb-6 relative z-10">
-                        $160 <span class="text-lg font-normal text-white/60 line-through">$176</span>
-                        <div class="text-sm font-normal text-white/80 mt-1" data-i18n="pack_2_price">($20 pro Stunde)</div>
+                    <div class="mb-6 relative z-10">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-white">$160</span>
+                            <span class="text-lg text-white/50 line-through">$176</span>
+                        </div>
+                        <div class="text-sm text-white/80 mt-1" data-i18n="pack_2_price">$20 pro Stunde • 8 Stunden</div>
                     </div>
-                    <ul class="space-y-3 mb-8 flex-1 text-white/90 text-sm relative z-10">
-                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> <span data-i18n="pack_2_hours">8 Stunden (à 50 Min)</span></li>
-                        <li class="flex items-center" data-i18n="pack_2_feat1"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> Balance: Sprechen & Grammatik</li>
-                        <li class="flex items-center" data-i18n="pack_2_feat2"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> Mini-Challenges inklusive</li>
-                        <li class="flex items-center" data-i18n="pack_flexible"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> 100% Flexibel</li>
-                        <li class="flex items-center" data-i18n="pack_materials"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> Inkl. Material & Feedback</li>
+                    <ul class="space-y-3 mb-8 flex-1 text-white/90 relative z-10">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-gold"></i>
+                            <span data-i18n="pack_2_hours">8 Stunden à 50 Minuten</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-gold"></i>
+                            <span data-i18n="pack_2_feat1">Balance: Sprechen & Grammatik</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-gold"></i>
+                            <span data-i18n="pack_2_feat2">Mini-Challenges inklusive</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-gold"></i>
+                            <span data-i18n="pack_flexible">Kein Verfallsdatum</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-gold"></i>
+                            <span data-i18n="pack_materials">PDFs & Hausaufgaben inklusive</span>
+                        </li>
                     </ul>
-                    <a href="#contact" onclick="selectPack('Ruta Intermedia')" class="block w-full text-center bg-white text-brand-terra py-3 rounded-xl font-bold hover:bg-brand-yellow hover:scale-105 transition shadow-lg relative z-10" data-i18n="btn_choose">Route wählen</a>
+                    <a href="#contact" onclick="selectPack('aufbau')" class="block w-full text-center bg-white text-brand-primary py-3 rounded-xl font-bold hover:bg-brand-gold hover:text-brand-dark transition shadow-lg relative z-10" data-i18n="btn_choose">Paket wählen</a>
                 </div>
 
-                <!-- Ruta Maestra -->
+                <!-- Meister Paket -->
                 <div class="card-3d bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 fade-in-section delay-200 flex flex-col relative overflow-hidden">
-                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-brand-green/10 rounded-full -ml-16 -mb-16"></div>
-                    <div class="mb-4 relative z-10">
-                        <div class="w-12 h-12 bg-brand-terra/10 rounded-full flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-crown text-brand-terra text-xl"></i>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-brand-secondary/10 rounded-full -ml-16 -mb-16"></div>
+                    <div class="mb-6 relative z-10">
+                        <div class="w-14 h-14 bg-brand-secondary/10 rounded-2xl flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-crown text-brand-secondary text-2xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="pack_1_title">Ruta Maestra</h3>
-                        <p class="text-sm text-gray-500 mt-2 h-10" data-i18n="pack_1_sub">16 Stationen, ein Ziel: Dominanz.</p>
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="pack_1_title">Meister</h3>
+                        <p class="text-brand-dark/60 mt-2" data-i18n="pack_1_sub">Für maximalen Fortschritt</p>
                     </div>
-                    <div class="text-4xl font-bold text-brand-terra mb-6 relative z-10">
-                        $288 <span class="text-lg font-normal text-gray-400 line-through">$320</span>
-                        <div class="text-sm font-normal text-gray-500 mt-1" data-i18n="pack_1_price">($18 pro Stunde)</div>
+                    <div class="mb-6 relative z-10">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-brand-dark">$288</span>
+                            <span class="text-lg text-brand-dark/40 line-through">$320</span>
+                        </div>
+                        <div class="text-sm text-brand-dark/60 mt-1" data-i18n="pack_1_price">$18 pro Stunde • 16 Stunden</div>
                     </div>
-                    <ul class="space-y-3 mb-8 flex-1 text-gray-600 text-sm relative z-10">
-                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> <span data-i18n="pack_1_hours">16 Stunden (à 50 Min)</span></li>
-                        <li class="flex items-center" data-i18n="pack_1_feat1"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Vollständiger persönlicher Plan</li>
-                        <li class="flex items-center" data-i18n="pack_1_feat2"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Bonus: +3 Extra Klassen</li>
-                        <li class="flex items-center" data-i18n="pack_flexible"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> 100% Flexibel</li>
-                        <li class="flex items-center" data-i18n="pack_materials"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Premium Support (WhatsApp)</li>
+                    <ul class="space-y-3 mb-8 flex-1 relative z-10">
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-secondary"></i>
+                            <span data-i18n="pack_1_hours">16 Stunden à 50 Minuten</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-secondary"></i>
+                            <span data-i18n="pack_1_feat1">Vollständiger persönlicher Plan</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-secondary"></i>
+                            <span data-i18n="pack_1_feat2">Bonus: +3 Extra Klassen</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-secondary"></i>
+                            <span data-i18n="pack_flexible">Kein Verfallsdatum</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark/80">
+                            <i class="fa-solid fa-check-circle text-brand-secondary"></i>
+                            <span>Premium WhatsApp Support</span>
+                        </li>
                     </ul>
-                    <a href="#contact" onclick="selectPack('Ruta Maestra')" class="block w-full text-center border-2 border-brand-terra text-brand-terra py-3 rounded-xl font-bold hover:bg-brand-terra hover:text-white transition relative z-10" data-i18n="btn_choose">Route wählen</a>
+                    <a href="#contact" onclick="selectPack('meister')" class="block w-full text-center border-2 border-brand-secondary text-brand-secondary py-3 rounded-xl font-bold hover:bg-brand-secondary hover:text-white transition relative z-10" data-i18n="btn_choose">Paket wählen</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-brand-dark text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="font-heading text-3xl font-bold text-center mb-16" data-i18n="reviews_headline">Was meine Schüler sagen</h2>
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-brand-dark text-white relative overflow-hidden">
+        <!-- Decorative -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute top-10 left-10 w-64 h-64 rounded-full bg-brand-gold"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-brand-primary"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 fade-in-section">
+                <span class="inline-block text-brand-gold font-bold text-sm mb-4 uppercase tracking-widest">
+                    <i class="fa-solid fa-star mr-2"></i>Testimonials
+                </span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4" data-i18n="reviews_headline">Was meine Schüler sagen</h2>
+            </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Sharon -->
-                <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/10 fade-in-section">
-                    <div class="flex text-brand-yellow mb-3">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 fade-in-section">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold text-lg">S</div>
+                        <div>
+                            <div class="font-bold text-white">Sharon</div>
+                            <div class="flex text-brand-gold text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <p class="italic mb-4 text-gray-200 text-sm" data-i18n="review_sharon">"Ich genieße meine wöchentlichen Lektionen mit Ana wirklich. Ich liebe das Format des Gesprächs und das Lernen neuer Wörter. Danke, Ana!"</p>
-                    <div class="font-bold text-brand-terra">- Sharon</div>
-                    <div class="text-xs text-gray-400 mt-1">Juni 2023</div>
+                    <p class="text-white/80 leading-relaxed" data-i18n="review_sharon">"Ich genieße meine wöchentlichen Lektionen mit Ana wirklich. Ich liebe das Format des Gesprächs und das Lernen neuer Wörter. Danke, Ana!"</p>
+                    <div class="text-xs text-white/40 mt-4">Juni 2023</div>
                 </div>
 
-                <!-- Jon -->
-                <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/10 fade-in-section delay-100">
-                    <div class="flex text-brand-yellow mb-3">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 fade-in-section delay-100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-secondary flex items-center justify-center text-white font-bold text-lg">J</div>
+                        <div>
+                            <div class="font-bold text-white">Jon</div>
+                            <div class="flex text-brand-gold text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <p class="italic mb-4 text-gray-200 text-sm" data-i18n="review_jon">"Ana spricht klar und ist sehr ermutigend. Ihre Lektionen sind abwechslungsreich (Videos, Übungen, Gespräche) und interessant. Außerdem ist sie sehr sympathisch."</p>
-                    <div class="font-bold text-brand-terra">- Jon</div>
-                    <div class="text-xs text-gray-400 mt-1">September 2025</div>
+                    <p class="text-white/80 leading-relaxed" data-i18n="review_jon">"Ana spricht klar und ist sehr ermutigend. Ihre Lektionen sind abwechslungsreich (Videos, Übungen, Gespräche) und interessant. Außerdem ist sie sehr sympathisch."</p>
+                    <div class="text-xs text-white/40 mt-4">September 2025</div>
                 </div>
 
-                <!-- Cin -->
-                <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/10 fade-in-section delay-200">
-                    <div class="flex text-brand-yellow mb-3">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 fade-in-section delay-200">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-gold flex items-center justify-center text-brand-dark font-bold text-lg">C</div>
+                        <div>
+                            <div class="font-bold text-white">Cin</div>
+                            <div class="flex text-brand-gold text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <p class="italic mb-4 text-gray-200 text-sm" data-i18n="review_cin">"Anna ist wunderbar. Es sind bisher erst zwei Sitzungen gewesen und ich lerne so viel. Ich freue mich darauf, mein Spanisch mit ihr zu perfektionieren."</p>
-                    <div class="font-bold text-brand-terra">- Cin</div>
-                    <div class="text-xs text-gray-400 mt-1">November 2023</div>
+                    <p class="text-white/80 leading-relaxed" data-i18n="review_cin">"Anna ist wunderbar. Es sind bisher erst zwei Sitzungen gewesen und ich lerne so viel. Ich freue mich darauf, mein Spanisch mit ihr zu perfektionieren."</p>
+                    <div class="text-xs text-white/40 mt-4">November 2023</div>
                 </div>
 
-                <!-- Rose Jane -->
-                <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/10 fade-in-section">
-                    <div class="flex text-brand-yellow mb-3">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 fade-in-section">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold text-lg">R</div>
+                        <div>
+                            <div class="font-bold text-white">Rose Jane</div>
+                            <div class="flex text-brand-gold text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <p class="italic mb-4 text-gray-200 text-sm" data-i18n="review_rose">"Der Unterricht war klar, voller Inhalte und hat meinen Wortschatz sehr bereichert."</p>
-                    <div class="font-bold text-brand-terra">- Rose Jane</div>
-                    <div class="text-xs text-gray-400 mt-1">Mai 2025</div>
+                    <p class="text-white/80 leading-relaxed" data-i18n="review_rose">"Der Unterricht war klar, voller Inhalte und hat meinen Wortschatz sehr bereichert."</p>
+                    <div class="text-xs text-white/40 mt-4">Mai 2025</div>
                 </div>
 
-                <!-- Miria -->
-                <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/10 fade-in-section delay-100">
-                    <div class="flex text-brand-yellow mb-3">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 fade-in-section delay-100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-secondary flex items-center justify-center text-white font-bold text-lg">M</div>
+                        <div>
+                            <div class="font-bold text-white">Miria</div>
+                            <div class="flex text-brand-gold text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <p class="italic mb-4 text-gray-200 text-sm" data-i18n="review_miria">"Toller Lehrer, ich lerne viel!"</p>
-                    <div class="font-bold text-brand-terra">- Miria</div>
-                    <div class="text-xs text-gray-400 mt-1">Mai 2024</div>
+                    <p class="text-white/80 leading-relaxed" data-i18n="review_miria">"Tolle Lehrerin, ich lerne viel!"</p>
+                    <div class="text-xs text-white/40 mt-4">Mai 2024</div>
                 </div>
 
-                <!-- Hulya -->
-                <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/10 fade-in-section delay-200">
-                    <div class="flex text-brand-yellow mb-3">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 fade-in-section delay-200">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-gold flex items-center justify-center text-brand-dark font-bold text-lg">H</div>
+                        <div>
+                            <div class="font-bold text-white">Hulya</div>
+                            <div class="flex text-brand-gold text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <p class="italic mb-4 text-gray-200 text-sm" data-i18n="review_hulya">"Ana ist sehr gut vorbereitet und umgänglich!"</p>
-                    <div class="font-bold text-brand-terra">- Hulya</div>
-                    <div class="text-xs text-gray-400 mt-1">Januar 2024</div>
+                    <p class="text-white/80 leading-relaxed" data-i18n="review_hulya">"Ana ist sehr gut vorbereitet und umgänglich!"</p>
+                    <div class="text-xs text-white/40 mt-4">Januar 2024</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CHANGE 7: FAQ section - added two new FAQ items about PDFs and homework -->
-    <section class="py-20 bg-brand-beige">
+    <!-- FAQ Section -->
+    <section class="py-24 bg-brand-cream">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="font-heading text-3xl font-bold text-center mb-10 text-brand-dark">FAQ</h2>
-            <div class="space-y-4">
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+            <div class="text-center mb-12 fade-in-section">
+                <span class="inline-block text-brand-secondary font-bold text-sm mb-4 uppercase tracking-widest">
+                    <i class="fa-solid fa-circle-question mr-2"></i>Häufige Fragen
+                </span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark">FAQ</h2>
+            </div>
+            
+            <div class="space-y-4 fade-in-section">
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <button class="w-full px-6 py-5 text-left font-bold flex justify-between items-center focus:outline-none hover:bg-brand-cream/50 transition" onclick="toggleFaq(this)">
                         <span data-i18n="faq_q1">Was beinhaltet die kostenlose Probestunde?</span>
-                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
                     </button>
-                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
+                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-brand-dark/70">
                         <div class="py-4 border-t" data-i18n="faq_a1">
-                            30 Minuten zum Kennenlernen, Niveau testen, Ziele klären und erklären, wie ich dir helfen kann.
+                            30 Minuten zum Kennenlernen, Niveau testen, Ziele klären und erklären, wie ich dir helfen kann. Komplett unverbindlich!
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <button class="w-full px-6 py-5 text-left font-bold flex justify-between items-center focus:outline-none hover:bg-brand-cream/50 transition" onclick="toggleFaq(this)">
                         <span data-i18n="faq_q2">Wie funktioniert die Bezahlung?</span>
-                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
                     </button>
-                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
+                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-brand-dark/70">
                         <div class="py-4 border-t" data-i18n="faq_a2">
-                            Die Zahlung erfolgt sicher und einfach über PayPal.
+                            Die Zahlung erfolgt sicher und einfach über PayPal. Du zahlst erst nach der Probestunde, wenn du dich für ein Paket entscheidest.
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <button class="w-full px-6 py-5 text-left font-bold flex justify-between items-center focus:outline-none hover:bg-brand-cream/50 transition" onclick="toggleFaq(this)">
                         <span data-i18n="faq_q3">Stornierungsbedingungen?</span>
-                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
                     </button>
-                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
+                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-brand-dark/70">
                         <div class="py-4 border-t" data-i18n="faq_a3">
                             Umbuchung oder Absage bis 24 Stunden vorher möglich. Danach fällt die volle Gebühr an.
                         </div>
                     </div>
                 </div>
-                <!-- NEW FAQ: PDFs / Materials -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <button class="w-full px-6 py-5 text-left font-bold flex justify-between items-center focus:outline-none hover:bg-brand-cream/50 transition" onclick="toggleFaq(this)">
                         <span data-i18n="faq_q4">Bekomme ich nach jeder Stunde Unterlagen / PDFs?</span>
-                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
                     </button>
-                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
+                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-brand-dark/70">
                         <div class="py-4 border-t" data-i18n="faq_a4">
-                            Ja. Am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Inhalten, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.
+                            Ja! Am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Inhalten, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.
                         </div>
                     </div>
                 </div>
-                <!-- NEW FAQ: Homework -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                
+                <!-- FAQ 5 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <button class="w-full px-6 py-5 text-left font-bold flex justify-between items-center focus:outline-none hover:bg-brand-cream/50 transition" onclick="toggleFaq(this)">
                         <span data-i18n="faq_q5">Gibt es Hausaufgaben?</span>
-                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
                     </button>
-                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
+                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-brand-dark/70">
                         <div class="py-4 border-t" data-i18n="faq_a5">
-                            Ja. Du bekommst kurze, alltagsnahe Aufgaben (z. B. kleine Texte, Dialoge oder Hörverstehen), damit du das Gelernte direkt anwenden kannst.
+                            Ja, du bekommst kurze, alltagsnahe Aufgaben (z.B. kleine Texte, Dialoge oder Hörverstehen), damit du das Gelernte direkt anwenden kannst.
                         </div>
                     </div>
                 </div>
@@ -713,67 +1043,87 @@
         </div>
     </section>
 
-    <!-- CHANGE 4b: Contact section - increased background image opacity from 20 to 40 -->
-    <section id="contact" class="py-24 bg-white relative">
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-            <div class="bg-brand-terra rounded-3xl p-8 md:p-12 shadow-2xl text-white fade-in-section">
-                <div class="text-center mb-10">
+            <div class="bg-gradient-to-br from-brand-primary to-brand-primary/90 rounded-3xl p-8 md:p-12 shadow-2xl text-white fade-in-section relative overflow-hidden">
+                <!-- Decorative -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+                <div class="absolute bottom-0 left-0 w-48 h-48 bg-brand-gold/10 rounded-full -ml-24 -mb-24"></div>
+                
+                <div class="text-center mb-10 relative z-10">
+                    <span class="inline-block text-brand-gold font-bold text-sm mb-4 uppercase tracking-widest">
+                        <i class="fa-solid fa-envelope-open mr-2"></i>Kontakt
+                    </span>
                     <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4" data-i18n="contact_headline">Bereit, dein Spanisch zu verbessern?</h2>
-                    <p class="opacity-90" data-i18n="contact_sub">Schreibe mir für deine kostenlose Probestunde oder buche ein Paket.</p>
+                    <p class="opacity-90" data-i18n="contact_sub">Schreibe mir für deine kostenlose Probestunde oder buche direkt ein Paket.</p>
                 </div>
 
-                <!-- Contact Form with Formspree Integration -->
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4 text-brand-dark" id="contact-form">
+                <!-- 
+                    ⚠️ WICHTIG: Formspree Konfiguration
+                    1. Gehe zu https://formspree.io und erstelle ein kostenloses Konto
+                    2. Erstelle ein neues Formular und kopiere deine Form ID
+                    3. Ersetze "DEINE_FORMSPREE_ID" unten mit deiner echten ID
+                    Beispiel: action="https://formspree.io/f/xyzabc123"
+                -->
+                <form action="https://formspree.io/f/DEINE_FORMSPREE_ID" method="POST" class="space-y-4 relative z-10" id="contact-form">
                     <div class="grid md:grid-cols-2 gap-4">
-                        <input type="text" name="name" placeholder="Name" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
-                        <input type="email" name="email" placeholder="E-Mail" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none" required>
+                        <input type="text" name="name" placeholder="Dein Name" class="w-full px-5 py-4 rounded-xl border-none focus:ring-2 focus:ring-brand-gold outline-none text-brand-dark" required>
+                        <input type="email" name="email" placeholder="Deine E-Mail" class="w-full px-5 py-4 rounded-xl border-none focus:ring-2 focus:ring-brand-gold outline-none text-brand-dark" required>
                     </div>
-                    <select id="course-select" name="course" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none bg-white text-gray-600">
+                    <select id="course-select" name="course" class="w-full px-5 py-4 rounded-xl border-none focus:ring-2 focus:ring-brand-gold outline-none bg-white text-brand-dark">
                         <option value="trial" data-i18n="opt_trial">Kostenlose Probestunde</option>
-                        <option value="maestra" data-i18n="opt_maestra">Meister-Route</option>
-                        <option value="intermedia" data-i18n="opt_intermedia">Aufbau-Route</option>
-                        <option value="expres" data-i18n="opt_expres">Express-Route</option>
+                        <option value="meister" data-i18n="opt_meister">Meister-Paket (16h)</option>
+                        <option value="aufbau" data-i18n="opt_aufbau">Aufbau-Paket (8h)</option>
+                        <option value="starter" data-i18n="opt_starter">Starter-Paket (4h)</option>
                     </select>
-                    <textarea name="message" placeholder="Deine Ziele / Aktuelles Level..." rows="4" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-brand-yellow outline-none"></textarea>
+                    <textarea name="message" placeholder="Deine Nachricht, Ziele, aktuelles Level..." rows="4" class="w-full px-5 py-4 rounded-xl border-none focus:ring-2 focus:ring-brand-gold outline-none text-brand-dark resize-none"></textarea>
 
-                    <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-lg hover:bg-gray-800 transition transform hover:scale-[1.02] shadow-lg" data-i18n="btn_send">
-                        Nachricht senden
+                    <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-xl hover:bg-brand-secondary transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2 group" data-i18n="btn_send">
+                        <span>Nachricht senden</span>
+                        <i class="fa-solid fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
                     </button>
 
-                    <!-- Form Status Messages -->
-                    <div id="form-status" class="hidden text-center py-3 rounded-lg font-bold"></div>
+                    <!-- Form Status -->
+                    <div id="form-status" class="hidden text-center py-4 rounded-xl font-bold"></div>
                 </form>
 
-                <div class="mt-8 flex justify-center space-x-6">
-                    <a href="https://youtube.com/watch?v=dcZf2LLwPew" target="_blank" class="text-white hover:text-brand-yellow text-2xl transition"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://instagram.com/anasspanishmap" target="_blank" class="text-white hover:text-brand-yellow text-2xl transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="mailto:anaarellano548@gmail.com" class="text-white hover:text-brand-yellow text-2xl transition"><i class="fa-solid fa-envelope"></i></a>
+                <div class="mt-8 flex justify-center space-x-6 relative z-10">
+                    <a href="https://youtube.com/watch?v=dcZf2LLwPew" target="_blank" class="text-white hover:text-brand-gold text-3xl transition transform hover:scale-110"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://instagram.com/anasspanishmap" target="_blank" class="text-white hover:text-brand-gold text-3xl transition transform hover:scale-110"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="mailto:anaarellano548@gmail.com" class="text-white hover:text-brand-gold text-3xl transition transform hover:scale-110"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 w-full h-1/2 -z-0 opacity-40">
+        
+        <!-- Background Image -->
+        <div class="absolute bottom-0 left-0 w-full h-1/2 -z-0 opacity-30">
             <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=1600&h=800&fit=crop" class="w-full h-full object-cover" alt="Colorful Peru Streets">
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
         </div>
     </section>
 
-    <!-- Privacy / Datenschutz Section -->
-    <section class="py-16 bg-gray-100">
+    <!-- Privacy Section -->
+    <section class="py-16 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="font-heading text-2xl font-bold text-center mb-8 text-brand-dark" data-i18n="privacy_headline">Datenschutz & Impressum</h2>
-            <div class="bg-white rounded-xl p-8 shadow-md">
-                <h3 class="font-bold text-lg mb-3 text-brand-terra" data-i18n="privacy_info_title">Informationen gemäß DSGVO</h3>
-                <div class="space-y-4 text-gray-700 text-sm">
+            <div class="bg-white rounded-2xl p-8 shadow-md">
+                <h3 class="font-bold text-lg mb-4 text-brand-primary flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span data-i18n="privacy_info_title">Informationen gemäß DSGVO</span>
+                </h3>
+                <div class="space-y-4 text-brand-dark/70 text-sm">
                     <p><strong data-i18n="privacy_responsible">Verantwortlich:</strong> Ana Arellano</p>
                     <p><strong data-i18n="privacy_email">E-Mail:</strong> anaarellano548@gmail.com</p>
                     <p><strong data-i18n="privacy_whatsapp">WhatsApp:</strong> +51 975 755 139</p>
 
-                    <h4 class="font-bold mt-6 mb-2" data-i18n="privacy_data_title">Datenverarbeitung</h4>
+                    <h4 class="font-bold mt-6 mb-2 text-brand-dark" data-i18n="privacy_data_title">Datenverarbeitung</h4>
                     <p data-i18n="privacy_data_text">
                         Diese Website verwendet keine Cookies und speichert keine persönlichen Daten ohne deine ausdrückliche Zustimmung.
                         Kontaktanfragen per E-Mail oder WhatsApp werden ausschließlich zur Beantwortung deiner Anfrage verwendet.
                     </p>
 
-                    <h4 class="font-bold mt-6 mb-2" data-i18n="privacy_external_title">Externe Dienste</h4>
+                    <h4 class="font-bold mt-6 mb-2 text-brand-dark" data-i18n="privacy_external_title">Externe Dienste</h4>
                     <p data-i18n="privacy_external_text">
                         Diese Website bindet Videos von YouTube ein. Beim Abspielen werden Daten an YouTube/Google übertragen.
                         Zahlungen erfolgen über PayPal. Bitte beachte die Datenschutzbestimmungen dieser Dienste.
@@ -783,122 +1133,142 @@
         </div>
     </section>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/51975755139" target="_blank" class="fixed bottom-32 right-8 z-50 float-animation">
-        <div class="bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-white text-3xl transition transform hover:scale-110">
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/51975755139" target="_blank" class="fixed bottom-8 right-8 z-50 float-animation">
+        <div class="bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-white text-3xl transition transform hover:scale-110 pulse-glow">
             <i class="fa-brands fa-whatsapp"></i>
         </div>
     </a>
 
-    <footer class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md py-6 text-center text-gray-600 text-sm shadow-lg border-t border-gray-200/50 z-40">
+    <!-- Footer -->
+    <footer class="bg-brand-dark py-8 text-center text-white/60 text-sm">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
-                    <span class="font-heading font-bold text-brand-terra">Ana's Spanish Map</span>
-                    <span class="hidden md:inline">|</span>
-                    <span class="text-xs" data-i18n="footer_tagline">Your journey to Spanish fluency</span>
+                    <span class="font-heading font-bold text-white">Ana's Spanish Map</span>
+                    <span class="hidden md:inline text-white/30">•</span>
+                    <span class="text-xs" data-i18n="footer_tagline">Dein Wegweiser zur Spanisch-Flüssigkeit</span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="https://instagram.com/anasspanishmap" target="_blank" class="hover:text-brand-terra transition">
-                        <i class="fa-brands fa-instagram"></i>
+                <div class="flex items-center gap-6">
+                    <a href="https://instagram.com/anasspanishmap" target="_blank" class="hover:text-brand-gold transition">
+                        <i class="fa-brands fa-instagram text-lg"></i>
                     </a>
-                    <a href="https://youtube.com/watch?v=dcZf2LLwPew" target="_blank" class="hover:text-brand-terra transition">
-                        <i class="fa-brands fa-youtube"></i>
+                    <a href="https://youtube.com/watch?v=dcZf2LLwPew" target="_blank" class="hover:text-brand-gold transition">
+                        <i class="fa-brands fa-youtube text-lg"></i>
                     </a>
-                    <a href="mailto:anaarellano548@gmail.com" class="hover:text-brand-terra transition">
-                        <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:anaarellano548@gmail.com" class="hover:text-brand-gold transition">
+                        <i class="fa-solid fa-envelope text-lg"></i>
                     </a>
                 </div>
                 <div class="text-xs">
-                    &copy; 2025 <span data-i18n="footer_rights">All rights reserved</span>
+                    &copy; 2025 <span data-i18n="footer_rights">Alle Rechte vorbehalten</span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Add padding to body to prevent content from being hidden under fixed footer -->
-    <div class="h-24"></div>
-
     <script>
-        // --- TRANSLATIONS OBJECT (UPDATED with all new keys) ---
+        // ========================================
+        // TRANSLATIONS
+        // ========================================
         const translations = {
             de: {
                 nav_about: "Über mich",
                 nav_method: "Methode",
                 nav_pricing: "Preise",
                 nav_book: "Probestunde buchen",
-                hero_tag: "Online Sprachreise",
-                hero_prefix: "Dein Wegweiser zu",
-                hero_headline: "Dein Wegweiser zur <br><span class='text-brand-terra'>Spanisch-Flüssigkeit.</span>",
-                hero_subheadline: "Lerne Spanisch und entdecke die Kultur Perus – mit individuellen Stunden, echten Gesprächen und einer immersiven Lernmethode.",
+                hero_tag: "Zertifizierte Muttersprachlerin aus Peru",
+                hero_prefix: "Dein Weg zu",
+                hero_subheadline: "Mehr als Grammatik: Lerne Spanisch zu fühlen, nicht nur zu sprechen. Mit echten Gesprächen, kulturellen Einblicken und einer Lehrerin, die deine Reise persönlich begleitet.",
                 hero_cta_primary: "Kostenlose Probestunde",
                 hero_cta_secondary: "Preise ansehen",
+                stat_students: "Schüler weltweit",
+                stat_rating: "Bewertung",
+                stat_hours: "Unterrichtsstunden",
+                quiz_tag: "Teste dein Wissen",
+                quiz_headline: "Kennst du Peru?",
+                quiz_cat_culture: "Kultur",
+                quiz_cat_idiom: "Redewendung",
+                quiz_cat_tradition: "Tradition",
+                quiz_q1: "Was ist Perus Nationalgericht?",
+                quiz_a1_detail: "Frischer Fisch mit Limettensaft mariniert",
+                quiz_q2: "Was bedeutet \"estar en la luna\"?",
+                quiz_a2_detail: "Wörtlich: \"auf dem Mond sein\"",
+                quiz_q3: "Wie begrüßt man sich in Peru?",
+                quiz_a3_detail: "Auch bei der ersten Begegnung!",
+                quiz_hint: "Klicke auf eine Karte, um die Antwort zu sehen!",
+                about_headline: "Mehr als nur Grammatik – <br><span class='text-brand-primary'>echte Verbindung.</span>",
+                about_text_1: "Ich bin Ana, zertifizierte Spanischlehrerin aus Lima, Peru. Meine Kurse sind dynamisch und persönlich: Du lernst Grammatik im Kontext, erweiterst deinen Wortschatz und gewinnst vor allem das <strong>Selbstvertrauen</strong>, in realen Situationen zu kommunizieren.",
+                about_text_2: "Als Peruanerin bringe ich dir nicht nur die Sprache bei, sondern öffne dir die Tür zur <strong>faszinierenden Kultur Lateinamerikas</strong>. Bei mir lernst du, wie Spanisch wirklich klingt – mit allen Emotionen, Nuancen und dem Rhythmus des Alltags.",
+                benefit_1_title: "Echte Gespräche",
+                benefit_1_text: "Vom ersten Tag an",
+                benefit_2_title: "100% Individuell",
+                benefit_2_text: "Auf dich zugeschnitten",
+                benefit_3_title: "Kultur inklusive",
+                benefit_3_text: "Peru hautnah erleben",
+                benefit_4_title: "Material & PDFs",
+                benefit_4_text: "Nach jeder Stunde",
+                video_headline: "Schau dir mein Vorstellungsvideo an",
+                video_sub: "Erfahre mehr über meine Lehrmethode und wie ich dir helfen kann, dein Spanisch zu verbessern.",
+                method_headline: "Sprachliche Immersion: <br><span class='text-brand-secondary'>Eintauchen statt Pauken</span>",
+                method_intro: "Sprache ist kein Fach zum Auswendiglernen, sondern ein lebendiges Umfeld. Bei mir tauchst du ein – vom ersten Moment an.",
+                method_point_1_title: "Flüssigkeit & Sicherheit",
+                method_point_1: "Du sprichst von Anfang an – ohne Angst vor Fehlern.",
+                method_point_2_title: "Echtes Hörverständnis",
+                method_point_2: "Lerne zu verstehen, wie Spanisch wirklich klingt.",
+                method_point_3_title: "Praktischer Wortschatz",
+                method_point_3: "Vokabeln, die du wirklich brauchst – keine trockene Theorie.",
+                method_culture_title: "Kultur erleben",
+                method_culture: "Tauche ein in die lebendige Welt Perus und Lateinamerikas.",
+                method_quote: "\"Lerne Spanisch nicht nur – fühle es, genieße es und mache es zu deinem eigenen.\"",
                 culture_tag: "Mehr als nur Sprache",
                 culture_headline: "Entdecke Peru",
                 culture_sub: "Sprache und Kultur sind untrennbar. Erlebe die lebendige Welt Perus – von majestätischen Bergen bis zu bunten Straßen.",
-                quiz_intro: "Weißt du das?",
-                quiz_card1_question: "Abenteuer",
-                quiz_card2_question: "Reise",
-                quiz_card3_question: "Lächeln",
-                quiz_hint: "Klick oder fahr mit der Maus darüber, um die Lösung zu sehen!",
-                video_headline: "Schau dir mein Vorstellungsvideo an",
-                video_sub: "Erfahre mehr über meine Lehrmethode und wie ich dir helfen kann, dein Spanisch zu verbessern.",
-                about_headline: "Mehr als nur Grammatik – echte Kommunikation.",
-                about_text_1: "Hallo, ich bin Ana, zertifizierte Spanischlehrerin. Meine Kurse sind dynamisch und persönlich: Du lernst Grammatik im Kontext.",
-                about_text_2: "Als Peruanerin bringe ich dir nicht nur die Sprache bei, sondern öffne dir auch die Tür zur faszinierenden Kultur Lateinamerikas.",
-                method_headline: "Meine Methode: <br>Sprachliche Immersion",
-                method_intro: "Sprache ist kein Fach zum Auswendiglernen, sondern ein lebendiges Umfeld.",
-                method_point_1: "Verbesserung der Flüssigkeit und Sicherheit beim Sprechen.",
-                method_point_2: "Besseres Hörverständnis für Alltagssituationen.",
-                method_point_3: "Praktischer Wortschatz statt trockener Theorie.",
-                method_culture: "Kultur erleben: Tauche ein in die lebendige Welt Perus.",
-                method_quote: "\"Lerne Spanisch nicht nur – fühle es, genieße es und mache es zu deinem eigenen.\"",
-                pricing_headline: "Wähle deine Reiseroute",
-                pricing_sub: "Flexible Pakete ohne Verfallsdatum.",
-                pack_1_title: "Meister-Route",
-                pack_1_sub: "16 Stationen, ein Ziel: Dominanz.",
-                pack_1_hours: "16 Stunden (à 50 Min)",
-                pack_1_price: "($18 pro Stunde)",
+                pricing_headline: "Wähle dein Paket",
+                pricing_sub: "Flexible Pakete ohne Verfallsdatum. Jede Stunde bringt dich deinem Ziel näher.",
+                pack_1_title: "Meister",
+                pack_1_sub: "Für maximalen Fortschritt",
+                pack_1_hours: "16 Stunden à 50 Minuten",
+                pack_1_price: "$18 pro Stunde • 16 Stunden",
                 pack_1_feat1: "Vollständiger persönlicher Plan",
                 pack_1_feat2: "Bonus: +3 Extra Klassen",
-                pack_2_title: "Aufbau-Route",
-                pack_2_sub: "Ein Abenteuer, um das Level zu heben.",
-                pack_2_hours: "8 Stunden (à 50 Min)",
-                pack_2_price: "($20 pro Stunde)",
+                pack_2_title: "Aufbau",
+                pack_2_sub: "Das beliebteste Paket – Level up!",
+                pack_2_hours: "8 Stunden à 50 Minuten",
+                pack_2_price: "$20 pro Stunde • 8 Stunden",
                 pack_2_feat1: "Balance: Sprechen & Grammatik",
                 pack_2_feat2: "Mini-Challenges inklusive",
-                pack_3_title: "Express-Route",
-                pack_3_sub: "Der Kompass für ein konkretes Ziel.",
-                pack_3_hours: "4 Stunden (à 50 Min)",
-                pack_3_price: "($25 pro Stunde)",
-                pack_3_feat1: "Intensiv & Fokussiert",
-                pack_flexible: "100% Flexibel (kein Verfall)",
-                pack_materials: "Inkl. Material & Feedback",
-                btn_choose: "Route wählen",
+                pack_3_title: "Starter",
+                pack_3_sub: "Perfekt für ein konkretes Ziel",
+                pack_3_hours: "4 Stunden à 50 Minuten",
+                pack_3_price: "$25 pro Stunde • 4 Stunden",
+                pack_3_feat1: "Intensiv & fokussiert",
+                pack_flexible: "Kein Verfallsdatum",
+                pack_materials: "PDFs & Hausaufgaben inklusive",
+                btn_choose: "Paket wählen",
                 reviews_headline: "Was meine Schüler sagen",
                 review_sharon: "\"Ich genieße meine wöchentlichen Lektionen mit Ana wirklich. Ich liebe das Format des Gesprächs und das Lernen neuer Wörter. Danke, Ana!\"",
-                review_jon: "\"Ana spricht klar und ist sehr ermutigend. Ihre Lektionen sind abwechslungsreich und interessant. Außerdem ist sie sehr sympathisch.\"",
+                review_jon: "\"Ana spricht klar und ist sehr ermutigend. Ihre Lektionen sind abwechslungsreich (Videos, Übungen, Gespräche) und interessant. Außerdem ist sie sehr sympathisch.\"",
                 review_cin: "\"Anna ist wunderbar. Es sind bisher erst zwei Sitzungen gewesen und ich lerne so viel. Ich freue mich darauf, mein Spanisch mit ihr zu perfektionieren.\"",
                 review_rose: "\"Der Unterricht war klar, voller Inhalte und hat meinen Wortschatz sehr bereichert.\"",
-                review_miria: "\"Toller Lehrer, ich lerne viel!\"",
+                review_miria: "\"Tolle Lehrerin, ich lerne viel!\"",
                 review_hulya: "\"Ana ist sehr gut vorbereitet und umgänglich!\"",
-                footer_tagline: "Dein Wegweiser zur Spanisch-Flüssigkeit",
-                faq_q1: "Was beinhaltet die Probestunde?",
-                faq_a1: "30 Minuten zum Kennenlernen, Niveau testen, Ziele klären und erklären, wie ich dir helfen kann.",
+                faq_q1: "Was beinhaltet die kostenlose Probestunde?",
+                faq_a1: "30 Minuten zum Kennenlernen, Niveau testen, Ziele klären und erklären, wie ich dir helfen kann. Komplett unverbindlich!",
                 faq_q2: "Wie funktioniert die Bezahlung?",
-                faq_a2: "Die Zahlung erfolgt sicher und einfach über PayPal.",
+                faq_a2: "Die Zahlung erfolgt sicher und einfach über PayPal. Du zahlst erst nach der Probestunde, wenn du dich für ein Paket entscheidest.",
                 faq_q3: "Stornierungsbedingungen?",
                 faq_a3: "Umbuchung oder Absage bis 24 Stunden vorher möglich. Danach fällt die volle Gebühr an.",
                 faq_q4: "Bekomme ich nach jeder Stunde Unterlagen / PDFs?",
-                faq_a4: "Ja. Am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Inhalten, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.",
+                faq_a4: "Ja! Am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Inhalten, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.",
                 faq_q5: "Gibt es Hausaufgaben?",
-                faq_a5: "Ja. Du bekommst kurze, alltagsnahe Aufgaben (z. B. kleine Texte, Dialoge oder Hörverstehen), damit du das Gelernte direkt anwenden kannst.",
+                faq_a5: "Ja, du bekommst kurze, alltagsnahe Aufgaben (z.B. kleine Texte, Dialoge oder Hörverstehen), damit du das Gelernte direkt anwenden kannst.",
                 contact_headline: "Bereit, dein Spanisch zu verbessern?",
-                contact_sub: "Schreibe mir für deine kostenlose Probestunde.",
+                contact_sub: "Schreibe mir für deine kostenlose Probestunde oder buche direkt ein Paket.",
                 opt_trial: "Kostenlose Probestunde",
-                opt_maestra: "Meister-Route",
-                opt_intermedia: "Aufbau-Route",
-                opt_expres: "Express-Route",
+                opt_meister: "Meister-Paket (16h)",
+                opt_aufbau: "Aufbau-Paket (8h)",
+                opt_starter: "Starter-Paket (4h)",
                 btn_send: "Nachricht senden",
                 privacy_headline: "Datenschutz & Impressum",
                 privacy_info_title: "Informationen gemäß DSGVO",
@@ -909,250 +1279,160 @@
                 privacy_data_text: "Diese Website verwendet keine Cookies und speichert keine persönlichen Daten ohne deine ausdrückliche Zustimmung. Kontaktanfragen per E-Mail oder WhatsApp werden ausschließlich zur Beantwortung deiner Anfrage verwendet.",
                 privacy_external_title: "Externe Dienste",
                 privacy_external_text: "Diese Website bindet Videos von YouTube ein. Beim Abspielen werden Daten an YouTube/Google übertragen. Zahlungen erfolgen über PayPal. Bitte beachte die Datenschutzbestimmungen dieser Dienste.",
-                footer_rights: "Alle Rechte vorbehalten."
+                footer_tagline: "Dein Wegweiser zur Spanisch-Flüssigkeit",
+                footer_rights: "Alle Rechte vorbehalten"
             },
             es: {
                 nav_about: "Sobre mí",
                 nav_method: "Método",
                 nav_pricing: "Precios",
-                nav_book: "Reserva clase",
-                hero_tag: "Viaje de Idiomas Online",
-                hero_prefix: "Tu mapa hacia la",
-                hero_headline: "Tu mapa hacia la <br><span class='text-brand-terra'>fluidez en español.</span>",
-                hero_subheadline: "Aprende español y descubre la cultura de Perú con clases personalizadas y un método de inmersión total.",
-                hero_cta_primary: "Prueba gratis",
+                nav_book: "Reservar clase",
+                hero_tag: "Profesora nativa certificada de Perú",
+                hero_prefix: "Tu camino hacia la",
+                hero_subheadline: "Más que gramática: Aprende a sentir el español, no solo hablarlo. Con conversaciones reales, cultura y una profesora que te acompaña personalmente.",
+                hero_cta_primary: "Clase de prueba gratis",
                 hero_cta_secondary: "Ver precios",
-                culture_tag: "Más que idioma",
-                culture_headline: "Descubre Perú",
-                culture_sub: "Idioma y cultura son inseparables. Experimenta el vibrante mundo de Perú: desde montañas majestuosas hasta calles llenas de color.",
-                quiz_intro: "¿Sabes esto?",
-                quiz_card1_question: "Adventure",
-                quiz_card2_question: "Journey",
-                quiz_card3_question: "Smile",
-                quiz_hint: "Haz clic o pasa el ratón para ver la respuesta",
-                video_headline: "Mira mi video de presentación",
-                video_sub: "Descubre más sobre mi método de enseñanza y cómo puedo ayudarte a mejorar tu español.",
-                about_headline: "Más que gramática: comunicación real.",
-                about_text_1: "Hola, soy Ana, profesora certificada. Mis clases son dinámicas: aprenderás gramática en contexto y ganarás confianza.",
-                about_text_2: "Como peruana, no solo te enseño el idioma, sino que te abro la puerta a la fascinante cultura de Latinoamérica.",
-                method_headline: "Mi método: <br>Inmersión lingüística",
-                method_intro: "El idioma no es una materia para memorizar, sino un entorno para vivir.",
-                method_point_1: "Mejora la fluidez y seguridad al hablar.",
-                method_point_2: "Mejor comprensión auditiva en situaciones reales.",
-                method_point_3: "Vocabulario práctico y significativo.",
-                method_culture: "Vive la cultura: Sumérgete en el mundo vivo de Perú.",
-                method_quote: "\"No solo aprendas español, siéntelo, disfrútalo y hazlo tuyo.\"",
-                pricing_headline: "Elige tu ruta",
-                pricing_sub: "Paquetes flexibles sin fecha de caducidad.",
-                pack_1_title: "Ruta Maestra",
-                pack_1_sub: "16 paradas, un destino: dominar el mapa.",
-                pack_1_hours: "16 horas (de 50 min)",
-                pack_1_price: "($18 por hora)",
-                pack_1_feat1: "Plan totalmente personalizado",
-                pack_1_feat2: "Bono: +3 clases extra",
-                pack_2_title: "Ruta Intermedia",
-                pack_2_sub: "Una aventura para subir de nivel.",
-                pack_2_hours: "8 horas (de 50 min)",
-                pack_2_price: "($20 por hora)",
-                pack_2_feat1: "Balance: Conversación y gramática",
-                pack_2_feat2: "Mini-retos incluidos",
-                pack_3_title: "Ruta Exprés",
-                pack_3_sub: "Una brújula para un objetivo puntual.",
-                pack_3_hours: "4 horas (de 50 min)",
-                pack_3_price: "($25 por hora)",
-                pack_3_feat1: "Intensivo y enfocado",
-                pack_flexible: "100% Flexible (no caducan)",
-                pack_materials: "Incluye material y feedback",
-                btn_choose: "Elegir ruta",
-                reviews_headline: "Lo que dicen mis alumnos",
-                review_sharon: "\"Realmente disfruto mis lecciones semanales con Ana. Me encanta el formato de conversación y aprender nuevas palabras. ¡Gracias Ana!\"",
-                review_jon: "\"Ana habla claro y es muy alentadora. Sus lecciones son variadas e interesantes. Además es una persona muy simpática.\"",
-                review_cin: "\"Anna es maravillosa. Solo han sido dos sesiones y estoy aprendiendo mucho. Espero perfeccionar mi español con ella.\"",
-                review_rose: "\"La clase fue clara, llena de contenido y enriqueció mucho mi vocabulario.\"",
-                review_miria: "\"¡Gran profesora, estoy aprendiendo mucho!\"",
-                review_hulya: "\"¡Ana está muy bien preparada y es muy accesible!\"",
-                footer_tagline: "Tu mapa hacia la fluidez en español",
-                faq_q1: "¿Qué incluye la clase de prueba?",
-                faq_a1: "30 minutos para conocernos, evaluar tu nivel, aclarar objetivos y explicar cómo puedo ayudarte.",
-                faq_q2: "¿Cómo funciona el pago?",
-                faq_a2: "El pago se realiza de forma segura y sencilla a través de PayPal.",
-                faq_q3: "¿Política de cancelación?",
-                faq_a3: "Cambios o cancelaciones hasta 24 horas antes. Después se cobra la tarifa completa.",
-                faq_q4: "¿Recibo materiales o PDFs después de cada clase?",
-                faq_a4: "Sí. Al final de cada clase recibes un PDF con los puntos más importantes, vocabulario nuevo y, si quieres, tareas para practicar.",
-                faq_q5: "¿Hay tareas?",
-                faq_a5: "Sí, tendrás tareas breves y prácticas (por ejemplo, textos cortos, diálogos o comprensión auditiva) para aplicar lo aprendido en tu día a día.",
+                stat_students: "Estudiantes",
+                stat_rating: "Calificación",
+                stat_hours: "Horas de clase",
+                quiz_tag: "Pon a prueba tu conocimiento",
+                quiz_headline: "¿Conoces Perú?",
+                quiz_cat_culture: "Cultura",
+                quiz_cat_idiom: "Expresión",
+                quiz_cat_tradition: "Tradición",
+                quiz_q1: "¿Cuál es el plato nacional de Perú?",
+                quiz_a1_detail: "Pescado fresco marinado en limón",
+                quiz_q2: "¿Qué significa \"estar en la luna\"?",
+                quiz_a2_detail: "Literalmente: \"estar en la luna\"",
+                quiz_q3: "¿Cómo se saluda en Perú?",
+                quiz_a3_detail: "¡Incluso en el primer encuentro!",
+                quiz_hint: "¡Haz clic en una tarjeta para ver la respuesta!",
+                reviews_headline: "Lo que dicen mis estudiantes",
                 contact_headline: "¿Listo para mejorar tu español?",
                 contact_sub: "Escríbeme para tu clase de prueba gratuita.",
-                opt_trial: "Clase de prueba gratis",
-                opt_maestra: "Ruta Maestra",
-                opt_intermedia: "Ruta Intermedia",
-                opt_expres: "Ruta Exprés",
                 btn_send: "Enviar mensaje",
-                privacy_headline: "Privacidad e Impronta",
-                privacy_info_title: "Información según GDPR",
-                privacy_responsible: "Responsable:",
-                privacy_email: "Correo:",
-                privacy_whatsapp: "WhatsApp:",
-                privacy_data_title: "Procesamiento de datos",
-                privacy_data_text: "Este sitio web no utiliza cookies y no almacena datos personales sin tu consentimiento expreso. Las consultas por correo electrónico o WhatsApp se utilizan exclusivamente para responder a tu solicitud.",
-                privacy_external_title: "Servicios externos",
-                privacy_external_text: "Este sitio web integra videos de YouTube. Al reproducirlos, se transmiten datos a YouTube/Google. Los pagos se realizan a través de PayPal. Por favor, consulta las políticas de privacidad de estos servicios.",
-                footer_rights: "Todos los derechos reservados."
+                footer_tagline: "Tu mapa hacia la fluidez en español",
+                footer_rights: "Todos los derechos reservados"
             },
             en: {
                 nav_about: "About",
                 nav_method: "Method",
                 nav_pricing: "Prices",
                 nav_book: "Book trial",
-                hero_tag: "Online Language Journey",
-                hero_prefix: "Your pathway to",
-                hero_headline: "Your map to <br><span class='text-brand-terra'>Spanish fluency.</span>",
-                hero_subheadline: "Learn Spanish and discover Peruvian culture with personalized lessons and a total immersion method.",
-                hero_cta_primary: "Free Trial Class",
-                hero_cta_secondary: "View Prices",
-                culture_tag: "More than language",
-                culture_headline: "Discover Peru",
-                culture_sub: "Language and culture are inseparable. Experience the vibrant world of Peru – from majestic mountains to colorful streets.",
-                quiz_intro: "Do you know?",
-                quiz_card1_question: "Adventure",
-                quiz_card2_question: "Journey",
-                quiz_card3_question: "Smile",
-                quiz_hint: "Click or hover to reveal!",
-                video_headline: "Watch my introduction video",
-                video_sub: "Learn more about my teaching method and how I can help you improve your Spanish.",
-                about_headline: "More than grammar – real communication.",
-                about_text_1: "Hi, I'm Ana, a certified teacher. My classes are dynamic: learn grammar in context and gain confidence.",
-                about_text_2: "As a Peruvian, I not only teach the language but open the door to the fascinating culture of Latin America.",
-                method_headline: "My method: <br>Linguistic Immersion",
-                method_intro: "Language is not a subject to memorize, but an environment to live in.",
-                method_point_1: "Improve fluency and confidence in speaking.",
-                method_point_2: "Better listening comprehension in daily situations.",
-                method_point_3: "Practical vocabulary instead of dry theory.",
-                method_culture: "Experience culture: Dive into the vibrant world of Peru.",
-                method_quote: "\"Don't just learn Spanish – feel it, enjoy it, and make it yours.\"",
-                pricing_headline: "Choose your route",
-                pricing_sub: "Flexible packages that never expire.",
-                pack_1_title: "Master Route",
-                pack_1_sub: "16 stops, one destination: mastery.",
-                pack_1_hours: "16 hours (50 min each)",
-                pack_1_price: "($18 per hour)",
-                pack_1_feat1: "Fully personalized plan",
-                pack_1_feat2: "Bonus: +3 Extra classes",
-                pack_2_title: "Intermediate Route",
-                pack_2_sub: "An adventure to level up.",
-                pack_2_hours: "8 hours (50 min each)",
-                pack_2_price: "($20 per hour)",
-                pack_2_feat1: "Balance: Speaking & Grammar",
-                pack_2_feat2: "Mini-challenges included",
-                pack_3_title: "Express Route",
-                pack_3_sub: "A compass for a specific goal.",
-                pack_3_hours: "4 hours (50 min each)",
-                pack_3_price: "($25 per hour)",
-                pack_3_feat1: "Intensive & Focused",
-                pack_flexible: "100% Flexible (no expiry)",
-                pack_materials: "Incl. materials & feedback",
-                btn_choose: "Select Route",
+                hero_tag: "Certified native teacher from Peru",
+                hero_prefix: "Your path to",
+                hero_subheadline: "More than grammar: Learn to feel Spanish, not just speak it. With real conversations, cultural insights and a teacher who personally guides your journey.",
+                hero_cta_primary: "Free trial class",
+                hero_cta_secondary: "View prices",
+                stat_students: "Students worldwide",
+                stat_rating: "Rating",
+                stat_hours: "Teaching hours",
+                quiz_tag: "Test your knowledge",
+                quiz_headline: "Do you know Peru?",
+                quiz_cat_culture: "Culture",
+                quiz_cat_idiom: "Expression",
+                quiz_cat_tradition: "Tradition",
+                quiz_q1: "What is Peru's national dish?",
+                quiz_a1_detail: "Fresh fish marinated in lime juice",
+                quiz_q2: "What does \"estar en la luna\" mean?",
+                quiz_a2_detail: "Literally: \"to be on the moon\"",
+                quiz_q3: "How do people greet in Peru?",
+                quiz_a3_detail: "Even at the first meeting!",
+                quiz_hint: "Click on a card to reveal the answer!",
                 reviews_headline: "What my students say",
-                review_sharon: "\"I really enjoy my weekly lessons with Ana. I love the conversation format and learning new words. Thank you Ana!\"",
-                review_jon: "\"Ana speaks clearly and is very encouraging. Her lessons are varied and interesting. Also, she is a very personable person.\"",
-                review_cin: "\"Anna is wonderful. It's only been two sessions and I'm learning so much. looking forward to perfecting my Spanish with her.\"",
-                review_rose: "\"The class was clear, full of content and greatly enriched my vocabulary.\"",
-                review_miria: "\"Great teacher, I'm learning a lot!\"",
-                review_hulya: "\"Ana is very well prepared and approachable!\"",
-                footer_tagline: "Your journey to Spanish fluency",
-                faq_q1: "What's in the free trial?",
-                faq_a1: "30 minutes to meet, test your level, clarify goals, and explain how I can help you.",
-                faq_q2: "How does payment work?",
-                faq_a2: "Payment is done securely and simply via PayPal.",
-                faq_q3: "Cancellation policy?",
-                faq_a3: "Reschedule or cancel up to 24 hours in advance. After that, full fee applies.",
-                faq_q4: "Do I get materials/PDFs after each lesson?",
-                faq_a4: "Yes. At the end of every lesson you receive a PDF with the key points, new vocabulary and, if you like, homework to practice.",
-                faq_q5: "Is there homework?",
-                faq_a5: "Yes, you'll get short, realistic tasks (e.g. short texts, dialogues or listening) so you can apply what you learn in everyday life.",
                 contact_headline: "Ready to improve your Spanish?",
                 contact_sub: "Write me for your free trial class.",
-                opt_trial: "Free Trial Class",
-                opt_maestra: "Master Route",
-                opt_intermedia: "Intermediate Route",
-                opt_expres: "Express Route",
-                btn_send: "Send Message",
-                privacy_headline: "Privacy & Imprint",
-                privacy_info_title: "Information according to GDPR",
-                privacy_responsible: "Responsible:",
-                privacy_email: "Email:",
-                privacy_whatsapp: "WhatsApp:",
-                privacy_data_title: "Data Processing",
-                privacy_data_text: "This website does not use cookies and does not store personal data without your explicit consent. Contact requests via email or WhatsApp are used exclusively to respond to your inquiry.",
-                privacy_external_title: "External Services",
-                privacy_external_text: "This website embeds videos from YouTube. When playing them, data is transmitted to YouTube/Google. Payments are made via PayPal. Please refer to the privacy policies of these services.",
-                footer_rights: "All rights reserved."
+                btn_send: "Send message",
+                footer_tagline: "Your map to Spanish fluency",
+                footer_rights: "All rights reserved"
             }
         };
 
-        // --- LANGUAGE SWITCHER FUNCTION ---
+        let currentLang = 'de';
+
+        // ========================================
+        // LANGUAGE SWITCHER
+        // ========================================
         function changeLanguage(lang) {
             document.documentElement.lang = lang;
-            currentLang = lang; // Update current language for dynamic words
-            const elements = document.querySelectorAll('[data-i18n]');
-
-            elements.forEach(el => {
+            currentLang = lang;
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
-                    // Check if it's an input placeholder or text content
-                    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                         el.placeholder = translations[lang][key];
                     } else if (el.tagName === 'OPTION') {
-                         el.innerText = translations[lang][key];
+                        el.innerText = translations[lang][key];
                     } else {
                         el.innerHTML = translations[lang][key];
                     }
                 }
             });
 
-            // Update dynamic word immediately
+            // Update dynamic word
             const wordElement = document.getElementById('dynamic-word');
             if (wordElement) {
                 wordElement.textContent = dynamicWords[lang][currentWordIndex];
             }
 
-            // Update language button highlighting
             updateLanguageButtons(lang);
         }
 
-        // --- MOBILE MENU ---
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+        function updateLanguageButtons(lang) {
+            document.querySelectorAll('button[onclick^="changeLanguage"]').forEach(btn => {
+                btn.classList.remove('bg-brand-primary', 'text-white', 'font-bold');
+                btn.classList.add('hover:bg-brand-cream');
+            });
+            document.querySelectorAll(`button[onclick="changeLanguage('${lang}')"]`).forEach(btn => {
+                btn.classList.add('bg-brand-primary', 'text-white', 'font-bold');
+                btn.classList.remove('hover:bg-brand-cream');
+            });
+        }
+
+        // ========================================
+        // MOBILE MENU
+        // ========================================
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
 
-        // --- SCROLL ANIMATION (INTERSECTION OBSERVER) ---
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        // ========================================
+        // SCROLL ANIMATIONS
+        // ========================================
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.fade-in-section').forEach(section => {
             observer.observe(section);
         });
 
-        // --- FAQ ACCORDION ---
+        // ========================================
+        // FAQ ACCORDION
+        // ========================================
         function toggleFaq(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i');
             
-            // Toggle height
             if (content.style.height && content.style.height !== '0px') {
                 content.style.height = '0px';
                 icon.style.transform = 'rotate(0deg)';
@@ -1162,24 +1442,21 @@
             }
         }
 
-        // --- PRE-SELECTION FOR FORM ---
+        // ========================================
+        // PACK SELECTION
+        // ========================================
         function selectPack(packName) {
             const select = document.getElementById('course-select');
-            const packMap = {
-                'Ruta Maestra': 'maestra',
-                'Ruta Intermedia': 'intermedia',
-                'Ruta Exprés': 'expres'
-            };
-            if (packMap[packName]) {
-                select.value = packMap[packName];
-            }
+            select.value = packName;
         }
 
-        // --- COUNTER ANIMATION ---
+        // ========================================
+        // COUNTER ANIMATION
+        // ========================================
         function animateCounter(element) {
             const target = parseInt(element.getAttribute('data-target'));
-            const duration = 2000; // 2 seconds
-            const increment = target / (duration / 16); // 60fps
+            const duration = 2000;
+            const increment = target / (duration / 16);
             let current = 0;
 
             const updateCounter = () => {
@@ -1194,7 +1471,6 @@
             updateCounter();
         }
 
-        // Observe counters and trigger animation when visible
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
@@ -1208,44 +1484,15 @@
             counterObserver.observe(counter);
         });
 
-        // CHANGE 5: REMOVED the navbar hide/show on scroll functionality
-        // The navbar now stays visible at all times
-
-        // --- CLOSE MOBILE MENU ON LINK CLICK ---
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // --- PARALLAX EFFECT FOR HERO BACKGROUND ---
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.parallax');
-            parallaxElements.forEach(el => {
-                const speed = 0.5;
-                el.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-
-        // --- ADD ACTIVE STATE TO LANGUAGE BUTTONS ---
-        function updateLanguageButtons(lang) {
-            document.querySelectorAll('button[onclick^="changeLanguage"]').forEach(btn => {
-                btn.classList.remove('font-bold', 'text-brand-terra');
-            });
-            document.querySelectorAll(`button[onclick="changeLanguage('${lang}')"]`).forEach(btn => {
-                btn.classList.add('font-bold', 'text-brand-terra');
-            });
-        }
-
-        // --- DYNAMIC HERO WORD ROTATION ---
+        // ========================================
+        // DYNAMIC HERO WORDS
+        // ========================================
         const dynamicWords = {
-            de: ['Flüssigkeit', 'Selbstvertrauen', 'Kultur'],
-            en: ['Fluency', 'Confidence', 'Culture'],
-            es: ['Fluidez', 'Confianza', 'Cultura']
+            de: ['Selbstvertrauen', 'Flüssigkeit', 'Kultur', 'Erfolg'],
+            en: ['Confidence', 'Fluency', 'Culture', 'Success'],
+            es: ['Confianza', 'Fluidez', 'Cultura', 'Éxito']
         };
         let currentWordIndex = 0;
-        let currentLang = 'de';
 
         function rotateWord() {
             const wordElement = document.getElementById('dynamic-word');
@@ -1258,14 +1505,15 @@
                     wordElement.textContent = dynamicWords[currentLang][currentWordIndex];
                     wordElement.style.opacity = '1';
                     wordElement.style.transform = 'translateY(0)';
-                }, 300);
+                }, 400);
             }
         }
 
-        // Start word rotation
         setInterval(rotateWord, 3000);
 
-        // --- FORMSPREE FORM HANDLING ---
+        // ========================================
+        // FORM HANDLING
+        // ========================================
         const contactForm = document.getElementById('contact-form');
         const formStatus = document.getElementById('form-status');
 
@@ -1278,116 +1526,51 @@
                     de: {
                         sending: 'Nachricht wird gesendet...',
                         success: '✓ Nachricht erfolgreich gesendet! Ich melde mich bald bei dir.',
-                        error: '✗ Fehler beim Senden. Bitte versuche es erneut oder schreibe direkt an anaarellano548@gmail.com'
+                        error: '✗ Fehler beim Senden. Bitte schreibe direkt an anaarellano548@gmail.com'
                     },
                     en: {
                         sending: 'Sending message...',
                         success: '✓ Message sent successfully! I\'ll get back to you soon.',
-                        error: '✗ Error sending message. Please try again or email anaarellano548@gmail.com'
+                        error: '✗ Error sending message. Please email anaarellano548@gmail.com directly.'
                     },
                     es: {
                         sending: 'Enviando mensaje...',
                         success: '✓ ¡Mensaje enviado con éxito! Me pondré en contacto pronto.',
-                        error: '✗ Error al enviar. Intenta de nuevo o escribe a anaarellano548@gmail.com'
+                        error: '✗ Error al enviar. Por favor escribe a anaarellano548@gmail.com'
                     }
                 };
 
                 const currentMessages = statusMessages[currentLang] || statusMessages['de'];
 
-                // Show sending status
                 formStatus.textContent = currentMessages.sending;
-                formStatus.className = 'text-center py-3 rounded-lg font-bold bg-blue-100 text-blue-800';
+                formStatus.className = 'text-center py-4 rounded-xl font-bold bg-blue-100 text-blue-800';
                 formStatus.classList.remove('hidden');
 
                 try {
                     const response = await fetch(contactForm.action, {
                         method: 'POST',
                         body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
+                        headers: { 'Accept': 'application/json' }
                     });
 
                     if (response.ok) {
-                        formStatus.textContent = currentMessages.success;
-                        formStatus.className = 'text-center py-3 rounded-lg font-bold bg-green-100 text-green-800';
+                        formStatus.innerHTML = '<i class="fa-solid fa-check-circle form-success-icon mr-2"></i>' + currentMessages.success;
+                        formStatus.className = 'text-center py-4 rounded-xl font-bold bg-green-100 text-green-800';
                         contactForm.reset();
                     } else {
-                        formStatus.textContent = currentMessages.error;
-                        formStatus.className = 'text-center py-3 rounded-lg font-bold bg-red-100 text-red-800';
+                        formStatus.innerHTML = '<i class="fa-solid fa-times-circle mr-2"></i>' + currentMessages.error;
+                        formStatus.className = 'text-center py-4 rounded-xl font-bold bg-red-100 text-red-800';
                     }
                 } catch (error) {
-                    formStatus.textContent = currentMessages.error;
-                    formStatus.className = 'text-center py-3 rounded-lg font-bold bg-red-100 text-red-800';
+                    formStatus.innerHTML = '<i class="fa-solid fa-times-circle mr-2"></i>' + currentMessages.error;
+                    formStatus.className = 'text-center py-4 rounded-xl font-bold bg-red-100 text-red-800';
                 }
 
-                // Hide status after 5 seconds
                 setTimeout(() => {
                     formStatus.classList.add('hidden');
-                }, 5000);
+                }, 6000);
             });
         }
-
-        // FLOATING WORDS - Updated with German and English phrases
-        const floatingWords = [
-            "¡Hola!",
-            "¿Qué tal?",
-            "Gracias",
-            "Amigo",
-            "Viaje",
-            "Cultura",
-            "Aprende",
-            "¡Sí!",
-            "Perú",
-            "Español",
-            "Wie geht es dir?",
-            "Wo lebst du?",
-            "Wer bist du?",
-            "How are you?",
-            "Where do you live?"
-        ];
-        let wordIndex = 0;
-        let lastWordTime = 0;
-
-        function createFloatingWord() {
-            const now = Date.now();
-            if (now - lastWordTime < 2000) return; // Mindestens 2 Sekunden zwischen Wörtern
-
-            lastWordTime = now;
-            const word = floatingWords[wordIndex % floatingWords.length];
-            wordIndex++;
-
-            const wordEl = document.createElement('div');
-            wordEl.className = 'floating-word';
-            wordEl.textContent = word;
-            wordEl.style.left = Math.random() * 80 + 10 + '%';
-            wordEl.style.top = window.pageYOffset + window.innerHeight * 0.5 + 'px';
-
-            document.body.appendChild(wordEl);
-
-            // Animate in
-            setTimeout(() => {
-                wordEl.style.opacity = '0.15';
-                wordEl.style.transform = 'translateY(-100px) rotate(' + (Math.random() * 20 - 10) + 'deg)';
-            }, 100);
-
-            // Remove after animation
-            setTimeout(() => {
-                wordEl.style.opacity = '0';
-                setTimeout(() => wordEl.remove(), 500);
-            }, 3000);
-        }
-
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                if (Math.random() > 0.7) { // 30% Chance bei jedem Scroll-Event
-                    createFloatingWord();
-                }
-            }, 100);
-        });
-
     </script>
 </body>
 </html>
