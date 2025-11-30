@@ -52,19 +52,42 @@
             perspective: 1000px;
             cursor: pointer;
             transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.25) !important;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.4) !important;
         }
         .quiz-card:hover {
             transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.35) !important;
+        }
+        .quiz-card .quiz-question {
+            color: #1a1a1a !important;
+            font-weight: 600;
         }
         .quiz-card .quiz-answer {
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.3s ease;
+            color: #2d3748 !important;
+            font-weight: 700;
         }
         .quiz-card:hover .quiz-answer,
         .quiz-card.revealed .quiz-answer {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Animated Words on Scroll */
+        .floating-word {
+            position: fixed;
+            font-size: 4rem;
+            font-weight: bold;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 1;
+            color: #E07A5F;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.5s ease;
         }
 
         /* Parallax Effect */
@@ -246,40 +269,40 @@
     <div class="gradient-animated text-white py-12 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-6">
-                <span class="font-heading text-2xl opacity-90" data-i18n="quiz_intro">¿Sabes esto? / Weißt du das? / Do you know?</span>
+                <span class="font-heading text-2xl text-white font-bold drop-shadow-lg" data-i18n="quiz_intro">¿Sabes esto? / Weißt du das? / Do you know?</span>
             </div>
             <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                 <!-- Quiz Card 1 -->
-                <div class="quiz-card bg-white/10 backdrop-blur-md px-6 py-5 rounded-xl border border-white/30 hover:bg-white/20 shadow-lg" onclick="this.classList.toggle('revealed')">
-                    <div class="font-bold text-xl text-brand-yellow mb-2">
-                        <i class="fa-solid fa-globe mr-2"></i> Adventure
+                <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
+                    <div class="quiz-question text-xl mb-2">
+                        <i class="fa-solid fa-globe mr-2 text-brand-terra"></i> Adventure
                     </div>
-                    <div class="quiz-answer text-lg font-medium text-white">
+                    <div class="quiz-answer text-lg">
                         ✨ ¡Aventura!
                     </div>
                 </div>
 
                 <!-- Quiz Card 2 -->
-                <div class="quiz-card bg-white/10 backdrop-blur-md px-6 py-5 rounded-xl border border-white/30 hover:bg-white/20 shadow-lg" onclick="this.classList.toggle('revealed')">
-                    <div class="font-bold text-xl text-brand-yellow mb-2">
-                        <i class="fa-solid fa-heart mr-2"></i> Journey
+                <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
+                    <div class="quiz-question text-xl mb-2">
+                        <i class="fa-solid fa-heart mr-2 text-brand-terra"></i> Journey
                     </div>
-                    <div class="quiz-answer text-lg font-medium text-white">
+                    <div class="quiz-answer text-lg">
                         ✨ ¡Viaje!
                     </div>
                 </div>
 
                 <!-- Quiz Card 3 -->
-                <div class="quiz-card bg-white/10 backdrop-blur-md px-6 py-5 rounded-xl border border-white/30 hover:bg-white/20 shadow-lg" onclick="this.classList.toggle('revealed')">
-                    <div class="font-bold text-xl text-brand-yellow mb-2">
-                        <i class="fa-solid fa-face-smile mr-2"></i> Smile
+                <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
+                    <div class="quiz-question text-xl mb-2">
+                        <i class="fa-solid fa-face-smile mr-2 text-brand-terra"></i> Smile
                     </div>
-                    <div class="quiz-answer text-lg font-medium text-white">
+                    <div class="quiz-answer text-lg">
                         ✨ ¡Sonrisa!
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-6 text-sm opacity-75">
+            <div class="text-center mt-6 text-sm text-white font-medium drop-shadow">
                 <i class="fa-solid fa-hand-pointer mr-2"></i> Click or hover to reveal!
             </div>
         </div>
@@ -289,7 +312,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="order-2 md:order-1 relative fade-in-section">
-                    <img src="images/Ana_2.jpg" alt="Ana Portrait" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover mx-auto shadow-xl border-8 border-brand-beige">
+                    <img src="images/Ana_2.jpg" alt="Ana Portrait" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover mx-auto shadow-xl border-8 border-brand-beige">
                     <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-white px-4 py-2 rounded-lg shadow-md text-sm font-bold text-brand-terra whitespace-nowrap">
                         <i class="fa-solid fa-certificate mr-1"></i> 6+ Jahre Erfahrung
                     </div>
@@ -313,9 +336,32 @@
         </div>
     </section>
 
-    <section id="method" class="py-24 bg-brand-beige relative">
-        <div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none hidden lg:block">
-            <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&h=1200&fit=crop" alt="Cathedral Texture" class="w-full h-full object-cover mask-image-gradient">
+    <!-- Welcome Video Section -->
+    <section class="py-24 bg-gradient-to-b from-white to-brand-beige">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in-section">
+                <span class="uppercase tracking-widest text-brand-terra font-bold text-sm mb-2 block">Conoce a Ana</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-i18n="video_headline">Schau dir mein Vorstellungsvideo an</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="video_sub">Erfahre mehr über meine Lehrmethode und wie ich dir helfen kann, dein Spanisch zu verbessern.</p>
+            </div>
+            <div class="fade-in-section max-w-4xl mx-auto">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="padding-bottom: 56.25%; height: 0;">
+                    <iframe
+                        class="absolute top-0 left-0 w-full h-full"
+                        src="https://www.youtube.com/embed/dcZf2LLwPew"
+                        title="Ana's Spanish Map - Vorstellungsvideo"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="method" class="py-24 bg-brand-beige relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full opacity-20 pointer-events-none hidden lg:block">
+            <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&h=1200&fit=crop&q=80" alt="Cathedral Texture" class="w-full h-full object-cover object-center">
         </div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -441,10 +487,10 @@
                     </div>
                     <div class="text-4xl font-bold text-brand-terra mb-6 relative z-10">
                         $100 <span class="text-lg font-normal text-gray-400 line-through">$112</span>
-                        <div class="text-sm font-normal text-gray-500 mt-1">($25 pro Stunde)</div>
+                        <div class="text-sm font-normal text-gray-500 mt-1" data-i18n="pack_3_price">($25 pro Stunde)</div>
                     </div>
                     <ul class="space-y-3 mb-8 flex-1 text-gray-600 text-sm relative z-10">
-                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> 4 Stunden (à 50 Min)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> <span data-i18n="pack_3_hours">4 Stunden (à 50 Min)</span></li>
                         <li class="flex items-center" data-i18n="pack_3_feat1"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Intensiv & Fokussiert</li>
                         <li class="flex items-center" data-i18n="pack_flexible"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> 100% Flexibel</li>
                         <li class="flex items-center" data-i18n="pack_materials"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Inkl. Material & Feedback</li>
@@ -466,10 +512,10 @@
                     </div>
                     <div class="text-4xl font-bold text-white mb-6 relative z-10">
                         $160 <span class="text-lg font-normal text-white/60 line-through">$176</span>
-                        <div class="text-sm font-normal text-white/80 mt-1">($20 pro Stunde)</div>
+                        <div class="text-sm font-normal text-white/80 mt-1" data-i18n="pack_2_price">($20 pro Stunde)</div>
                     </div>
                     <ul class="space-y-3 mb-8 flex-1 text-white/90 text-sm relative z-10">
-                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> 8 Stunden (à 50 Min)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> <span data-i18n="pack_2_hours">8 Stunden (à 50 Min)</span></li>
                         <li class="flex items-center" data-i18n="pack_2_feat1"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> Balance: Sprechen & Grammatik</li>
                         <li class="flex items-center" data-i18n="pack_2_feat2"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> Mini-Challenges inklusive</li>
                         <li class="flex items-center" data-i18n="pack_flexible"><i class="fa-solid fa-check-circle text-brand-yellow mr-3"></i> 100% Flexibel</li>
@@ -490,10 +536,10 @@
                     </div>
                     <div class="text-4xl font-bold text-brand-terra mb-6 relative z-10">
                         $288 <span class="text-lg font-normal text-gray-400 line-through">$320</span>
-                        <div class="text-sm font-normal text-gray-500 mt-1">($18 pro Stunde)</div>
+                        <div class="text-sm font-normal text-gray-500 mt-1" data-i18n="pack_1_price">($18 pro Stunde)</div>
                     </div>
                     <ul class="space-y-3 mb-8 flex-1 text-gray-600 text-sm relative z-10">
-                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> 16 Stunden (à 50 Min)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> <span data-i18n="pack_1_hours">16 Stunden (à 50 Min)</span></li>
                         <li class="flex items-center" data-i18n="pack_1_feat1"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Vollständiger persönlicher Plan</li>
                         <li class="flex items-center" data-i18n="pack_1_feat2"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> Bonus: +3 Extra Klassen</li>
                         <li class="flex items-center" data-i18n="pack_flexible"><i class="fa-solid fa-check-circle text-brand-terra mr-3"></i> 100% Flexibel</li>
@@ -647,13 +693,40 @@
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 w-full h-1/2 -z-0 opacity-10">
-            <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=1600&h=800&fit=crop" class="w-full h-full object-cover grayscale" alt="Steps Background">
+        <div class="absolute bottom-0 left-0 w-full h-1/2 -z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=1600&h=800&fit=crop" class="w-full h-full object-cover" alt="Colorful Peru Streets">
+        </div>
+    </section>
+
+    <!-- Privacy / Datenschutz Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="font-heading text-2xl font-bold text-center mb-8 text-brand-dark" data-i18n="privacy_headline">Datenschutz & Impressum</h2>
+            <div class="bg-white rounded-xl p-8 shadow-md">
+                <h3 class="font-bold text-lg mb-3 text-brand-terra" data-i18n="privacy_info_title">Informationen gemäß DSGVO</h3>
+                <div class="space-y-4 text-gray-700 text-sm">
+                    <p><strong data-i18n="privacy_responsible">Verantwortlich:</strong> Ana Arellano</p>
+                    <p><strong data-i18n="privacy_email">E-Mail:</strong> anaarellano548@gmail.com</p>
+                    <p><strong data-i18n="privacy_whatsapp">WhatsApp:</strong> +51 975 755 139</p>
+
+                    <h4 class="font-bold mt-6 mb-2" data-i18n="privacy_data_title">Datenverarbeitung</h4>
+                    <p data-i18n="privacy_data_text">
+                        Diese Website verwendet keine Cookies und speichert keine persönlichen Daten ohne deine ausdrückliche Zustimmung.
+                        Kontaktanfragen per E-Mail oder WhatsApp werden ausschließlich zur Beantwortung deiner Anfrage verwendet.
+                    </p>
+
+                    <h4 class="font-bold mt-6 mb-2" data-i18n="privacy_external_title">Externe Dienste</h4>
+                    <p data-i18n="privacy_external_text">
+                        Diese Website bindet Videos von YouTube ein. Beim Abspielen werden Daten an YouTube/Google übertragen.
+                        Zahlungen erfolgen über PayPal. Bitte beachte die Datenschutzbestimmungen dieser Dienste.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/51975755139" target="_blank" class="fixed bottom-8 right-8 z-50 float-animation">
+    <a href="https://wa.me/51975755139" target="_blank" class="fixed bottom-32 right-8 z-50 float-animation">
         <div class="bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-white text-3xl transition transform hover:scale-110">
             <i class="fa-brands fa-whatsapp"></i>
         </div>
@@ -702,6 +775,8 @@
                 hero_cta_secondary: "Preise ansehen",
                 quiz_intro: "Weißt du das?",
                 quiz_question: "Wie sagt man 'Abenteuer' auf Spanisch?",
+                video_headline: "Schau dir mein Vorstellungsvideo an",
+                video_sub: "Erfahre mehr über meine Lehrmethode und wie ich dir helfen kann, dein Spanisch zu verbessern.",
                 about_headline: "Mehr als nur Grammatik – echte Kommunikation.",
                 about_text_1: "Hallo, ich bin Ana, zertifizierte Spanischlehrerin. Meine Kurse sind dynamisch und persönlich: Du lernst Grammatik im Kontext.",
                 about_text_2: "Als Peruanerin bringe ich dir nicht nur die Sprache bei, sondern öffne dir auch die Tür zur faszinierenden Kultur Lateinamerikas.",
@@ -715,8 +790,14 @@
                 pricing_headline: "Wähle deine Reiseroute",
                 pricing_sub: "Flexible Pakete ohne Verfallsdatum.",
                 pack_1_sub: "16 Stationen, ein Ziel: Dominanz.",
+                pack_1_hours: "16 Stunden (à 50 Min)",
+                pack_1_price: "($18 pro Stunde)",
                 pack_2_sub: "Ein Abenteuer, um das Level zu heben.",
+                pack_2_hours: "8 Stunden (à 50 Min)",
+                pack_2_price: "($20 pro Stunde)",
                 pack_3_sub: "Der Kompass für ein konkretes Ziel.",
+                pack_3_hours: "4 Stunden (à 50 Min)",
+                pack_3_price: "($25 pro Stunde)",
                 pack_flexible: "100% Flexibel (kein Verfall)",
                 pack_materials: "Inkl. Material & Feedback",
                 pack_1_feat1: "Vollständiger persönlicher Plan",
@@ -743,7 +824,17 @@
                 contact_sub: "Schreibe mir für deine kostenlose Probestunde.",
                 opt_trial: "Kostenlose Probestunde",
                 btn_send: "Nachricht senden",
-                footer_rights: "Alle Rechte vorbehalten."
+                privacy_headline: "Datenschutz & Impressum",
+                privacy_info_title: "Informationen gemäß DSGVO",
+                privacy_responsible: "Verantwortlich:",
+                privacy_email: "E-Mail:",
+                privacy_whatsapp: "WhatsApp:",
+                privacy_data_title: "Datenverarbeitung",
+                privacy_data_text: "Diese Website verwendet keine Cookies und speichert keine persönlichen Daten ohne deine ausdrückliche Zustimmung. Kontaktanfragen per E-Mail oder WhatsApp werden ausschließlich zur Beantwortung deiner Anfrage verwendet.",
+                privacy_external_title: "Externe Dienste",
+                privacy_external_text: "Diese Website bindet Videos von YouTube ein. Beim Abspielen werden Daten an YouTube/Google übertragen. Zahlungen erfolgen über PayPal. Bitte beachte die Datenschutzbestimmungen dieser Dienste.",
+                footer_rights: "Alle Rechte vorbehalten.",
+                footer_tagline: "Dein Wegweiser zur Spanisch-Flüssigkeit"
             },
             es: {
                 nav_about: "Sobre mí",
@@ -756,6 +847,8 @@
                 hero_cta_secondary: "Ver precios",
                 quiz_intro: "¿Sabes esto?",
                 quiz_question: "¿Cómo se dice 'Adventure' en español?",
+                video_headline: "Mira mi video de presentación",
+                video_sub: "Descubre más sobre mi método de enseñanza y cómo puedo ayudarte a mejorar tu español.",
                 about_headline: "Más que gramática: comunicación real.",
                 about_text_1: "Hola, soy Ana, profesora certificada. Mis clases son dinámicas: aprenderás gramática en contexto y ganarás confianza.",
                 about_text_2: "Como peruana, no solo te enseño el idioma, sino que te abro la puerta a la fascinante cultura de Latinoamérica.",
@@ -769,8 +862,14 @@
                 pricing_headline: "Elige tu ruta",
                 pricing_sub: "Paquetes flexibles sin fecha de caducidad.",
                 pack_1_sub: "16 paradas, un destino: dominar el mapa.",
+                pack_1_hours: "16 horas (de 50 min)",
+                pack_1_price: "($18 por hora)",
                 pack_2_sub: "Una aventura para subir de nivel.",
+                pack_2_hours: "8 horas (de 50 min)",
+                pack_2_price: "($20 por hora)",
                 pack_3_sub: "Una brújula para un objetivo puntual.",
+                pack_3_hours: "4 horas (de 50 min)",
+                pack_3_price: "($25 por hora)",
                 pack_flexible: "100% Flexible (no caducan)",
                 pack_materials: "Incluye material y feedback",
                 pack_1_feat1: "Plan totalmente personalizado",
@@ -797,7 +896,17 @@
                 contact_sub: "Escríbeme para tu clase de prueba gratuita.",
                 opt_trial: "Clase de prueba gratis",
                 btn_send: "Enviar mensaje",
-                footer_rights: "Todos los derechos reservados."
+                privacy_headline: "Privacidad e Impronta",
+                privacy_info_title: "Información según GDPR",
+                privacy_responsible: "Responsable:",
+                privacy_email: "Correo:",
+                privacy_whatsapp: "WhatsApp:",
+                privacy_data_title: "Procesamiento de datos",
+                privacy_data_text: "Este sitio web no utiliza cookies y no almacena datos personales sin tu consentimiento expreso. Las consultas por correo electrónico o WhatsApp se utilizan exclusivamente para responder a tu solicitud.",
+                privacy_external_title: "Servicios externos",
+                privacy_external_text: "Este sitio web integra videos de YouTube. Al reproducirlos, se transmiten datos a YouTube/Google. Los pagos se realizan a través de PayPal. Por favor, consulta las políticas de privacidad de estos servicios.",
+                footer_rights: "Todos los derechos reservados.",
+                footer_tagline: "Tu mapa hacia la fluidez en español"
             },
             en: {
                 nav_about: "About",
@@ -810,6 +919,8 @@
                 hero_cta_secondary: "View Prices",
                 quiz_intro: "Do you know?",
                 quiz_question: "How do you say 'Adventure' in Spanish?",
+                video_headline: "Watch my introduction video",
+                video_sub: "Learn more about my teaching method and how I can help you improve your Spanish.",
                 about_headline: "More than grammar – real communication.",
                 about_text_1: "Hi, I'm Ana, a certified teacher. My classes are dynamic: learn grammar in context and gain confidence.",
                 about_text_2: "As a Peruvian, I not only teach the language but open the door to the fascinating culture of Latin America.",
@@ -823,8 +934,14 @@
                 pricing_headline: "Choose your route",
                 pricing_sub: "Flexible packages that never expire.",
                 pack_1_sub: "16 stops, one destination: mastery.",
+                pack_1_hours: "16 hours (50 min each)",
+                pack_1_price: "($18 per hour)",
                 pack_2_sub: "An adventure to level up.",
+                pack_2_hours: "8 hours (50 min each)",
+                pack_2_price: "($20 per hour)",
                 pack_3_sub: "A compass for a specific goal.",
+                pack_3_hours: "4 hours (50 min each)",
+                pack_3_price: "($25 per hour)",
                 pack_flexible: "100% Flexible (no expiry)",
                 pack_materials: "Incl. materials & feedback",
                 pack_1_feat1: "Fully personalized plan",
@@ -851,7 +968,17 @@
                 contact_sub: "Write me for your free trial class.",
                 opt_trial: "Free Trial Class",
                 btn_send: "Send Message",
-                footer_rights: "All rights reserved."
+                privacy_headline: "Privacy & Imprint",
+                privacy_info_title: "Information according to GDPR",
+                privacy_responsible: "Responsible:",
+                privacy_email: "Email:",
+                privacy_whatsapp: "WhatsApp:",
+                privacy_data_title: "Data Processing",
+                privacy_data_text: "This website does not use cookies and does not store personal data without your explicit consent. Contact requests via email or WhatsApp are used exclusively to respond to your inquiry.",
+                privacy_external_title: "External Services",
+                privacy_external_text: "This website embeds videos from YouTube. When playing them, data is transmitted to YouTube/Google. Payments are made via PayPal. Please refer to the privacy policies of these services.",
+                footer_rights: "All rights reserved.",
+                footer_tagline: "Your journey to Spanish fluency"
             }
         };
 
@@ -1018,6 +1145,50 @@
             originalChangeLanguage(lang);
             updateLanguageButtons(lang);
         };
+
+        // --- FLOATING WORDS ANIMATION ON SCROLL ---
+        const floatingWords = ['¡Hola!', '¿Qué tal?', 'Gracias', 'Amigo', 'Viaje', 'Cultura', 'Aprende', '¡Sí!', 'Perú', 'Español'];
+        let wordIndex = 0;
+        let lastWordTime = 0;
+
+        function createFloatingWord() {
+            const now = Date.now();
+            if (now - lastWordTime < 2000) return; // Mindestens 2 Sekunden zwischen Wörtern
+
+            lastWordTime = now;
+            const word = floatingWords[wordIndex % floatingWords.length];
+            wordIndex++;
+
+            const wordEl = document.createElement('div');
+            wordEl.className = 'floating-word';
+            wordEl.textContent = word;
+            wordEl.style.left = Math.random() * 80 + 10 + '%';
+            wordEl.style.top = window.pageYOffset + window.innerHeight * 0.5 + 'px';
+
+            document.body.appendChild(wordEl);
+
+            // Animate in
+            setTimeout(() => {
+                wordEl.style.opacity = '0.15';
+                wordEl.style.transform = 'translateY(-100px) rotate(' + (Math.random() * 20 - 10) + 'deg)';
+            }, 100);
+
+            // Remove after animation
+            setTimeout(() => {
+                wordEl.style.opacity = '0';
+                setTimeout(() => wordEl.remove(), 500);
+            }, 3000);
+        }
+
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (Math.random() > 0.7) { // 30% Chance bei jedem Scroll-Event
+                    createFloatingWord();
+                }
+            }, 100);
+        });
 
     </script>
 </body>
