@@ -231,8 +231,8 @@
     </nav>
 
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-20">
-            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1600&h=900&fit=crop" alt="Peru Landscape" class="w-full h-full object-cover grayscale">
+        <div class="absolute inset-0 z-0 opacity-30">
+            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1600&h=900&fit=crop" alt="Peru Landscape" class="w-full h-full object-cover">
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -275,7 +275,7 @@
                 <!-- Quiz Card 1 -->
                 <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
                     <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-globe mr-2 text-brand-terra"></i> Adventure
+                        <i class="fa-solid fa-globe mr-2 text-brand-terra"></i> <span data-i18n="quiz_word_1">Abenteuer</span>
                     </div>
                     <div class="quiz-answer text-lg">
                         ✨ ¡Aventura!
@@ -285,7 +285,7 @@
                 <!-- Quiz Card 2 -->
                 <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
                     <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-heart mr-2 text-brand-terra"></i> Journey
+                        <i class="fa-solid fa-heart mr-2 text-brand-terra"></i> <span data-i18n="quiz_word_2">Reise</span>
                     </div>
                     <div class="quiz-answer text-lg">
                         ✨ ¡Viaje!
@@ -295,7 +295,7 @@
                 <!-- Quiz Card 3 -->
                 <div class="quiz-card px-6 py-5 rounded-xl shadow-lg" onclick="this.classList.toggle('revealed')">
                     <div class="quiz-question text-xl mb-2">
-                        <i class="fa-solid fa-face-smile mr-2 text-brand-terra"></i> Smile
+                        <i class="fa-solid fa-face-smile mr-2 text-brand-terra"></i> <span data-i18n="quiz_word_3">Lächeln</span>
                     </div>
                     <div class="quiz-answer text-lg">
                         ✨ ¡Sonrisa!
@@ -393,6 +393,16 @@
                 <blockquote class="border-l-4 border-brand-terra pl-6 italic text-xl text-gray-700 font-serif" data-i18n="method_quote">
                     "Lerne Spanisch nicht nur – fühle es, genieße es und mache es zu deinem eigenen."
                 </blockquote>
+
+                <!-- Rotating Questions -->
+                <div class="mt-12 bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                    <div class="text-center">
+                        <p class="text-sm text-brand-terra font-bold uppercase tracking-wide mb-4">Lerne echte Gespräche zu führen:</p>
+                        <div class="text-2xl font-bold text-brand-dark h-16 flex items-center justify-center">
+                            <span id="rotating-question" class="transition-opacity duration-500">¿Cómo estás?</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -461,11 +471,90 @@
         </div>
     </section>
 
+    <!-- Route Finder -->
+    <section class="py-16 bg-gradient-to-b from-brand-beige to-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl fade-in-section">
+                <div class="text-center mb-8">
+                    <h3 class="font-heading text-2xl md:text-3xl font-bold text-brand-dark mb-3">
+                        <i class="fa-solid fa-compass text-brand-terra mr-3"></i>
+                        Finde deine perfekte Route
+                    </h3>
+                    <p class="text-gray-600">Beantworte 3 kurze Fragen und erhalte eine Empfehlung!</p>
+                </div>
+
+                <div id="route-finder">
+                    <div class="space-y-6">
+                        <!-- Question 1 -->
+                        <div>
+                            <p class="font-bold text-brand-dark mb-3">1. Wie viel Zeit hast du pro Woche zum Lernen?</p>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <button onclick="selectAnswer(1, 'a')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-clock mr-2"></i> 1-2 Stunden
+                                </button>
+                                <button onclick="selectAnswer(1, 'b')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-clock mr-2"></i> 3-4 Stunden
+                                </button>
+                                <button onclick="selectAnswer(1, 'c')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-clock mr-2"></i> 5+ Stunden
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div>
+                            <p class="font-bold text-brand-dark mb-3">2. Was ist dein aktuelles Niveau?</p>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <button onclick="selectAnswer(2, 'a')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-seedling mr-2"></i> Anfänger (A1)
+                                </button>
+                                <button onclick="selectAnswer(2, 'b')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-chart-line mr-2"></i> Mittelstufe (A2-B1)
+                                </button>
+                                <button onclick="selectAnswer(2, 'c')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-star mr-2"></i> Fortgeschritten (B2+)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div>
+                            <p class="font-bold text-brand-dark mb-3">3. Was ist dein Hauptziel?</p>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <button onclick="selectAnswer(3, 'a')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-comments mr-2"></i> Konversation
+                                </button>
+                                <button onclick="selectAnswer(3, 'b')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-briefcase mr-2"></i> Beruf/Reisen
+                                </button>
+                                <button onclick="selectAnswer(3, 'c')" class="answer-btn border-2 border-gray-300 rounded-xl p-4 hover:border-brand-terra hover:bg-brand-beige transition text-left">
+                                    <i class="fa-solid fa-graduation-cap mr-2"></i> Perfektion
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result -->
+                    <div id="route-result" class="hidden mt-8 p-6 bg-brand-terra/10 rounded-xl border-2 border-brand-terra">
+                        <div class="text-center">
+                            <i class="fa-solid fa-check-circle text-brand-terra text-4xl mb-4"></i>
+                            <h4 class="font-bold text-xl text-brand-dark mb-3">Empfehlung:</h4>
+                            <p id="result-text" class="text-brand-dark text-lg font-semibold mb-4"></p>
+                            <a href="#pricing-cards" class="inline-block bg-brand-terra text-white px-8 py-3 rounded-full font-bold hover:bg-orange-700 transition">
+                                Zu den Paketen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="rutas" class="py-24 bg-white relative">
         <div class="h-64 w-full object-cover absolute top-0 left-0 z-0 opacity-80">
              <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
         </div>
-        
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 fade-in-section">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-i18n="pricing_headline">Wähle deine Reiseroute</h2>
@@ -473,6 +562,8 @@
                     Flexible Pakete ohne Verfallsdatum. Jede Stunde ist ein Schritt auf deiner Karte.
                 </p>
             </div>
+
+            <div id="pricing-cards" class="scroll-mt-24"></div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Ruta Exprés -->
@@ -482,7 +573,7 @@
                         <div class="w-12 h-12 bg-brand-terra/10 rounded-full flex items-center justify-center mb-3">
                             <i class="fa-solid fa-rocket text-brand-terra text-xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-brand-dark">Ruta Exprés</h3>
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="route_name_3">Express-Route</h3>
                         <p class="text-sm text-gray-500 mt-2 h-10" data-i18n="pack_3_sub">Der Kompass für ein konkretes Ziel.</p>
                     </div>
                     <div class="text-4xl font-bold text-brand-terra mb-6 relative z-10">
@@ -507,7 +598,7 @@
                         <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-3">
                             <i class="fa-solid fa-map text-white text-xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-white">Ruta Intermedia</h3>
+                        <h3 class="font-heading text-2xl font-bold text-white" data-i18n="route_name_2">Aufbau-Route</h3>
                         <p class="text-sm text-white/80 mt-2 h-10" data-i18n="pack_2_sub">Ein Abenteuer, um das Level zu heben.</p>
                     </div>
                     <div class="text-4xl font-bold text-white mb-6 relative z-10">
@@ -531,7 +622,7 @@
                         <div class="w-12 h-12 bg-brand-terra/10 rounded-full flex items-center justify-center mb-3">
                             <i class="fa-solid fa-crown text-brand-terra text-xl"></i>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-brand-dark">Ruta Maestra</h3>
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark" data-i18n="route_name_1">Master-Route</h3>
                         <p class="text-sm text-gray-500 mt-2 h-10" data-i18n="pack_1_sub">16 Stationen, ein Ziel: Dominanz.</p>
                     </div>
                     <div class="text-4xl font-bold text-brand-terra mb-6 relative z-10">
@@ -656,6 +747,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span data-i18n="faq_q4">Bekomme ich nach jeder Stunde Materialien?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
+                        <div class="py-4 border-t" data-i18n="faq_a4">
+                            Ja, am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Notizen, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span data-i18n="faq_q5">Gibt es Hausaufgaben?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="px-6 py-0 h-0 overflow-hidden transition-all duration-300 text-gray-600">
+                        <div class="py-4 border-t" data-i18n="faq_a5">
+                            Ja. Du bekommst kurze, realistische Aufgaben, mit denen du das Gelernte direkt im Alltag anwenden kannst (z. B. Nachrichten schreiben, kleine Dialoge, Hörverstehen).
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -775,6 +888,12 @@
                 hero_cta_secondary: "Preise ansehen",
                 quiz_intro: "Weißt du das?",
                 quiz_question: "Wie sagt man 'Abenteuer' auf Spanisch?",
+                quiz_word_1: "Abenteuer",
+                quiz_word_2: "Reise",
+                quiz_word_3: "Lächeln",
+                route_name_1: "Master-Route",
+                route_name_2: "Aufbau-Route",
+                route_name_3: "Express-Route",
                 video_headline: "Schau dir mein Vorstellungsvideo an",
                 video_sub: "Erfahre mehr über meine Lehrmethode und wie ich dir helfen kann, dein Spanisch zu verbessern.",
                 about_headline: "Mehr als nur Grammatik – echte Kommunikation.",
@@ -820,6 +939,10 @@
                 faq_a2: "Die Zahlung erfolgt sicher und einfach über PayPal.",
                 faq_q3: "Stornierungsbedingungen?",
                 faq_a3: "Umbuchung oder Absage bis 24 Stunden vorher möglich. Danach fällt die volle Gebühr an.",
+                faq_q4: "Bekomme ich nach jeder Stunde Materialien?",
+                faq_a4: "Ja, am Ende jeder Stunde erhältst du ein PDF mit den wichtigsten Notizen, neuen Vokabeln und – wenn du möchtest – passenden Hausaufgaben.",
+                faq_q5: "Gibt es Hausaufgaben?",
+                faq_a5: "Ja. Du bekommst kurze, realistische Aufgaben, mit denen du das Gelernte direkt im Alltag anwenden kannst (z. B. Nachrichten schreiben, kleine Dialoge, Hörverstehen).",
                 contact_headline: "Bereit, dein Spanisch zu verbessern?",
                 contact_sub: "Schreibe mir für deine kostenlose Probestunde.",
                 opt_trial: "Kostenlose Probestunde",
@@ -847,6 +970,12 @@
                 hero_cta_secondary: "Ver precios",
                 quiz_intro: "¿Sabes esto?",
                 quiz_question: "¿Cómo se dice 'Adventure' en español?",
+                quiz_word_1: "Aventura",
+                quiz_word_2: "Viaje",
+                quiz_word_3: "Sonrisa",
+                route_name_1: "Ruta Maestra",
+                route_name_2: "Ruta Intermedia",
+                route_name_3: "Ruta Exprés",
                 video_headline: "Mira mi video de presentación",
                 video_sub: "Descubre más sobre mi método de enseñanza y cómo puedo ayudarte a mejorar tu español.",
                 about_headline: "Más que gramática: comunicación real.",
@@ -892,6 +1021,10 @@
                 faq_a2: "El pago se realiza de forma segura y sencilla a través de PayPal.",
                 faq_q3: "¿Política de cancelación?",
                 faq_a3: "Cambios o cancelaciones hasta 24 horas antes. Después se cobra la tarifa completa.",
+                faq_q4: "¿Recibo materiales después de cada clase?",
+                faq_a4: "Sí, al final de cada clase recibirás un PDF con las notas más importantes, nuevo vocabulario y – si lo deseas – tareas adecuadas.",
+                faq_q5: "¿Hay tareas?",
+                faq_a5: "Sí. Recibirás tareas cortas y realistas con las que puedes aplicar lo aprendido directamente en tu vida cotidiana (por ejemplo, escribir mensajes, pequeños diálogos, comprensión auditiva).",
                 contact_headline: "¿Listo para mejorar tu español?",
                 contact_sub: "Escríbeme para tu clase de prueba gratuita.",
                 opt_trial: "Clase de prueba gratis",
@@ -919,6 +1052,12 @@
                 hero_cta_secondary: "View Prices",
                 quiz_intro: "Do you know?",
                 quiz_question: "How do you say 'Adventure' in Spanish?",
+                quiz_word_1: "Adventure",
+                quiz_word_2: "Journey",
+                quiz_word_3: "Smile",
+                route_name_1: "Master Route",
+                route_name_2: "Intermediate Route",
+                route_name_3: "Express Route",
                 video_headline: "Watch my introduction video",
                 video_sub: "Learn more about my teaching method and how I can help you improve your Spanish.",
                 about_headline: "More than grammar – real communication.",
@@ -964,6 +1103,10 @@
                 faq_a2: "Payment is done securely and simply via PayPal.",
                 faq_q3: "Cancellation policy?",
                 faq_a3: "Reschedule or cancel up to 24 hours in advance. After that, full fee applies.",
+                faq_q4: "Do I get materials after each class?",
+                faq_a4: "Yes, at the end of each class you will receive a PDF with the most important notes, new vocabulary and – if you want – suitable homework.",
+                faq_q5: "Is there homework?",
+                faq_a5: "Yes. You will get short, realistic tasks that allow you to apply what you've learned directly in everyday life (e.g., writing messages, small dialogues, listening comprehension).",
                 contact_headline: "Ready to improve your Spanish?",
                 contact_sub: "Write me for your free trial class.",
                 opt_trial: "Free Trial Class",
@@ -1189,6 +1332,73 @@
                 }
             }, 100);
         });
+
+        // --- ROTATING QUESTIONS ---
+        const questions = [
+            '¿Cómo estás?',
+            '¿Dónde vives?',
+            '¿Qué haces?',
+            '¿Cuándo empezamos?',
+            '¿Por qué español?',
+            '¿Quién eres?'
+        ];
+        let currentQuestionIndex = 0;
+
+        function rotateQuestion() {
+            const questionEl = document.getElementById('rotating-question');
+            if (!questionEl) return;
+
+            questionEl.style.opacity = '0';
+
+            setTimeout(() => {
+                currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+                questionEl.textContent = questions[currentQuestionIndex];
+                questionEl.style.opacity = '1';
+            }, 500);
+        }
+
+        setInterval(rotateQuestion, 3000);
+
+        // --- ROUTE FINDER ---
+        let answers = {1: null, 2: null, 3: null};
+
+        function selectAnswer(question, answer) {
+            answers[question] = answer;
+
+            // Visual feedback
+            const buttons = event.currentTarget.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-brand-terra', 'bg-brand-beige');
+                btn.classList.add('border-gray-300');
+            });
+            event.currentTarget.classList.remove('border-gray-300');
+            event.currentTarget.classList.add('border-brand-terra', 'bg-brand-beige');
+
+            // Check if all answered
+            if (answers[1] && answers[2] && answers[3]) {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const resultDiv = document.getElementById('route-result');
+            const resultText = document.getElementById('result-text');
+
+            // Simple logic for recommendation
+            let recommendation = '';
+
+            if (answers[1] === 'a' || answers[2] === 'a') {
+                recommendation = 'Die Express-Route ist perfekt für dich! Intensiv und fokussiert auf schnelle Fortschritte.';
+            } else if (answers[1] === 'c' || answers[3] === 'c') {
+                recommendation = 'Die Master-Route passt ideal zu dir! Umfassend und mit vielen Extras für maximalen Erfolg.';
+            } else {
+                recommendation = 'Die Aufbau-Route ist genau richtig! Balance zwischen Intensität und Flexibilität.';
+            }
+
+            resultText.textContent = recommendation;
+            resultDiv.classList.remove('hidden');
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
 
     </script>
 </body>
